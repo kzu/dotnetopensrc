@@ -127,7 +127,7 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Configuration\IMergableConfigurationSectionHandler.cs"
+                    RelPath = "Configuration\IMergeConfigurationSectionHandler.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
