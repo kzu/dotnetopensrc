@@ -29,7 +29,7 @@ namespace NMatrix.Core.Utility
 		/// <returns>The instantiated object, or null.</returns>
 		public static object GetObject(string typeName)
 		{
-            Type type =	LoadType(typeName);
+			Type type =	LoadType(typeName);
 			if (type == null) return null;
 			return Activator.CreateInstance(type);
 		}

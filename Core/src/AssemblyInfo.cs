@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCompany("NMatrix Project")]
 [assembly: AssemblyProduct("Core")]
 
-[assembly: AssemblyVersion("1.1.*")]
+[assembly: AssemblyVersion("1.11.*")]
 
 [assembly: AssemblyDelaySign(false)]
 //TODO: Uncomment and sign before distribution.
