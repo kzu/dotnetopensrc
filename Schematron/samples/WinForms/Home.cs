@@ -147,6 +147,7 @@ namespace WinTest
 			this.txtXml.Size = new System.Drawing.Size(400, 21);
 			this.txtXml.TabIndex = 5;
 			this.txtXml.Text = "..\\schematron\\po-instance.xml";
+			this.txtXml.Validated += new System.EventHandler(this.OnSetDocument);
 			// 
 			// btnXmlFile
 			// 
@@ -181,6 +182,7 @@ namespace WinTest
 			this.txtSchema.Size = new System.Drawing.Size(400, 21);
 			this.txtSchema.TabIndex = 1;
 			this.txtSchema.Text = "..\\schematron\\po-schema.xsd";
+			this.txtSchema.Validated += new System.EventHandler(this.OnSetSchema);
 			// 
 			// btnExecute
 			// 
@@ -366,16 +368,29 @@ namespace WinTest
 		#endregion Designer stuff
 
 		#region Dialogs and setup
+
 		private void btnXsdFile_Click(object sender, System.EventArgs e)
 		{
 			if (dlgOpen.ShowDialog() == DialogResult.OK)
-				txtSchema.Text = dlgOpen.FileName;		
+			{
+				txtSchema.Text = dlgOpen.FileName;
+				using (StreamReader sr = new StreamReader(txtSchema.Text))
+				{
+					txtSchemaXml.Text = MakePretty(sr.ReadToEnd());
+				}
+			}
 		}
 
 		private void btnXmlFile_Click(object sender, System.EventArgs e)
 		{
 			if (dlgOpen.ShowDialog() == DialogResult.OK)
+			{
 				txtXml.Text = dlgOpen.FileName;
+				using (StreamReader sr = new StreamReader(txtXml.Text))
+				{
+					txtDocumentXml.Text = MakePretty(sr.ReadToEnd());
+				}
+			}
 		}
 
 		private void Home_Load(object sender, System.EventArgs e)
@@ -384,44 +399,33 @@ namespace WinTest
 			{
 				cbOutput.Items.Add(value);
 			}
+			using (StreamReader sr = new StreamReader(txtSchema.Text))
+			{
+				txtSchemaXml.Text = MakePretty(sr.ReadToEnd());
+			}
+			using (StreamReader sr = new StreamReader(txtXml.Text))
+			{
+				txtDocumentXml.Text = MakePretty(sr.ReadToEnd());
+			}
 
 			cbOutput.SelectedItem = OutputFormatting.Default;
+
 		}
 		#endregion
 
 		private void btnExecute_Click(object sender, System.EventArgs e)
 		{
 			OutputFormatting format = (OutputFormatting) cbOutput.SelectedItem;
-
-			// Dump documents we're working with.
-			using (StreamReader sr = new StreamReader(txtSchema.Text))
-			{
-				txtSchemaXml.Text = MakePretty(sr.ReadToEnd());
-			}
-
 			Validator val = new Validator(format);
-			val.AddSchema(txtSchema.Text);
+			val.AddSchema(new StringReader(txtSchemaXml.Text));
 			//val.ReturnType = NavigableType.XmlDocument;
 			if (txtPhase.Text.Length != 0)
 				val.Phase = txtPhase.Text;
 
 			try
 			{
-				IXPathNavigable doc;
-				if (txtXml.Text.Length == 0)
-				{
-					// Validate using document literal in textbox.
-					doc = val.Validate(new StringReader(txtDocumentXml.Text));
-				}
-				else
-				{
-					// Dump doc we'll use.
-					using (StreamReader sr = new StreamReader(txtXml.Text))
-					{
-						txtDocumentXml.Text = MakePretty(sr.ReadToEnd());
-					}
-					doc = val.Validate(txtXml.Text);
-				}
+				// Validate using document literal in textbox.
+				IXPathNavigable doc = val.Validate(new StringReader(txtDocumentXml.Text));
 				// Continue processing valid document.
 				txtMsg.Text = "Valid file!";
 			}
@@ -443,28 +447,18 @@ namespace WinTest
 			try
 			{
 				XmlDocument doc = new XmlDocument();
-				if (txtXml.Text.Length == 0)
-				{
-					// Validate using document literal in textbox.
-					doc.Load(new StringReader(txtDocumentXml.Text));
-				}
-				else
-				{
-					// Dump doc we'll use.
-					using (StreamReader sr = new StreamReader(txtXml.Text))
-					{
-						txtDocumentXml.Text = MakePretty(sr.ReadToEnd());
-					}
-					doc.Load(txtXml.Text);
-				}
+				// Validate using document literal in textbox.
+				doc.Load(new StringReader(txtDocumentXml.Text));
 
 				ws.BatchInsert(doc.DocumentElement);
 				txtMsg.Text = "Valid file!";
 			}
 			catch (Exception ex)
 			{
-				// Need to get back the standard line breaks.
 				string msg = ex.Message;
+				// Need to decode HTML-isms.
+				msg = System.Web.HttpUtility.HtmlDecode(msg);
+				// Need to get back the standard line breaks.
 				txtMsg.Text = msg.Replace("\n", Environment.NewLine);
 			}
 
@@ -490,6 +484,24 @@ namespace WinTest
 			else
 			{
 				this.txtMsg.ScrollBars = ScrollBars.Both;
+			}
+		}
+
+		private void OnSetSchema(object sender, System.EventArgs e)
+		{
+			// Dump schema we're working with.
+			using (StreamReader sr = new StreamReader(txtSchema.Text))
+			{
+				txtSchemaXml.Text = MakePretty(sr.ReadToEnd());
+			}		
+		}
+
+		private void OnSetDocument(object sender, System.EventArgs e)
+		{
+			// Dump documents we're working with.
+			using (StreamReader sr = new StreamReader(txtXml.Text))
+			{
+				txtDocumentXml.Text = MakePretty(sr.ReadToEnd());
 			}
 		}
 

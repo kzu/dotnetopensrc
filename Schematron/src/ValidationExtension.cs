@@ -100,7 +100,7 @@ namespace NMatrix.Schematron
 				// Cache all schemas.
 				foreach (string schema in validation.Schemas)
 				{
-					// First try fulkl resource name.
+					// First try full resource name.
 					Stream memstream = schemaAssembly.GetManifestResourceStream(schema);
 					if (memstream == null)
 					{

@@ -79,7 +79,7 @@ namespace NMatrix.Schematron
 		} OutputFormatting formatting;
 
 		/// <summary>
-		/// Gets/Sets a type that implements <see cref="Formatting.IFormatter"/> to use 
+		/// Gets/Sets a type that implements <see cref="Formatters.IFormatter"/> to use 
 		/// to format error messages. If set, this property takes precedence 
 		/// over <see cref="Formatting"/>.
 		/// </summary>

@@ -9,13 +9,13 @@
                 <pattern name="Basic data">
                     <rule context="po:customer">
                         <assert test="(@sex='Male' and @title='Mr') or (@sex='Female' and (@title='Mrs' or @title='Miss'))">
-													Sex and title have incompatible values.
+													Attributes sex and title must have compatible values on element <name/>.
 												</assert>
                         <report test="@customerId and @partnerId">
-													Both customerId and partnerId can't be present.
+													Both customerId and partnerId can't be present on element <name/>.
 												</report>
                         <report test="not(@customerId) and not(@partnerId)">
-													Either customerId or partnerId must be present.
+													Either customerId or partnerId must be present on element <name/>.
 												</report>
                     </rule>
                 </pattern>
@@ -27,9 +27,9 @@
             <xsd:appinfo>
                 <!-- General order-related constraints -->
                 <pattern name="Exceptional Orders" xmlns="http://www.ascc.net/xml/schematron">
-                    <rule context="po:order[count(po:items/po:item) &gt; 100]">
+                    <rule context="po:order[count(po:items/po:item) > 100]">
                         <assert test="@priority = 'Max'">
-													An <name /> with more than two items must have a maximum priority.
+													An <name /> with more than a hundred items must have a maximum priority (@priotity=‘Max’).
 												</assert>
                         <report test="not(../@partnerId)">
 													Only partners can place this type of order.

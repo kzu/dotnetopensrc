@@ -14,4 +14,4 @@ You can run the client WinForms app, which contains a UI for testing the product
 
 	[WebMethod]
 	[Validation("po-schema.xsd", OutputFormatting.Log)]
-	ublic void BatchInsert(XmlNode orders)
+	public void BatchInsert(XmlNode orders)

@@ -89,6 +89,11 @@
                     AssemblyName = "System.Web.Services"
                     HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.Services.dll"
                 />
+                <Reference
+                    Name = "GotDotNet.Exslt"
+                    AssemblyName = "GotDotNet.Exslt"
+                    HintPath = "..\lib\GotDotNet.Exslt.dll"
+                />
             </References>
         </Build>
         <Files>
