@@ -26,6 +26,8 @@ namespace WinTest
 		private System.Windows.Forms.TextBox txtMsg;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.ComboBox cbOutput;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox txtPhase;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -77,6 +79,8 @@ namespace WinTest
 			this.btnExecute = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.cbOutput = new System.Windows.Forms.ComboBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.txtPhase = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// txtMsg
@@ -86,11 +90,12 @@ namespace WinTest
 			this.txtMsg.Anchor = (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 				| System.Windows.Forms.AnchorStyles.Left) 
 				| System.Windows.Forms.AnchorStyles.Right);
+			this.txtMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.txtMsg.Location = new System.Drawing.Point(8, 88);
 			this.txtMsg.Multiline = true;
 			this.txtMsg.Name = "txtMsg";
 			this.txtMsg.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.txtMsg.Size = new System.Drawing.Size(488, 272);
+			this.txtMsg.Size = new System.Drawing.Size(552, 281);
 			this.txtMsg.TabIndex = 1;
 			this.txtMsg.Text = "";
 			this.txtMsg.WordWrap = false;
@@ -117,7 +122,7 @@ namespace WinTest
 				| System.Windows.Forms.AnchorStyles.Right);
 			this.txtXml.Location = new System.Drawing.Point(64, 32);
 			this.txtXml.Name = "txtXml";
-			this.txtXml.Size = new System.Drawing.Size(336, 21);
+			this.txtXml.Size = new System.Drawing.Size(400, 21);
 			this.txtXml.TabIndex = 9;
 			this.txtXml.Text = "..\\schematron\\po-instance.xml";
 			// 
@@ -126,7 +131,7 @@ namespace WinTest
 			this.btnXmlFile.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
 			this.btnXmlFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnXmlFile.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.btnXmlFile.Location = new System.Drawing.Point(408, 32);
+			this.btnXmlFile.Location = new System.Drawing.Point(472, 32);
 			this.btnXmlFile.Name = "btnXmlFile";
 			this.btnXmlFile.Size = new System.Drawing.Size(24, 20);
 			this.btnXmlFile.TabIndex = 12;
@@ -138,7 +143,7 @@ namespace WinTest
 			this.btnXsdFile.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
 			this.btnXsdFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnXsdFile.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.btnXsdFile.Location = new System.Drawing.Point(408, 8);
+			this.btnXsdFile.Location = new System.Drawing.Point(472, 8);
 			this.btnXsdFile.Name = "btnXsdFile";
 			this.btnXsdFile.Size = new System.Drawing.Size(24, 20);
 			this.btnXsdFile.TabIndex = 11;
@@ -151,7 +156,7 @@ namespace WinTest
 				| System.Windows.Forms.AnchorStyles.Right);
 			this.txtSchema.Location = new System.Drawing.Point(64, 8);
 			this.txtSchema.Name = "txtSchema";
-			this.txtSchema.Size = new System.Drawing.Size(336, 21);
+			this.txtSchema.Size = new System.Drawing.Size(400, 21);
 			this.txtSchema.TabIndex = 10;
 			this.txtSchema.Text = "..\\schematron\\po-schema.xsd";
 			// 
@@ -161,7 +166,7 @@ namespace WinTest
 			this.btnExecute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnExecute.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.btnExecute.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnExecute.Location = new System.Drawing.Point(440, 8);
+			this.btnExecute.Location = new System.Drawing.Point(504, 8);
 			this.btnExecute.Name = "btnExecute";
 			this.btnExecute.Size = new System.Drawing.Size(60, 20);
 			this.btnExecute.TabIndex = 15;
@@ -183,21 +188,39 @@ namespace WinTest
 			this.cbOutput.Size = new System.Drawing.Size(240, 21);
 			this.cbOutput.TabIndex = 17;
 			// 
+			// label4
+			// 
+			this.label4.Location = new System.Drawing.Point(320, 56);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(48, 16);
+			this.label4.TabIndex = 18;
+			this.label4.Text = "Phase:";
+			// 
+			// txtPhase
+			// 
+			this.txtPhase.Location = new System.Drawing.Point(360, 56);
+			this.txtPhase.Name = "txtPhase";
+			this.txtPhase.Size = new System.Drawing.Size(104, 21);
+			this.txtPhase.TabIndex = 19;
+			this.txtPhase.Text = "";
+			// 
 			// Home
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
-			this.ClientSize = new System.Drawing.Size(504, 365);
+			this.ClientSize = new System.Drawing.Size(568, 374);
 			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																		  this.cbOutput,
-																		  this.label3,
-																		  this.btnExecute,
-																		  this.label2,
-																		  this.label1,
-																		  this.txtXml,
-																		  this.btnXmlFile,
-																		  this.btnXsdFile,
-																		  this.txtSchema,
-																		  this.txtMsg});
+																																	this.txtPhase,
+																																	this.label4,
+																																	this.cbOutput,
+																																	this.label3,
+																																	this.btnExecute,
+																																	this.label2,
+																																	this.label1,
+																																	this.txtXml,
+																																	this.btnXmlFile,
+																																	this.btnXsdFile,
+																																	this.txtSchema,
+																																	this.txtMsg});
 			this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Home";
@@ -219,6 +242,8 @@ namespace WinTest
 			Application.Run(new Home());
 		}
 
+
+		#region Dialogs and setup
 		private void btnXsdFile_Click(object sender, System.EventArgs e)
 		{
 			if (dlgOpen.ShowDialog() == DialogResult.OK)
@@ -231,6 +256,17 @@ namespace WinTest
 				txtXml.Text = dlgOpen.FileName;
 		}
 
+		private void Home_Load(object sender, System.EventArgs e)
+		{
+			foreach (OutputFormatting value in Enum.GetValues(typeof(OutputFormatting)))
+			{
+				cbOutput.Items.Add(value);
+			}
+
+			cbOutput.SelectedItem = OutputFormatting.Default;
+		}
+		#endregion
+
 		private void btnExecute_Click(object sender, System.EventArgs e)
 		{
 			OutputFormatting format = (OutputFormatting) cbOutput.SelectedItem;
@@ -238,11 +274,12 @@ namespace WinTest
 			Validator val = new Validator(format);
 			val.AddSchema(txtSchema.Text);
 			//val.ReturnType = NavigableType.XmlDocument;
+			if (txtPhase.Text.Length != 0)
+				val.Phase = txtPhase.Text;
 
 			try
 			{
-				XPathDocument doc = (XPathDocument) 
-					val.Validate(txtXml.Text);
+				XPathDocument doc = (XPathDocument)  val.Validate(txtXml.Text);
 				// Continue processing valid document.
 				txtMsg.Text = "Valid file!";
 			}
@@ -252,14 +289,5 @@ namespace WinTest
 			}		
 		}
 
-		private void Home_Load(object sender, System.EventArgs e)
-		{
-			foreach (OutputFormatting value in Enum.GetValues(typeof(OutputFormatting)))
-			{
-				cbOutput.Items.Add(value);
-			}
-
-			cbOutput.SelectedItem = OutputFormatting.XML;
-		}
 	}
 }

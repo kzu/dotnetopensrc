@@ -22,6 +22,10 @@
         <quantity>1</quantity>
         <USPrice>39.98</USPrice>
         <shipDate>1999-05-21</shipDate>
+        <rebate amount="20" code="PJS572" />
+        <!-- Very basic sibling restriction with WXS 
+            (only one <rebate> per item). -->
+        <!-- <rebate amount="10" code="AJT255" /> -->
       </item>
 
       <item partNum="911-AA">
@@ -29,10 +33,6 @@
         <quantity>2</quantity>
         <USPrice>70.43</USPrice>
         <shipDate>1999-05-21</shipDate>
-        <rebate amount="20" code="PJS572" />
-        <!-- Very basic sibling restriction with WXS 
-            (only one <rebate> per item). -->
-        <!-- <rebate amount="10" code="AJT255" /> -->
       </item>
     </items>
 

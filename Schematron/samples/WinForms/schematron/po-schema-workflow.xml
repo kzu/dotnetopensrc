@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<schema xmlns="http://www.ascc.net/xml/schematron" defaultPhase="orderPlaced">
+<schema xmlns="http://www.ascc.net/xml/schematron" 
+	defaultPhase="orderPlaced">
   <title>Purchase Orders</title>
+  <ns uri="http://example.com/po-schematron" prefix="po" />
 
 	<phase id="orderPlaced">
 		<active pattern="customerInfo" />

@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!-- Attribute type determined from element content -->
-<orders xmlns="http://example.com/PO-CMAT">
+<orders xmlns="http://example.com/PO-CMTA">
 
   <order orderDate="1999-10-20">
     <items>
