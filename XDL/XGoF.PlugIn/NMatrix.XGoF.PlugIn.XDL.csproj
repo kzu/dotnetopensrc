@@ -75,14 +75,14 @@
                     HintPath = "..\..\bin\NMatrix.XGoF.dll"
                 />
                 <Reference
-                    Name = "NMatrix.XDL"
-                    AssemblyName = "NMatrix.XDL"
-                    HintPath = "..\..\bin\NMatrix.XDL.dll"
-                />
-                <Reference
                     Name = "NMatrix.Core"
                     AssemblyName = "NMatrix.Core"
                     HintPath = "..\..\bin\NMatrix.Core.dll"
+                />
+                <Reference
+                    Name = "NMatrix.XDL"
+                    Project = "{4891F336-99BD-43ED-807E-46A185C47B70}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
         </Build>

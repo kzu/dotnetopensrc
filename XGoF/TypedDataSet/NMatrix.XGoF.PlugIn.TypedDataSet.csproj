@@ -126,7 +126,6 @@
                 <File
                     RelPath = "NMatrix.XGoF.PlugIn.TypedDataSet.dll.config"
                     BuildAction = "Content"
-                    Generator = "XGoF"
                     LastGenOutput = "NMatrix.XGoF.PlugIn.TypedDataSet.dll.cs"
                 />
                 <File

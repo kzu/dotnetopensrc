@@ -21,7 +21,7 @@ namespace NMatrix.XGoF.Configuration
 	/// <summary>
 	/// Administers Runner sections in the configuration file.
 	/// </summary>
-	public class RunnerSectionHandler : IMergableConfigurationSectionHandler
+	public class RunnerSectionHandler : IMergeConfigurationSectionHandler
 	{
 		/// <summary>
 		/// Default constructor.

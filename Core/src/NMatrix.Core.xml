@@ -310,6 +310,21 @@
             <remarks>If the document isn't found in the current domain associated data, it is 
             loaded and saved to it.</remarks>
         </member>
+        <member name="T:NMatrix.Core.Configuration.IMergeConfigurationSectionHandler">
+            <summary>
+            Implement in configuration handler if merging is desired.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.IMergeConfigurationSectionHandler.Merge(System.Object,System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Merges the passed configuration with the new parameters.
+            </summary>
+            <param name="currentConfig">The current configuration to use for merging.</param>
+            <param name="parent">The parent node.</param>
+            <param name="configContext">The current context for configuration. Usually <c>null</c>, 
+            except in ASP.NET scenarios.</param>
+            <param name="section">The node with the configuration data.</param>
+        </member>
         <member name="T:NMatrix.Core.Patterns.Composite">
             <summary>
             The abstract base class for all the composites.
@@ -806,21 +821,6 @@
             <summary>
             The message to pass to the listeners.
             </summary>
-        </member>
-        <member name="T:NMatrix.Core.Configuration.IMergeConfigurationSectionHandler">
-            <summary>
-            Implement in configuration handler if merging is desired.
-            </summary>
-        </member>
-        <member name="M:NMatrix.Core.Configuration.IMergeConfigurationSectionHandler.Merge(System.Object,System.Object,System.Object,System.Xml.XmlNode)">
-            <summary>
-            Merges the passed configuration with the new parameters.
-            </summary>
-            <param name="currentConfig">The current configuration to use for merging.</param>
-            <param name="parent">The parent node.</param>
-            <param name="configContext">The current context for configuration. Usually <c>null</c>, 
-            except in ASP.NET scenarios.</param>
-            <param name="section">The node with the configuration data.</param>
         </member>
     </members>
 </doc>

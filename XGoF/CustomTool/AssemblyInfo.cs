@@ -24,8 +24,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyVersion("0.82.*")]
 
 [assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile(@"..\..\..\NMatrix.snk")]
-[assembly: AssemblyKeyName("NMatrix")]
+//TODO: Uncomment and sign before distribution.
+//[assembly: AssemblyKeyFile(@"..\NMatrix.snk")]
+//[assembly: AssemblyKeyName("NMatrix")]
 
 //TODO: create an assembly-level attribute for the license. Put the license text there.
 

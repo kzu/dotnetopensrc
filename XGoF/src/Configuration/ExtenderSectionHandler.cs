@@ -25,7 +25,7 @@ namespace NMatrix.XGoF.Configuration
 	/// <summary>
 	/// Loads configuration for the Extenders section.
 	/// </summary>
-	public class ExtenderSectionHandler : IMergableConfigurationSectionHandler
+	public class ExtenderSectionHandler : IMergeConfigurationSectionHandler
 	{
 		/// <summary>
 		/// Default constructor.

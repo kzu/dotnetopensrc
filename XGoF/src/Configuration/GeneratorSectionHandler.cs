@@ -23,7 +23,7 @@ namespace NMatrix.XGoF.Configuration
 	/// <summary>
 	/// Initializes generator configuration options.
 	/// </summary>
-	public class GeneratorSectionHandler : IMergableConfigurationSectionHandler
+	public class GeneratorSectionHandler : IMergeConfigurationSectionHandler
 	{
 		/// <summary>
 		/// Default constructor.

@@ -112,16 +112,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "CustomInherited\PublisherSchema.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "DataSets\pubs.cs"
-                    SubType = "code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "Interfaces\IDataRow.cs"
                     SubType = "Code"
                     BuildAction = "Compile"

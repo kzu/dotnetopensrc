@@ -43,11 +43,30 @@ namespace NMatrix.XGoF
 		private string _config;
 
 		/// <summary>
+		/// Initializes a new instance of the class.
+		/// </summary>
+		public Runner()
+		{
+		}
+
+		/// <summary>
 		/// Initialize the process with the specified file.
 		/// </summary>
+		/// <param name="fileName">
+		/// The generation process configuration file.
+		/// </param>
 		public Runner(string fileName)
 		{
 			_config = fileName;
+		}
+
+		/// <summary>
+		/// The generation process configuration file.
+		/// </summary>
+		public string File
+		{
+			get { return _config; }
+			set { _config = value; }
 		}
 
 		/// <summary>

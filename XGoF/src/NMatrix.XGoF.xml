@@ -1165,10 +1165,18 @@
             Class responsible for running generations.
             </summary>
         </member>
+        <member name="M:NMatrix.XGoF.Runner.#ctor">
+            <summary>
+            Initializes a new instance of the class.
+            </summary>
+        </member>
         <member name="M:NMatrix.XGoF.Runner.#ctor(System.String)">
             <summary>
             Initialize the process with the specified file.
             </summary>
+            <param name="fileName">
+            The generation process configuration file.
+            </param>
         </member>
         <member name="M:NMatrix.XGoF.Runner.Start">
             <summary>
@@ -1215,6 +1223,11 @@
         <member name="E:NMatrix.XGoF.Runner.FileFinished">
             <summary>
             Notify listeners that a input source file has been processed.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Runner.File">
+            <summary>
+            The generation process configuration file.
             </summary>
         </member>
     </members>

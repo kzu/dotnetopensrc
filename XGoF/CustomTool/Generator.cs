@@ -27,17 +27,24 @@ namespace NMatrix.XGoF.CustomTool
 		public override byte[] GenerateCode(string fileName, string fileContents)
         {
             _output = String.Empty;
-            try
-            {
-				Runner r = new Runner(fileName);
+
+			AppDomain gen = AppDomain.CreateDomain("Generator");
+			try
+			{
+				Runner r = (Runner)gen.CreateInstanceFromAndUnwrap("NMatrix.XGoF", "NMatrix.XGoF.Runner");
+				r.File = fileName;
 				r.FileFinished += new ProgressEventHandler(OnFileFinished);
 				r.Start();
-            }
-            catch (Exception e)
-            {
+			}
+			catch (Exception e)
+			{
 				base.GeneratorErrorCallback(false, 0, e.ToString(), 0, 0);
-                _output = "/* Couldn't generate output!\n" + e.ToString() + "\n*/";
-            }
+				_output = "/* Couldn't generate output!\n" + e.ToString() + "\n*/";
+			}
+			finally
+			{
+				AppDomain.Unload(gen);
+			}
 
             return System.Text.Encoding.ASCII.GetBytes(_output);
         }

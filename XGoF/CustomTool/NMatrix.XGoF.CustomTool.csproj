@@ -101,6 +101,10 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <File
+                    RelPath = "Readme.txt"
+                    BuildAction = "Content"
+                />
             </Include>
         </Files>
     </CSHARP>
