@@ -53,6 +53,9 @@ namespace NMatrix.Schematron
 				}
 			}
 
+			if (Schema.Phases[Phase] == null) 
+				throw new ArgumentException("The specified Phase isn't defined for the current schema.");
+
 			if (Evaluate(Schema.Phases[Phase], Messages))
 			{
 				Formatter.Format(Schema, Source, Messages);

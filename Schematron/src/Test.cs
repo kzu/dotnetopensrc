@@ -56,7 +56,7 @@ namespace NMatrix.Schematron
 				}
 				else
 					_paths[i] = null;
-			}			
+			}
 		}
 
 		/// <summary />
