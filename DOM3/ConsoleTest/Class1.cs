@@ -18,10 +18,9 @@ namespace ConsoleTest
 		{
 			try
 			{
-
 				XmlDocument doc = new DOMImplementation().CreateDocument();
 				doc.LoadXml("<?xml version=\"1.0\"?>" +
-					"<!-- Sample XML document -->" +
+					"<!-- Sample XML document - Changed using CVS/SSH -->" +
 					"<bookstore xmlns:bk=\"urn:samples\">" +
 					"  <book genre=\"novel\" publicationdate=\"1997\" " +
 					"        bk:ISBN=\"1-861001-57-5\">" +
