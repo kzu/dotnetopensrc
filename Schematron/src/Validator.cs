@@ -429,7 +429,7 @@ namespace NMatrix.Schematron
 
 				return navdoc;
 			}
-			catch (Exception ex)
+			catch
 			{
 				// Rethrow.
 				throw;

@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCompany("NMatrix Project")]
 [assembly: AssemblyProduct("Schematron.NET")]
 
-[assembly: AssemblyVersion("0.52.*")]
+[assembly: AssemblyVersion("0.53.*")]
 
 [assembly: AssemblyDelaySign(false)]
 [assembly: AssemblyKeyFile(@"..\..\..\NMatrix.snk")]

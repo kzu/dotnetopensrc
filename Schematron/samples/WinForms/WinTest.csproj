@@ -198,15 +198,15 @@
                     BuildAction = "None"
                 />
                 <File
-                    RelPath = "schematron\Copy of po-output.xml"
-                    BuildAction = "Content"
-                />
-                <File
                     RelPath = "schematron\po-instance.xml"
                     BuildAction = "Content"
                 />
                 <File
                     RelPath = "schematron\po-output.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\po-output-bad.xml"
                     BuildAction = "Content"
                 />
                 <File
