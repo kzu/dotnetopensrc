@@ -18,6 +18,7 @@ namespace ConsoleTest
 		{
 			try
 			{
+
 				XmlDocument doc = new DOMImplementation().CreateDocument();
 				doc.LoadXml("<?xml version=\"1.0\"?>" +
 					"<!-- Sample XML document -->" +
