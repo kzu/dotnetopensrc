@@ -1,0 +1,826 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NMatrix.Core</name>
+    </assembly>
+    <members>
+        <member name="T:NMatrix.Core.Collections.SortedDuplicateKey">
+            <summary>
+            Provides an IComparable implementation for use in sorted 
+            lists which need duplicate keys.
+            </summary>
+            <remarks>See the <c>IComparable.CompareTo</c> method implementaion
+            for details of the comparing mechanism.</remarks>
+        </member>
+        <member name="F:NMatrix.Core.Collections.SortedDuplicateKey._order">
+            <summary>
+            Keep the order value.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Collections.SortedDuplicateKey.#ctor(System.Int32)">
+            <summary>
+            Create a key with the specified order.
+            </summary>
+            <param name="order">The element's position to use.</param>
+        </member>
+        <member name="M:NMatrix.Core.Collections.SortedDuplicateKey.System#IComparable#CompareTo(System.Object)">
+            <summary>
+            Implements IComparable interface, for use by a sorted list.
+            </summary>
+            <param name="obj">The object to compare to.</param>
+            <returns>The result of the comparison</returns>
+            <remarks>If the passed order is int.MaxValue, is equal or is greater than
+            this instance order, we return -1. If the passed order is zero or less than
+            this instance order, we return +1.
+            We don't return 0 (equal) for any value to allow duplicate keys in the list.
+            The drawback is that if we try to access the sorted list by index or key, an exception
+            will be thrown, as no match will be found. The list can only be enumerated.
+            </remarks>
+        </member>
+        <member name="P:NMatrix.Core.Collections.SortedDuplicateKey.Order">
+            <summary>
+            The key's order.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.ComponentModel.HostedComponent">
+            <summary>
+            A component hosted in the generator environment.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.ComponentModel.IHostedComponent">
+            <summary>
+            A component which is initialized inside the hosting environment.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.ComponentModel.IHostedComponent.Initialize(System.IServiceProvider)">
+            <summary>
+            Initializes the component passing the environment host variable.
+            </summary>
+            <param name="environment">The host reference</param>
+        </member>
+        <member name="F:NMatrix.Core.ComponentModel.HostedComponent.Host">
+            <summary>
+            Provides descendent classes access to the service provider.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.ComponentModel.HostedComponent.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.ComponentModel.HostedComponent.Initialize(System.IServiceProvider)">
+            <summary>
+            Initializes the component passing the environment host variable.
+            </summary>
+            <param name="environment">The host reference</param>
+        </member>
+        <member name="T:NMatrix.Core.Configuration.ConfigurationLoader">
+            <summary>
+            The loader of configuration files.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationLoader.GetSectionHandler(System.String,System.Xml.XmlDocument)">
+            <summary>
+            Retrieve the specified section from the specified configuration file.
+            </summary>
+            <param name="sectionName">The section to retrieve.</param>
+            <param name="document">The document to use to retrieve the section.</param>
+            <returns>The section handler associated with the section.</returns>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationLoader.GetNode(System.String,System.Xml.XmlDocument)">
+            <summary>
+            Returns the node matching the section name, from the root node ("//").
+            </summary>
+            <param name="sectionName">The section name.</param>
+            <param name="document">The document to use to retrieve the section.</param>
+            <returns>The node matching the section.</returns>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationLoader.GetRootNode(System.Xml.XmlDocument)">
+            <summary>
+            Return the nodes from the root section in the file, that is, the "configuration" section.
+            </summary>
+            <param name="document">The document to use to retrieve the section.</param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationLoader.ValidateSections(System.Xml.XmlDocument)">
+            <summary>
+            Validates that every section has its corresponding section handler.
+            </summary>
+            <param name="document">The configuration file to check.</param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationLoader.ValidateSections(System.Xml.XmlDocument,System.Xml.XmlDocument)">
+            <summary>
+            Validates that every section has its corresponding section handler,
+            accumulating sections defined in a second document.
+            </summary>
+            <param name="document">The configuration file to check.</param>
+            <param name="appSettings">A second configuration document to use for accumulating sections.</param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationLoader.ValidateNodes(System.Xml.XmlNodeList,System.Collections.Hashtable)">
+            <summary>
+            Checks that the section has been defined and the type can be loaded.
+            </summary>
+            <param name="nodes">The nodes to check.</param>
+            <param name="sections">The list of sections defined.</param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationLoader.ValidateDocument(System.Xml.XmlDocument,System.Xml.Schema.XmlSchema)">
+            <summary>
+            Validates a document against a schema, and throws an exception if validation fails.
+            </summary>
+            <param name="document">The document to validate.</param>
+            <param name="schema">The schema for the document.</param>
+        </member>
+        <member name="T:NMatrix.Core.Configuration.ConfigurationRetriever">
+            <summary>
+            The class responsible for loading transient configurations.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Configuration.IConfigurationRetriever">
+            <summary>
+            Retrieves configurations in the .config file.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.IConfigurationRetriever.GetConfig(System.String)">
+            <summary>
+            Retrieve the configuration associated with a section name.
+            </summary>
+            <param name="sectionName">The section to retrieve.</param>
+            <returns>The object returned by the section handler.</returns>
+        </member>
+        <member name="F:NMatrix.Core.Configuration.ConfigurationRetriever._file">
+            <summary>
+            The <see cref="T:System.Xml.XmlDocument"/> to use for configuration retrieval.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.#ctor(System.String)">
+            <summary>
+            Initializes the class with the received parameters.
+            </summary>
+            <param name="configFile">The configuration file to use.</param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.#ctor(System.Xml.XmlDocument)">
+            <summary>
+            Initializes the class with the received parameters.
+            </summary>
+            <param name="configDocument">A loaded configuration file.</param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.#ctor(System.String,System.String)">
+            <summary>
+            Initializes the class with the received parameters.
+            </summary>
+            <param name="configFile"></param>
+            <param name="appSettingsFile"></param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.#ctor(System.String,System.Xml.XmlDocument)">
+            <summary>
+            Initializes the class with the received parameters.
+            </summary>
+            <param name="configFile"></param>
+            <param name="appSettings"></param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.#ctor(System.Xml.XmlDocument,System.Xml.XmlDocument)">
+            <summary>
+            Initializes the class with the received parameters.
+            </summary>
+            <param name="configDocument"></param>
+            <param name="appSettings"></param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.#ctor(System.String,System.Xml.XmlDocument,System.String,System.Xml.XmlDocument)">
+            <summary>
+            Initialization contructor.
+            </summary>
+            <param name="configFile"></param>
+            <param name="configDocument"></param>
+            <param name="appSettingsFile"></param>
+            <param name="appSettingsDocument"></param>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.Initialize(System.String)">
+            <summary>
+            Reinitializes the object for easy reuse.
+            </summary>
+            <param name="fileName">The new file to use.</param>
+            <remarks>The same effect as setting the ConfigurationFile property.</remarks>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.GetConfig(System.String)">
+            <summary>
+            Retrieve the configuration associated with a section name.
+            </summary>
+            <param name="sectionName">The section to retrieve.</param>
+            <returns>The object returned by the section handler.</returns>
+            <remarks>If the section handler implements <c>IMergableConfigurationSectionHandler</c>,
+            the Merge method of this interface is called, passing the existing configuration 
+            in the ApplicationSettings document.</remarks>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.InitNameValue(System.Xml.XmlNode)">
+            <summary>
+            Initializes a collection of values with the xml data in the section received.
+            </summary>
+            <param name="section">The <see cref="T:System.Xml.XmlNode"/> object with the data.</param>
+            <returns>The loaded collection of values.</returns>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.InitDictionary(System.Xml.XmlNode)">
+            <summary>
+            Initializes a collection of values with the xml data in the section received.
+            </summary>
+            <param name="section">The <see cref="T:System.Xml.XmlNode"/> object with the data.</param>
+            <returns>The loaded collection of values.</returns>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.OnConfigChanged(System.Object,System.IO.FileSystemEventArgs)">
+            <summary>
+            Reload the configuration XmlDocument when changes happen.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.OnAppSettingsChanged(System.Object,System.IO.FileSystemEventArgs)">
+            <summary>
+            Reload the appsettings XmlDocument when changes happen.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationRetriever.OnUnload(System.Object,System.EventArgs)">
+            <summary>
+            Unregisters monitors when an assembly is unloaded.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Configuration.ConfigurationRetriever.ConfigurationDocument">
+            <summary>
+            Gets or sets the file document to use for configuration retrieval.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Configuration.ConfigurationRetriever.ConfigurationFile">
+            <summary>
+            Gets or sets the file name to use to load the current document.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Configuration.ConfigurationRetriever.AppSettingsDocument">
+            <summary>
+            Gets or sets the document that contains application-wide configurations.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Configuration.ConfigurationRetriever.AppSettingsFile">
+            <summary>
+            Gets or sets the document that contains application-wide configurations.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Configuration.ConfigurationSettings">
+            <summary>
+            Provides access to library configurations.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationSettings.GetConfig(System.String)">
+            <summary>
+            Retrieves a configuration from the specified section.
+            </summary>
+            <param name="sectionName">The section to use.</param>
+            <returns>The configuration object.</returns>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationSettings.AddMonitor">
+            <summary>
+            Begins monitoring the configuration file for the executing assembly.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationSettings.OnChanged(System.Object,System.IO.FileSystemEventArgs)">
+            <summary>
+            Unloads the configuration XmlDocument when the file changes.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.ConfigurationSettings.OnUnload(System.Object,System.EventArgs)">
+            <summary>
+            Unregisters monitors when an assembly is unloaded.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Configuration.ConfigurationSettings.AppSettings">
+            <summary>
+            Provides access to the "appSettings" section in the library configuration file.
+            </summary>
+            <remarks>We don't use GetConfig because appSettings section doesn't need a 
+            handler explicitly declared, as it is always a NameValueSectionHandler.</remarks>
+        </member>
+        <member name="P:NMatrix.Core.Configuration.ConfigurationSettings.AppKey">
+            <summary>
+            A key to use to save config information in the AppDomain.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Configuration.ConfigurationSettings.AppPathConfig">
+            <summary>
+            Returns the application configuration file path.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Configuration.ConfigurationSettings.ConfigurationDocument">
+            <summary>
+            Retrieves the configuration XmlDocument.
+            </summary>
+            <remarks>If the document isn't found in the current domain associated data, it is 
+            loaded and saved to it.</remarks>
+        </member>
+        <member name="T:NMatrix.Core.Configuration.IMergableConfigurationSectionHandler">
+            <summary>
+            Implement in configuration handler if merging is desired.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Configuration.IMergableConfigurationSectionHandler.Merge(System.Object,System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Merges the passed configuration with the new parameters.
+            </summary>
+            <param name="currentConfig">The current configuration to use for merging.</param>
+            <param name="parent">The parent node.</param>
+            <param name="configContext">The current context for configuration. Usually <c>null</c>, 
+            except in ASP.NET scenarios.</param>
+            <param name="section">The node with the configuration data.</param>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.Composite">
+            <summary>
+            The abstract base class for all the composites.
+            Implements common functionality among composite components using 
+            an <c>ArrayList</c> object to keep children references.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.IComponent">
+            <summary>
+            Implements the interface to implement visitable 
+            components allowing composites elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.IComponent.Add(NMatrix.Core.Patterns.IComponent)">
+            <summary>
+            Adds a component to the composite.
+            </summary>
+            <param name="component">The component to add.</param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.IComponent.Remove(NMatrix.Core.Patterns.IComponent)">
+            <summary>
+            Removes a component from the composite.
+            </summary>
+            <param name="component">The component to remove.</param>
+        </member>
+        <member name="P:NMatrix.Core.Patterns.IComponent.Item(System.Int32)">
+            <summary>
+            Indexer of the composite.
+            </summary>
+        </member>
+        <member name="F:NMatrix.Core.Patterns.Composite._children">
+            <summary>
+            Keep the list of children elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.Composite.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.Composite.Add(NMatrix.Core.Patterns.IComponent)">
+            <summary>
+            Adds a child element to the composite.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.Composite.Remove(NMatrix.Core.Patterns.IComponent)">
+            <summary>
+            Removes a child element from the composite.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="P:NMatrix.Core.Patterns.Composite.Item(System.Int32)">
+            <summary>
+            Provides access to the indexed child element.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.HostedVisitor">
+            <summary>
+            A visitor hosted in the generator environment.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.Visitor">
+            <summary>
+            Abstract base class for visitors. Descendents implement
+            only the Visit methods for the types it wants to catch and leave the 
+            rest to this method.
+            </summary>
+            <remarks>The method uses reflection to call the most appropiate method it one
+            is found. Else it does nothing. The pattern is implemented using method overloading
+            which adds the flexibility exposed.
+            </remarks>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.IVisitor">
+            <summary>
+            The visitor interface implemented by descendents using visitable
+            objects implementing the visitor pattern. Implements a single 
+            method, Visit.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.IVisitor.Visit(System.Object)">
+            <summary>
+            See Visitor design pattern.
+            </summary>
+            <param name="visitable"></param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.Visitor.Visit(System.Object)">
+            <summary>
+            See Visitor design pattern.
+            </summary>
+            <param name="visitable"></param>
+        </member>
+        <member name="F:NMatrix.Core.Patterns.HostedVisitor.Host">
+            <summary>
+            Provides descendent classes access to the service provider.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.HostedVisitor.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.HostedVisitor.Initialize(System.IServiceProvider)">
+            <summary>
+            Initializes the component passing the environment host variable.
+            </summary>
+            <param name="environment">The host reference</param>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.IVisitable">
+            <summary>
+            The interface for visitable objects in the visitor pattern.
+            Implements only one method, Accept.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.IVisitable.Accept(NMatrix.Core.Patterns.IVisitor)">
+            <summary>
+            See Visitor design pattern.
+            </summary>
+            <param name="visitor"></param>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.IVisitableComponent">
+            <summary>
+            Implements the interface to implement visitable 
+            components allowing composites elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.IVisitableComponent.Add(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Adds a component to the composite.
+            </summary>
+            <param name="component">The component to add.</param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.IVisitableComponent.Remove(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Removes a component from the composite.
+            </summary>
+            <param name="component">The component to remove.</param>
+        </member>
+        <member name="P:NMatrix.Core.Patterns.IVisitableComponent.Item(System.Int32)">
+            <summary>
+            Indexer of the composite.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.Leaf">
+            <summary>
+            The abstract base class for all the visitable leafs.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.Leaf.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.Leaf.Add(NMatrix.Core.Patterns.IComponent)">
+            <summary>
+            Unimplemented method. Can't add a children to a leaf component.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.Leaf.Remove(NMatrix.Core.Patterns.IComponent)">
+            <summary>
+            Unimplemented method. Can't remove a children from a leaf component.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="P:NMatrix.Core.Patterns.Leaf.Item(System.Int32)">
+            <summary>
+            Unimplemented method. Leaf component doesn't have children.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.Visitable">
+            <summary>
+            Abstract base class for visitable classes.
+            </summary>
+            <remarks>To implement the visitor pattern, classes can just
+            inherit this base class.
+            </remarks>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.Visitable.Accept(NMatrix.Core.Patterns.IVisitor)">
+            <summary>
+            See Visitor design pattern.
+            </summary>
+            <param name="visitor">The visitor to use for the operation.</param>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.VisitableComposite">
+            <summary>
+            The abstract base class for all the visitable composites.
+            Implements common functionality among composite components using 
+            an <c>ArrayList</c> object to keep children references.
+            </summary>
+        </member>
+        <member name="F:NMatrix.Core.Patterns.VisitableComposite._children">
+            <summary>
+            Keep the list of children elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.VisitableComposite.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.VisitableComposite.Add(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Adds a child element to the composite.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.VisitableComposite.Remove(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Removes a child element from the composite.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.VisitableComposite.Accept(NMatrix.Core.Patterns.IVisitor)">
+            <summary>
+            Visits this component and then all the children elements.
+            </summary>
+            <param name="visitor">The visitor to pass to children elements.</param>
+        </member>
+        <member name="P:NMatrix.Core.Patterns.VisitableComposite.Item(System.Int32)">
+            <summary>
+            Provides access to the indexed child element.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Patterns.VisitableLeaf">
+            <summary>
+            The abstract base class for all the visitable leafs.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.VisitableLeaf.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.VisitableLeaf.Add(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Unimplemented method. Can't add a children to a leaf component.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.VisitableLeaf.Remove(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Unimplemented method. Can't remove a children from a leaf component.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.Core.Patterns.VisitableLeaf.Accept(NMatrix.Core.Patterns.IVisitor)">
+            <summary>
+            Implements the visitable interface. 
+            </summary>
+            <param name="visitor">The visitor to call Visit on.</param>
+        </member>
+        <member name="P:NMatrix.Core.Patterns.VisitableLeaf.Item(System.Int32)">
+            <summary>
+            Unimplemented method. Leaf component doesn't have children.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Utility.DumpObject">
+            <summary>
+            Dumps a complete object to disk.
+            </summary>
+            <example>
+            using (Utility util = new Utility(2))
+            {	util.DumpObject(context); }
+            </example>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.#ctor">
+            <summary>
+            Initializes the class.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.#ctor(System.Int32)">
+            <summary>
+            Initializes the class.
+            </summary>
+            <param name="depth">Specifies the level at which to stop recursion.</param>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.#ctor(System.String)">
+            <summary>
+            Initializes the class.
+            </summary>
+            <param name="methodName">A name to separate the section in the log.</param>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes the class.
+            </summary>
+            <param name="methodName">A name to separate the section in the log.</param>
+            <param name="depth">Specifies the level at which to stop recursion.</param>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Initializes the class.
+            </summary>
+            <param name="methodName">A name to separate the section in the log.</param>
+            <param name="fileName">The file to write the dump to.</param>
+            <param name="depth">Specifies the level at which to stop recursion.</param>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.Dump(System.Object)">
+            <summary>
+            Dumps the specified object.
+            </summary>
+            <param name="objectToDump"></param>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.Dump(System.Object,System.Type)">
+            <summary>
+            Dumps the specified object.
+            </summary>
+            <param name="objectToDump"></param>
+            <param name="reflectType">The type of the object. This limits the members
+            returned as only the specified type will be queried for members.</param>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.Dump(System.Object,System.Type,System.Int32)">
+            <summary>
+            Dumps the specified object.
+            </summary>
+            <param name="objectToDump"></param>
+            <param name="reflectType">The type of the object. This limits the members
+            returned as only the specified type will be queried for members.</param>
+            <param name="recurseDepth">The current depth in the recursive process.</param>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.Dispose">
+            <summary>
+            Diposes the class, closes the file and removes the debug listeners.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Utility.DumpObject.Finalize">
+            <summary>
+            Removes the debug listeners.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.Utility.IO">
+            <summary>
+            Provides global utility methods.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Utility.IO.AppendLocalPath(System.String)">
+            <summary>
+            Appends to the file name the local path of the executing assembly.
+            </summary>
+            <param name="fileName">The file to use to build the path.</param>
+            <remarks>Uses the <c>LoadedPath</c> property of this class.</remarks>
+        </member>
+        <member name="P:NMatrix.Core.Utility.IO.LoadedPath">
+            <summary>
+            Returns the path where the assembly was loaded from.
+            </summary>
+            <remarks>Can be used either for EXEs and DLLs. Usefull to load
+            files located in the same directory as a loaded DLL, and not
+            necessary the EXE.</remarks>
+        </member>
+        <member name="T:NMatrix.Core.Utility.Reflection">
+            <summary>
+            Provides global utility methods.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Utility.Reflection.GetObject(System.String)">
+            <summary>
+            Returns an object instance from the string passed.
+            </summary>
+            <param name="typeName">The type name to instantiate, fully qualified.</param>
+            <returns>The instantiated object, or null.</returns>
+        </member>
+        <member name="M:NMatrix.Core.Utility.Reflection.EnsureInterface(System.Type,System.Type)">
+            <summary>
+            Checks that the specified type implements an specific interface.
+            </summary>
+            <param name="typeToCheck">The type to check.</param>
+            <param name="typeToEnsure">The interface to look for.</param>
+        </member>
+        <member name="M:NMatrix.Core.Utility.Reflection.EnsureBaseType(System.Type,System.Type)">
+            <summary>
+            Checks that the specified type is a subtype of another.
+            </summary>
+            <param name="typeToCheck">The type to check.</param>
+            <param name="typeToEnsure">The base type to check.</param>
+        </member>
+        <member name="T:NMatrix.Core.Xml.Validator">
+            <summary>
+            A class for accumulating validation errors for Xml reading.
+            </summary>
+            <remarks>Can be used when reading an <c>XmlSchema</c> or in junction with the <c>XmlValidatingReader</c> class.</remarks>
+            <example>
+            Validator validator = new Validator();<br />
+            validator.Validate(@"C:\data.xml", @"C:\data.xsd");<br /><br />
+            
+            //Using only the OnValidation handler:<br />
+            Validator validator = new Validator();<br />
+            using (FileStream fs = new FileStream(@"C:\data.xsd", FileMode.Open))<br />
+            schema = XmlSchema.Read(fs, new ValidationEventHandler(validator.OnValidation));<br />
+            if (validator.HasErrors)<br />
+            	throw new InvalidOperationException("Schema is not valid!");
+            </example>
+        </member>
+        <member name="F:NMatrix.Core.Xml.Validator._errorswriter">
+            <summary>
+            Accumulates errors as they happen.
+            </summary>
+        </member>
+        <member name="F:NMatrix.Core.Xml.Validator._errorfound">
+            <summary>
+            Flag signaling errors.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Xml.Validator.#ctor">
+            <summary>
+            Public constructor doesn't take any parameters.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.Xml.Validator.Validate(System.String,System.Xml.Schema.XmlSchema)">
+            <summary>
+            Initiates validation using the specified parameters. If there are errors
+            in the document an <c>ArgumentException</c> is thrown with the message containing
+            the accumulation of errors.
+            </summary>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:NMatrix.Core.Xml.Validator.Validate(System.String,System.String)">
+            <summary>
+            Initiates validation using the specified parameters. If there are errors
+            in the document an <c>ArgumentException</c> is thrown with the message containing
+            the accumulation of errors.
+            </summary>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:NMatrix.Core.Xml.Validator.Validate(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Initiates validation using the specified parameters. If there are errors
+            in the document an <c>ArgumentException</c> is thrown with the message containing
+            the accumulation of errors.
+            </summary>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:NMatrix.Core.Xml.Validator.Validate(System.Xml.XmlDocument,System.Xml.Schema.XmlSchema)">
+            <summary>
+            Initiates validation using the specified parameters. If there are errors
+            in the document an <c>ArgumentException</c> is thrown with the message containing
+            the accumulation of errors.
+            </summary>
+            <exception cref="T:System.ArgumentException"/>
+        </member>
+        <member name="M:NMatrix.Core.Xml.Validator.OnValidation(System.Object,System.Xml.Schema.ValidationEventArgs)">
+            <summary>
+            <c>ValidationEventHandler</c> method implementation, made public to 
+            allow use from outside the class.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Xml.Validator.HasErrors">
+            <summary>
+            Flag signaling whether errors were found.
+            </summary>
+        </member>
+        <member name="P:NMatrix.Core.Xml.Validator.Errors">
+            <summary>
+            String representation of the accumulation of errors.
+            </summary>
+        </member>
+        <member name="T:ThisAssembly">
+            <summary>
+            Contains assembly level documentation.
+            </summary>
+            <license>MPL1.1</license>
+            <author id="dcazzulino" name="Daniel Cazzulino" email="nmatrixdotnet@msn.com">Project starter.</author>
+        </member>
+        <member name="T:NMatrix.Core.INotifier">
+            <summary>
+            To implement in components which want to notify the environment.
+            </summary>
+            <remarks>A host can check the existence of this interface to 
+            subscribe to progress notifications from a plug-in or component.</remarks>
+        </member>
+        <member name="E:NMatrix.Core.INotifier.Progress">
+            <summary>
+            Provides an event for listeners to receive notifications of lengthy processes.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.ProgressEventHandler">
+            <summary>
+            A delegate to track what's happening inside our classes or processes.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Core.ProgressEventArgs">
+            <summary>
+            Progress callback event arguments.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Core.ProgressEventArgs.#ctor(System.String)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="progressMessage">The message to pass to listeners.</param>
+        </member>
+        <member name="P:NMatrix.Core.ProgressEventArgs.Message">
+            <summary>
+            The message to pass to the listeners.
+            </summary>
+        </member>
+    </members>
+</doc>

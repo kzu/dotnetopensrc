@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<documentation xmlns="http://example.com/DOC">
+  <!-- Element type based on attribute presence -->
+
+  <authors>
+    <author>
+      <id>1</id>
+      <firstName>Daniel</firstName>
+      <lastName>Cazzulino</lastName>
+      <email>dcazzulino@users.sf.net</email>
+    </author>
+    <author>
+      <id>2</id>
+      <firstName>Rainer</firstName>
+      <lastName>Grau</lastName>
+      <email>rainer_grau@users.sf.net</email>
+    </author>
+    <!-- Other authors appearing multiple times -->
+  </authors>
+
+  <package name="NMatrix Core Package">
+    <author ref="1" />
+    <author ref="2" />
+    <!-- Package classes -->
+  </package>
+
+  <package name="NMatrix Small Utility">
+    <author>
+      <id>4</id>
+      <firstName>Some</firstName>
+      <lastName>Contributor</lastName>
+      <email>somec@users.sf.net</email>
+    </author>
+    <!-- Package classes -->
+  </package>
+</documentation>

@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.Core", "NMatrix.Core.csproj", "{2C128D1B-7A74-4448-B2E3-08C6E31428EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{2C128D1B-7A74-4448-B2E3-08C6E31428EF}.Debug.ActiveCfg = Debug|.NET
+		{2C128D1B-7A74-4448-B2E3-08C6E31428EF}.Debug.Build.0 = Debug|.NET
+		{2C128D1B-7A74-4448-B2E3-08C6E31428EF}.Release.ActiveCfg = Release|.NET
+		{2C128D1B-7A74-4448-B2E3-08C6E31428EF}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<orders xmlns="http://example.com/PO-CMEL">
+  <!-- Element content based on attribute value -->
+
+  <order orderDate="2002-10-20" orderStatus="Paid">
+    <paymentInfo date="2002-10-21" method="Card">
+      <cardDetails>
+        <!-- credit card info -->
+      </cardDetails>
+    </paymentInfo>
+
+    <!-- Order details -->
+  </order>
+
+  <order orderDate="2002-10-20" orderStatus="Cancelled">
+    <cancelInfo reason="TiredOfWaiting" isAngry="true">
+      <userMessage>
+        Couldn't get this order on time 
+        and now it's useless!
+      </userMessage>
+    </cancelInfo>
+
+    <!-- Order details -->
+  </order>
+
+</orders>
