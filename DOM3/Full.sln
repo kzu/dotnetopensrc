@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\ConsoleTest.csproj", "{10888F6F-7A04-4080-A45A-BB274EABC4F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomTrix", "DomTrix\DomTrix.csproj", "{4FABF44F-D2EA-44E8-8C52-A3E9705BD6E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "W3C\Dom\Core\Core.csproj", "{F0A5AF94-1BE2-4160-804E-2CBA8ABF467C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Events", "W3C\Dom\Events\Events.csproj", "{125D0EAE-9173-45B0-8294-56A36E276172}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{10888F6F-7A04-4080-A45A-BB274EABC4F3}.Debug.ActiveCfg = Debug|.NET
+		{10888F6F-7A04-4080-A45A-BB274EABC4F3}.Debug.Build.0 = Debug|.NET
+		{10888F6F-7A04-4080-A45A-BB274EABC4F3}.Release.ActiveCfg = Release|.NET
+		{10888F6F-7A04-4080-A45A-BB274EABC4F3}.Release.Build.0 = Release|.NET
+		{4FABF44F-D2EA-44E8-8C52-A3E9705BD6E5}.Debug.ActiveCfg = Debug|.NET
+		{4FABF44F-D2EA-44E8-8C52-A3E9705BD6E5}.Debug.Build.0 = Debug|.NET
+		{4FABF44F-D2EA-44E8-8C52-A3E9705BD6E5}.Release.ActiveCfg = Release|.NET
+		{4FABF44F-D2EA-44E8-8C52-A3E9705BD6E5}.Release.Build.0 = Release|.NET
+		{F0A5AF94-1BE2-4160-804E-2CBA8ABF467C}.Debug.ActiveCfg = Debug|.NET
+		{F0A5AF94-1BE2-4160-804E-2CBA8ABF467C}.Debug.Build.0 = Debug|.NET
+		{F0A5AF94-1BE2-4160-804E-2CBA8ABF467C}.Release.ActiveCfg = Release|.NET
+		{F0A5AF94-1BE2-4160-804E-2CBA8ABF467C}.Release.Build.0 = Release|.NET
+		{125D0EAE-9173-45B0-8294-56A36E276172}.Debug.ActiveCfg = Debug|.NET
+		{125D0EAE-9173-45B0-8294-56A36E276172}.Debug.Build.0 = Debug|.NET
+		{125D0EAE-9173-45B0-8294-56A36E276172}.Release.ActiveCfg = Release|.NET
+		{125D0EAE-9173-45B0-8294-56A36E276172}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
