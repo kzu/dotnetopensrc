@@ -100,26 +100,44 @@ namespace NMatrix.XGoF.Configuration
 				nodes = configNode.SelectNodes("//visitor");
 				foreach (XmlNode node in nodes)
 				{
-					if (node.Attributes["enabled"].Value == "false")
-					{
-                        object[] visitors = new object[extender.Visitors.Count];
-                        extender.Visitors.CopyTo(visitors, 0);
-						// Start from the last element to safely remove at an specific ordinal position.
-						for (int i = visitors.Length - 1; i >= 0; i--)
-						{
-							// We use StartsWith because the AssemblyQualifiedName contains version, token and language info. 
-							if (((DictionaryEntry)visitors[i]).Value.GetType().AssemblyQualifiedName.StartsWith(node.Attributes["type"].Value))
-								extender.Visitors.RemoveAt(i);
-						}
-					}
-					else
+					if (node.Attributes["enabled"] == null || node.Attributes["enabled"].Value == "true")
 					{
 						object visitor = Reflection.GetObject(node.Attributes["type"].Value);
 						if (visitor == null) throw new ConfigurationException("Specified visitor type couldn't be loaded: " + node.Attributes["type"].Value);
 						// Visitors must implement IVisitor.
-						Reflection.EnsureInterface(visitor.GetType(), typeof(IVisitor));
-						extender.Visitors.Add(
-							new SortedDuplicateKey(int.Parse(node.Attributes["runOrder"].Value)), visitor);
+						Type vtype = visitor.GetType();
+						Reflection.EnsureInterface(vtype, typeof(IVisitor));
+						bool add = true;
+						foreach (DictionaryEntry v in extender.Visitors)
+						{
+							if (v.Value.GetType() == vtype)
+							{
+								add = false;
+								break;
+							}
+						}
+
+						if (add)
+						{
+							XmlAttribute attr = node.Attributes["runOrder"];
+							int order = -1;
+							if (attr != null)
+								order = int.Parse(attr.Value);
+							if (order == -1) order = int.MaxValue;
+							extender.Visitors.Add(new SortedDuplicateKey(order), visitor);
+						}
+					}
+					else
+					{
+						object[] visitors = new object[extender.Visitors.Count];
+						extender.Visitors.CopyTo(visitors, 0);
+						Type visitor = Reflection.LoadType(node.Attributes["type"].Value);
+						// Start from the last element to safely remove at an specific ordinal position.
+						for (int i = visitors.Length - 1; i >= 0; i--)
+						{
+							if (((DictionaryEntry)visitors[i]).Value.GetType() == visitor)
+								extender.Visitors.RemoveAt(i);
+						}
 					}
 				}
 				#endregion

@@ -3,21 +3,21 @@
         ProjectType = "Local"
         ProductVersion = "7.0.9466"
         SchemaVersion = "1.0"
-        ProjectGuid = "{A644B5CC-EE8E-49EA-B6EC-150625509C01}"
+        ProjectGuid = "{44668776-C4B2-40C9-820C-E0894F0B9C62}"
     >
         <Build>
             <Settings
-                ApplicationIcon = "App.ico"
+                ApplicationIcon = ""
                 AssemblyKeyContainerName = ""
-                AssemblyName = "NMatrix.XGoF.Console"
+                AssemblyName = "NMatrix.XGoF.SampleProject"
                 AssemblyOriginatorKeyFile = ""
                 DefaultClientScript = "JScript"
                 DefaultHTMLPageLayout = "Grid"
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
-                OutputType = "Exe"
-                RootNamespace = "NMatrix.XGoF.Console"
-                StartupObject = "NMatrix.XGoF.Console.ConsoleMain"
+                OutputType = "Library"
+                RootNamespace = "NMatrix.XGoF.SampleProject"
+                StartupObject = ""
             >
                 <Config
                     Name = "Debug"
@@ -60,46 +60,106 @@
                 <Reference
                     Name = "System"
                     AssemblyName = "System"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.0.3705\System.dll"
                 />
                 <Reference
                     Name = "System.Data"
                     AssemblyName = "System.Data"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.0.3705\System.Data.dll"
                 />
                 <Reference
                     Name = "System.XML"
                     AssemblyName = "System.Xml"
-                />
-                <Reference
-                    Name = "System.Windows.Forms"
-                    AssemblyName = "System.Windows.Forms"
-                />
-                <Reference
-                    Name = "NMatrix.Core"
-                    AssemblyName = "NMatrix.Core"
-                    HintPath = "..\..\bin\NMatrix.Core.dll"
+                    HintPath = "C:\WINNT\Microsoft.NET\Framework\v1.0.3705\System.XML.dll"
                 />
                 <Reference
                     Name = "NMatrix.XGoF"
                     AssemblyName = "NMatrix.XGoF"
                     HintPath = "..\..\bin\NMatrix.XGoF.dll"
                 />
+                <Reference
+                    Name = "NMatrix.Core"
+                    AssemblyName = "NMatrix.Core"
+                    HintPath = "..\..\bin\NMatrix.Core.dll"
+                />
             </References>
         </Build>
         <Files>
             <Include>
-                <File
-                    RelPath = "App.ico"
-                    BuildAction = "Content"
-                />
                 <File
                     RelPath = "AssemblyInfo.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "ConsoleMain.cs"
+                    RelPath = "DAL.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DataObject.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "DiagnosticsBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "dsPublishers.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "dsPublishers.xsx"
+                    DependentUpon = "dsPublishers.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "pubs.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "pubs.xsx"
+                    DependentUpon = "pubs.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "SampleBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SampleDBBuilder.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "SkeletonClasses.config"
+                    BuildAction = "None"
+                    Generator = "XGoF"
+                    LastGenOutput = "SkeletonClasses.cs"
+                />
+                <File
+                    RelPath = "SkeletonClasses.cs"
+                    DependentUpon = "SkeletonClasses.config"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "SkeletonClasses.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Temp.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Temp.xsx"
+                    DependentUpon = "Temp.xsd"
+                    BuildAction = "None"
                 />
             </Include>
         </Files>

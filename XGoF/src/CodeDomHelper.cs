@@ -178,7 +178,7 @@ namespace NMatrix.XGoF
 						else if (current.LocalName == "CurrentProperty")
 							current.InnerText = prop.Name;
 						else if (current.LocalName == "PropertyType")
-							current.InnerText = ((CodeMemberProperty)prop).Type.ToString();
+							current.InnerText = ((CodeMemberProperty)prop).Type.BaseType;
 					w.Write(cloned.InnerText);
 				}
 			}

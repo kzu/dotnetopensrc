@@ -612,6 +612,14 @@
             Default constructor.
             </summary>
         </member>
+        <member name="M:NMatrix.XGoF.Visitors.BaseCodeVisitor.RecurseMembers(System.CodeDom.CodeTypeDeclaration,System.String)">
+            <summary>
+            Recursivelly traverses types and its members to find a matching type declaration.
+            </summary>
+            <param name="type">The type to traverse.</param>
+            <param name="match">The type name to find.</param>
+            <returns></returns>
+        </member>
         <member name="M:NMatrix.XGoF.Visitors.BaseCodeVisitor.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
             <summary>
             Visitor implementation. Processes the passed element 
@@ -1229,6 +1237,19 @@
             <summary>
             The generation process configuration file.
             </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Visitors.PropertyBackerBuilder">
+            <summary>
+            Adds properties to the generated output.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.PropertyBackerBuilder.CheckProperty(NMatrix.XGoF.XSD.BaseLeafSchemaElement,System.Type)">
+            <summary>
+            Adds private fields and getter/setter statements pointing to it to empty properties.
+            </summary>
+            <remarks>
+            Naming convention is "_" + lowercase property name.
+            </remarks>
         </member>
     </members>
 </doc>

@@ -100,9 +100,17 @@ namespace NMatrix.XGoF
 			RunnerSection section = (RunnerSection)
 				GeneratorHost.Instance.Retriever.GetConfig("runner");
 
+			if (section == null)
+			{
+				OnProgress("No <runner> section found to process!");
+				return;
+			}
+
 			// Load the ordered list of files and run the process.
 			foreach (DictionaryEntry sch in section.Sources)
 			{
+				//TODO: move TargetAssembly setting to each source to run.
+				//TODO:	maybe check to include all sources in a single assembly?
 				RunnerSource source = sch.Value as RunnerSource;
 				// Reinitialize the current unit.
 

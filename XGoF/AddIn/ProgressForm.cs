@@ -119,7 +119,7 @@ namespace AddIn
 			}
 			catch (Exception ex)
 			{
-				lblMsg.Text += "Couldn't finish generation!\n" + ex.ToString();
+				lblMsg.Text += "Couldn't finish generation!" + Environment.NewLine + ex.ToString();
 			}
 
 			lnkClose.Enabled = true;
@@ -130,7 +130,7 @@ namespace AddIn
 		/// </summary>
 		private void OnProgress(object sender, ProgressEventArgs e)
 		{
-			lblMsg.Text += e.Message + "\n";
+			lblMsg.Text += e.Message + Environment.NewLine;
 		}
 
 		private void lnkClose_LinkClicked(object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.PlugIn.TypedDa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.Core", "..\Core\src\NMatrix.Core.csproj", "{2C128D1B-7A74-4448-B2E3-08C6E31428EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.Console", "Console\NMatrix.XGoF.Console.csproj", "{A644B5CC-EE8E-49EA-B6EC-150625509C01}"
+EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
 		ConfigName.0 = Debug
@@ -25,6 +27,10 @@ Global
 		{2C128D1B-7A74-4448-B2E3-08C6E31428EF}.Debug.Build.0 = Debug|.NET
 		{2C128D1B-7A74-4448-B2E3-08C6E31428EF}.Release.ActiveCfg = Release|.NET
 		{2C128D1B-7A74-4448-B2E3-08C6E31428EF}.Release.Build.0 = Release|.NET
+		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Debug.ActiveCfg = Debug|.NET
+		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Debug.Build.0 = Debug|.NET
+		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Release.ActiveCfg = Release|.NET
+		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

@@ -12,362 +12,85 @@ namespace NMatrix.Generated
 {
     using System;
     using System.Xml;
-    using System.Data;
-    using System.Runtime.Serialization;
+    using NMatrix.XGoF.SampleProject;
     
     
-    [Serializable()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Diagnostics.DebuggerStepThrough()]
-    [System.ComponentModel.ToolboxItem(true)]
-    public class dsPubs : DataSet
+    public class dsPubs
     {
         
         
 			
-		private publishersDataTable tablepublishers;
+			protected object GetInstance()
+			{
+				return new dsPubs();
+			}
 			
-		private titlesDataTable tabletitles;
-			
-		private titleauthorsDataTable tabletitleauthors;
-			
-		private authorsDataTable tableauthors;
-			
+			public void Save()
+			{
+				DAL.SaveObject(this);
+			}
 
-		protected dsPubs(SerializationInfo info, StreamingContext context) 
-		{
-			string strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
-			if ((strSchema != null)) {
-				DataSet ds = new DataSet();
-				ds.ReadXmlSchema(new XmlTextReader(new System.IO.StringReader(strSchema)));
-			
-				if ((ds.Tables["publishers"] != null)) 
-					this.Tables.Add(new publishersDataTable(ds.Tables["publishers"]));
-			
-				if ((ds.Tables["titles"] != null)) 
-					this.Tables.Add(new titlesDataTable(ds.Tables["titles"]));
-			
-				if ((ds.Tables["titleauthors"] != null)) 
-					this.Tables.Add(new titleauthorsDataTable(ds.Tables["titleauthors"]));
-			
-				if ((ds.Tables["authors"] != null)) 
-					this.Tables.Add(new authorsDataTable(ds.Tables["authors"]));
-			
-				this.DataSetName = ds.DataSetName;
-				this.Prefix = ds.Prefix;
-				this.Namespace = ds.Namespace;
-				this.Locale = ds.Locale;
-				this.CaseSensitive = ds.CaseSensitive;
-				this.EnforceConstraints = ds.EnforceConstraints;
-				this.Merge(ds, false, System.Data.MissingSchemaAction.Add);
-				this.InitVars();
-			}
-			else 
-				this.InitClass();
-
-			this.GetSerializationData(info, context);
-			System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
-			this.Tables.CollectionChanged += schemaChangedHandler;
-			this.Relations.CollectionChanged += schemaChangedHandler;
-		}
-        
-		
-		[System.ComponentModel.Browsable(false)]
-		[System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Content)]
-		public publishersDataTable publishers 
-		{
-			get { return this.tablepublishers; }
-		}
-			
-		[System.ComponentModel.Browsable(false)]
-		[System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Content)]
-		public titlesDataTable titles 
-		{
-			get { return this.tabletitles; }
-		}
-			
-		[System.ComponentModel.Browsable(false)]
-		[System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Content)]
-		public titleauthorsDataTable titleauthors 
-		{
-			get { return this.tabletitleauthors; }
-		}
-			
-		[System.ComponentModel.Browsable(false)]
-		[System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Content)]
-		public authorsDataTable authors 
-		{
-			get { return this.tableauthors; }
-		}
-			
-		public override DataSet Clone() 
-		{
-			dsPubs cln = ((dsPubs)(base.Clone()));
-			cln.InitVars();
-			return cln;
-		}
-
-		protected override bool ShouldSerializeTables() 
-		{
-			return false;
-		}
-
-		protected override bool ShouldSerializeRelations() 
-		{
-			return false;
-		}
-
-		protected override void ReadXmlSerializable(XmlReader reader) 
-		{
-			this.Reset();
-			DataSet ds = new DataSet();
-			ds.ReadXml(reader);
-			
-			if ((ds.Tables["publishers"] != null))
-				this.Tables.Add(new publishersDataTable(ds.Tables["publishers"]));
-			
-			if ((ds.Tables["titles"] != null))
-				this.Tables.Add(new titlesDataTable(ds.Tables["titles"]));
-			
-			if ((ds.Tables["titleauthors"] != null))
-				this.Tables.Add(new titleauthorsDataTable(ds.Tables["titleauthors"]));
-			
-			if ((ds.Tables["authors"] != null))
-				this.Tables.Add(new authorsDataTable(ds.Tables["authors"]));
-			
-			this.DataSetName = ds.DataSetName;
-			this.Prefix = ds.Prefix;
-			this.Namespace = ds.Namespace;
-			this.Locale = ds.Locale;
-			this.CaseSensitive = ds.CaseSensitive;
-			this.EnforceConstraints = ds.EnforceConstraints;
-			this.Merge(ds, false, System.Data.MissingSchemaAction.Add);
-			this.InitVars();
-		}
-
-		protected override System.Xml.Schema.XmlSchema GetSchemaSerializable() 
-		{
-			System.IO.MemoryStream stream = new System.IO.MemoryStream();
-			this.WriteXmlSchema(new XmlTextWriter(stream, null));
-			stream.Position = 0;
-			return System.Xml.Schema.XmlSchema.Read(new XmlTextReader(stream), null);
-		}
-			
-			
-		private bool ShouldSerializepublishers() 
-		{
-			return false;
-		}
-			
-		private bool ShouldSerializetitles() 
-		{
-			return false;
-		}
-			
-		private bool ShouldSerializetitleauthors() 
-		{
-			return false;
-		}
-			
-		private bool ShouldSerializeauthors() 
-		{
-			return false;
-		}
-			
-
-		private void SchemaChanged(object sender, System.ComponentModel.CollectionChangeEventArgs e) 
-		{
-			if ((e.Action == System.ComponentModel.CollectionChangeAction.Remove)) {
-				this.InitVars();
-			}
-		}
-			
-		public delegate void publishersRowChangeEventHandler(object sender, publishersRowChangeEvent e);
-			
-		public delegate void titlesRowChangeEventHandler(object sender, titlesRowChangeEvent e);
-			
-		public delegate void titleauthorsRowChangeEventHandler(object sender, titleauthorsRowChangeEvent e);
-			
-		public delegate void authorsRowChangeEventHandler(object sender, authorsRowChangeEvent e);
-						
-			
-		[System.Diagnostics.DebuggerStepThrough()]
-		public class publishersRowChangeEvent : EventArgs 
-		{    
-			private publishersRow eventRow;
-			private DataRowAction eventAction;
-		    
-			public publishersRowChangeEvent(publishersRow row, DataRowAction action) 
+			public void Load()
 			{
-				this.eventRow = row;
-				this.eventAction = action;
+				DAL.LoadObject(this);
 			}
-		    
-			public publishersRow Row 
-			{
-				get { return this.eventRow; }
-			}
-		    
-			public DataRowAction Action 
-			{
-				get { return this.eventAction; }
-			}
-		}
-			
-		[System.Diagnostics.DebuggerStepThrough()]
-		public class titlesRowChangeEvent : EventArgs 
-		{    
-			private titlesRow eventRow;
-			private DataRowAction eventAction;
-		    
-			public titlesRowChangeEvent(titlesRow row, DataRowAction action) 
-			{
-				this.eventRow = row;
-				this.eventAction = action;
-			}
-		    
-			public titlesRow Row 
-			{
-				get { return this.eventRow; }
-			}
-		    
-			public DataRowAction Action 
-			{
-				get { return this.eventAction; }
-			}
-		}
-			
-		[System.Diagnostics.DebuggerStepThrough()]
-		public class titleauthorsRowChangeEvent : EventArgs 
-		{    
-			private titleauthorsRow eventRow;
-			private DataRowAction eventAction;
-		    
-			public titleauthorsRowChangeEvent(titleauthorsRow row, DataRowAction action) 
-			{
-				this.eventRow = row;
-				this.eventAction = action;
-			}
-		    
-			public titleauthorsRow Row 
-			{
-				get { return this.eventRow; }
-			}
-		    
-			public DataRowAction Action 
-			{
-				get { return this.eventAction; }
-			}
-		}
-			
-		[System.Diagnostics.DebuggerStepThrough()]
-		public class authorsRowChangeEvent : EventArgs 
-		{    
-			private authorsRow eventRow;
-			private DataRowAction eventAction;
-		    
-			public authorsRowChangeEvent(authorsRow row, DataRowAction action) 
-			{
-				this.eventRow = row;
-				this.eventAction = action;
-			}
-		    
-			public authorsRow Row 
-			{
-				get { return this.eventRow; }
-			}
-		    
-			public DataRowAction Action 
-			{
-				get { return this.eventAction; }
-			}
-		}
-			
 		
         public dsPubs()
         {
+            System.Diagnostics.Debug.WriteLine("Constructing object of type dsPubs");
+        }
+        
+        public class publishers
+        {
             
-			this.InitClass();
-			System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
-			this.Tables.CollectionChanged += schemaChangedHandler;
-			this.Relations.CollectionChanged += schemaChangedHandler;
+            
 			
-        }
-        
-        private void InitClass()
-        {
-            this.DataSetName = "dsPubs";
-            this.Prefix = "";
-            this.Namespace = "NMatrix.Generated";
-            this.Locale = new System.Globalization.CultureInfo("en-US");
-            this.CaseSensitive = false;
-            this.EnforceConstraints = true;
-            System.Data.ForeignKeyConstraint fkc;
-            this.tablepublishers = new publishersDataTable();
-            this.Tables.Add(this.tablepublishers);
-            this.tabletitles = new titlesDataTable();
-            this.Tables.Add(this.tabletitles);
-            this.tabletitleauthors = new titleauthorsDataTable();
-            this.Tables.Add(this.tabletitleauthors);
-            this.tableauthors = new authorsDataTable();
-            this.Tables.Add(this.tableauthors);
-        }
-        
-        internal void InitVars()
-        {
-            this.tablepublishers = ((publishersDataTable)(this.Tables["publishers"]));
-            if ((this.tablepublishers != null))
-            {
-                this.tablepublishers.InitVars();
-            }
-            this.tabletitles = ((titlesDataTable)(this.Tables["titles"]));
-            if ((this.tabletitles != null))
-            {
-                this.tabletitles.InitVars();
-            }
-            this.tabletitleauthors = ((titleauthorsDataTable)(this.Tables["titleauthors"]));
-            if ((this.tabletitleauthors != null))
-            {
-                this.tabletitleauthors.InitVars();
-            }
-            this.tableauthors = ((authorsDataTable)(this.Tables["authors"]));
-            if ((this.tableauthors != null))
-            {
-                this.tableauthors.InitVars();
-            }
-        }
-        
-        [System.Diagnostics.DebuggerStepThrough()]
-        public class publishersRow : DataRow
-        {
-            
-            
-		private publishersDataTable tablepublishers;
+				System.String _state;
+			
+				System.String _pub_id;
+			
+				System.String _pub_name;
+			
+				System.String _city;
+			
+				System.String _country;
+			
+			protected object GetInstance()
+			{
+				return new publishers();
+			}
+			
+			public void Save()
+			{
+				DAL.SaveObject(this);
+			}
 
-		internal publishersRow(DataRowBuilder rb) : base(rb) 
-		{
-			this.tablepublishers = ((publishersDataTable)(this.Table));
-		}
+			public void Load()
+			{
+				DAL.LoadObject(this);
+			}
 		
+            public publishers()
+            {
+                System.Diagnostics.Debug.WriteLine("Constructing object of type publishers");
+            }
+            
             public virtual string state
             {
                 get
                 {
+                    System.Diagnostics.Debug.WriteLine("Getting property state");
                     
-				try 
-				{
-					return ((System.String)(this[this.tablepublishers.stateColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+					//System.Diagnostics.Debug.WriteLine("Getting property: state");
+					return _state;
 			
                 }
                 set
                 {
+                    System.Diagnostics.Debug.WriteLine("Setting property state");
                     
-				this[this.tablepublishers.stateColumn] = value; 
+					//System.Diagnostics.Debug.WriteLine("Setting property: state");
+					_state = value;
 			
                 }
             }
@@ -376,21 +99,18 @@ namespace NMatrix.Generated
             {
                 get
                 {
+                    System.Diagnostics.Debug.WriteLine("Getting property pub_id");
                     
-				try 
-				{
-					return ((System.String)(this[this.tablepublishers.pub_idColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+					//System.Diagnostics.Debug.WriteLine("Getting property: pub_id");
+					return _pub_id;
 			
                 }
                 set
                 {
+                    System.Diagnostics.Debug.WriteLine("Setting property pub_id");
                     
-				this[this.tablepublishers.pub_idColumn] = value; 
+					//System.Diagnostics.Debug.WriteLine("Setting property: pub_id");
+					_pub_id = value;
 			
                 }
             }
@@ -399,21 +119,18 @@ namespace NMatrix.Generated
             {
                 get
                 {
+                    System.Diagnostics.Debug.WriteLine("Getting property pub_name");
                     
-				try 
-				{
-					return ((System.String)(this[this.tablepublishers.pub_nameColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+					//System.Diagnostics.Debug.WriteLine("Getting property: pub_name");
+					return _pub_name;
 			
                 }
                 set
                 {
+                    System.Diagnostics.Debug.WriteLine("Setting property pub_name");
                     
-				this[this.tablepublishers.pub_nameColumn] = value; 
+					//System.Diagnostics.Debug.WriteLine("Setting property: pub_name");
+					_pub_name = value;
 			
                 }
             }
@@ -422,21 +139,18 @@ namespace NMatrix.Generated
             {
                 get
                 {
+                    System.Diagnostics.Debug.WriteLine("Getting property city");
                     
-				try 
-				{
-					return ((System.String)(this[this.tablepublishers.cityColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+					//System.Diagnostics.Debug.WriteLine("Getting property: city");
+					return _city;
 			
                 }
                 set
                 {
+                    System.Diagnostics.Debug.WriteLine("Setting property city");
                     
-				this[this.tablepublishers.cityColumn] = value; 
+					//System.Diagnostics.Debug.WriteLine("Setting property: city");
+					_city = value;
 			
                 }
             }
@@ -445,1719 +159,604 @@ namespace NMatrix.Generated
             {
                 get
                 {
+                    System.Diagnostics.Debug.WriteLine("Getting property country");
                     
-				try 
-				{
-					return ((System.String)(this[this.tablepublishers.countryColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+					//System.Diagnostics.Debug.WriteLine("Getting property: country");
+					return _country;
 			
                 }
                 set
                 {
+                    System.Diagnostics.Debug.WriteLine("Setting property country");
                     
-				this[this.tablepublishers.countryColumn] = value; 
+					//System.Diagnostics.Debug.WriteLine("Setting property: country");
+					_country = value;
 			
                 }
             }
             
-            private bool IsstateNull()
+            public class titles
             {
-                return this.IsNull(this.tablepublishers.stateColumn);
-            }
-            
-            private void SetstateNull()
-            {
-                this[this.tablepublishers.stateColumn] = System.Convert.DBNull;
-            }
-            
-            private bool Ispub_idNull()
-            {
-                return this.IsNull(this.tablepublishers.pub_idColumn);
-            }
-            
-            private void Setpub_idNull()
-            {
-                this[this.tablepublishers.pub_idColumn] = System.Convert.DBNull;
-            }
-            
-            private bool Ispub_nameNull()
-            {
-                return this.IsNull(this.tablepublishers.pub_nameColumn);
-            }
-            
-            private void Setpub_nameNull()
-            {
-                this[this.tablepublishers.pub_nameColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IscityNull()
-            {
-                return this.IsNull(this.tablepublishers.cityColumn);
-            }
-            
-            private void SetcityNull()
-            {
-                this[this.tablepublishers.cityColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IscountryNull()
-            {
-                return this.IsNull(this.tablepublishers.countryColumn);
-            }
-            
-            private void SetcountryNull()
-            {
-                this[this.tablepublishers.countryColumn] = System.Convert.DBNull;
-            }
-        }
-        
-        [System.Diagnostics.DebuggerStepThrough()]
-        public class titlesRow : DataRow
-        {
-            
-            
-		private titlesDataTable tabletitles;
+                
+                
+			
+				System.String _title_id;
+			
+				System.String _title;
+			
+				System.String _type;
+			
+				System.String _pub_id;
+			
+				System.Decimal _price;
+			
+				System.Decimal _advance;
+			
+				System.Int32 _royalty;
+			
+				System.Int32 _ytd_sales;
+			
+				System.String _notes;
+			
+				System.DateTime _pubdate;
+			
+			protected object GetInstance()
+			{
+				return new titles();
+			}
+			
+			public void Save()
+			{
+				DAL.SaveObject(this);
+			}
 
-		internal titlesRow(DataRowBuilder rb) : base(rb) 
-		{
-			this.tabletitles = ((titlesDataTable)(this.Table));
-		}
+			public void Load()
+			{
+				DAL.LoadObject(this);
+			}
 		
-            public virtual string title_id
-            {
-                get
+                public titles()
+                {
+                    System.Diagnostics.Debug.WriteLine("Constructing object of type titles");
+                }
+                
+                public virtual string title_id
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property title_id");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: title_id");
+					return _title_id;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property title_id");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: title_id");
+					_title_id = value;
+			
+                    }
+                }
+                
+                public virtual string title
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property title");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: title");
+					return _title;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property title");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: title");
+					_title = value;
+			
+                    }
+                }
+                
+                public virtual string type
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property type");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: type");
+					return _type;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property type");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: type");
+					_type = value;
+			
+                    }
+                }
+                
+                public virtual string pub_id
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property pub_id");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: pub_id");
+					return _pub_id;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property pub_id");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: pub_id");
+					_pub_id = value;
+			
+                    }
+                }
+                
+                public virtual System.Decimal price
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property price");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: price");
+					return _price;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property price");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: price");
+					_price = value;
+			
+                    }
+                }
+                
+                public virtual System.Decimal advance
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property advance");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: advance");
+					return _advance;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property advance");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: advance");
+					_advance = value;
+			
+                    }
+                }
+                
+                public virtual int royalty
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property royalty");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: royalty");
+					return _royalty;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property royalty");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: royalty");
+					_royalty = value;
+			
+                    }
+                }
+                
+                public virtual int ytd_sales
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property ytd_sales");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: ytd_sales");
+					return _ytd_sales;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property ytd_sales");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: ytd_sales");
+					_ytd_sales = value;
+			
+                    }
+                }
+                
+                public virtual string notes
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property notes");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: notes");
+					return _notes;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property notes");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: notes");
+					_notes = value;
+			
+                    }
+                }
+                
+                public virtual System.DateTime pubdate
+                {
+                    get
+                    {
+                        System.Diagnostics.Debug.WriteLine("Getting property pubdate");
+                        
+					//System.Diagnostics.Debug.WriteLine("Getting property: pubdate");
+					return _pubdate;
+			
+                    }
+                    set
+                    {
+                        System.Diagnostics.Debug.WriteLine("Setting property pubdate");
+                        
+					//System.Diagnostics.Debug.WriteLine("Setting property: pubdate");
+					_pubdate = value;
+			
+                    }
+                }
+                
+                public class titleauthors
                 {
                     
-				try 
-				{
-					return ((System.String)(this[this.tabletitles.title_idColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
-			
-                }
-                set
-                {
                     
-				this[this.tabletitles.title_idColumn] = value; 
 			
-                }
-            }
-            
-            public virtual string title
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tabletitles.titleColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+				System.String _au_id;
 			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.titleColumn] = value; 
+				System.String _title_id;
 			
-                }
-            }
-            
-            public virtual string type
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tabletitles.typeColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+				System.Byte _au_ord;
 			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.typeColumn] = value; 
+				System.Int32 _royaltyper;
 			
-                }
-            }
-            
-            public virtual string pub_id
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tabletitles.pub_idColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+			protected object GetInstance()
+			{
+				return new titleauthors();
+			}
 			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.pub_idColumn] = value; 
-			
-                }
-            }
-            
-            public virtual System.Decimal price
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.Decimal)(this[this.tabletitles.priceColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
-			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.priceColumn] = value; 
-			
-                }
-            }
-            
-            public virtual System.Decimal advance
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.Decimal)(this[this.tabletitles.advanceColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
-			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.advanceColumn] = value; 
-			
-                }
-            }
-            
-            public virtual int royalty
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.Int32)(this[this.tabletitles.royaltyColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
-			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.royaltyColumn] = value; 
-			
-                }
-            }
-            
-            public virtual int ytd_sales
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.Int32)(this[this.tabletitles.ytd_salesColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
-			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.ytd_salesColumn] = value; 
-			
-                }
-            }
-            
-            public virtual string notes
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tabletitles.notesColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
-			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.notesColumn] = value; 
-			
-                }
-            }
-            
-            public virtual System.DateTime pubdate
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.DateTime)(this[this.tabletitles.pubdateColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
-			
-                }
-                set
-                {
-                    
-				this[this.tabletitles.pubdateColumn] = value; 
-			
-                }
-            }
-            
-            private bool Istitle_idNull()
-            {
-                return this.IsNull(this.tabletitles.title_idColumn);
-            }
-            
-            private void Settitle_idNull()
-            {
-                this[this.tabletitles.title_idColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IstitleNull()
-            {
-                return this.IsNull(this.tabletitles.titleColumn);
-            }
-            
-            private void SettitleNull()
-            {
-                this[this.tabletitles.titleColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IstypeNull()
-            {
-                return this.IsNull(this.tabletitles.typeColumn);
-            }
-            
-            private void SettypeNull()
-            {
-                this[this.tabletitles.typeColumn] = System.Convert.DBNull;
-            }
-            
-            private bool Ispub_idNull()
-            {
-                return this.IsNull(this.tabletitles.pub_idColumn);
-            }
-            
-            private void Setpub_idNull()
-            {
-                this[this.tabletitles.pub_idColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IspriceNull()
-            {
-                return this.IsNull(this.tabletitles.priceColumn);
-            }
-            
-            private void SetpriceNull()
-            {
-                this[this.tabletitles.priceColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IsadvanceNull()
-            {
-                return this.IsNull(this.tabletitles.advanceColumn);
-            }
-            
-            private void SetadvanceNull()
-            {
-                this[this.tabletitles.advanceColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IsroyaltyNull()
-            {
-                return this.IsNull(this.tabletitles.royaltyColumn);
-            }
-            
-            private void SetroyaltyNull()
-            {
-                this[this.tabletitles.royaltyColumn] = System.Convert.DBNull;
-            }
-            
-            private bool Isytd_salesNull()
-            {
-                return this.IsNull(this.tabletitles.ytd_salesColumn);
-            }
-            
-            private void Setytd_salesNull()
-            {
-                this[this.tabletitles.ytd_salesColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IsnotesNull()
-            {
-                return this.IsNull(this.tabletitles.notesColumn);
-            }
-            
-            private void SetnotesNull()
-            {
-                this[this.tabletitles.notesColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IspubdateNull()
-            {
-                return this.IsNull(this.tabletitles.pubdateColumn);
-            }
-            
-            private void SetpubdateNull()
-            {
-                this[this.tabletitles.pubdateColumn] = System.Convert.DBNull;
-            }
-        }
-        
-        [System.Diagnostics.DebuggerStepThrough()]
-        public class titleauthorsRow : DataRow
-        {
-            
-            
-		private titleauthorsDataTable tabletitleauthors;
+			public void Save()
+			{
+				DAL.SaveObject(this);
+			}
 
-		internal titleauthorsRow(DataRowBuilder rb) : base(rb) 
-		{
-			this.tabletitleauthors = ((titleauthorsDataTable)(this.Table));
-		}
+			public void Load()
+			{
+				DAL.LoadObject(this);
+			}
 		
-            public virtual string au_id
-            {
-                get
-                {
+                    public titleauthors()
+                    {
+                        System.Diagnostics.Debug.WriteLine("Constructing object of type titleauthors");
+                    }
                     
-				try 
-				{
-					return ((System.String)(this[this.tabletitleauthors.au_idColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                    public virtual string au_id
+                    {
+                        get
+                        {
+                            System.Diagnostics.Debug.WriteLine("Getting property au_id");
+                            
+					//System.Diagnostics.Debug.WriteLine("Getting property: au_id");
+					return _au_id;
 			
-                }
-                set
-                {
+                        }
+                        set
+                        {
+                            System.Diagnostics.Debug.WriteLine("Setting property au_id");
+                            
+					//System.Diagnostics.Debug.WriteLine("Setting property: au_id");
+					_au_id = value;
+			
+                        }
+                    }
                     
-				this[this.tabletitleauthors.au_idColumn] = value; 
+                    public virtual string title_id
+                    {
+                        get
+                        {
+                            System.Diagnostics.Debug.WriteLine("Getting property title_id");
+                            
+					//System.Diagnostics.Debug.WriteLine("Getting property: title_id");
+					return _title_id;
 			
-                }
-            }
-            
-            public virtual string title_id
-            {
-                get
-                {
+                        }
+                        set
+                        {
+                            System.Diagnostics.Debug.WriteLine("Setting property title_id");
+                            
+					//System.Diagnostics.Debug.WriteLine("Setting property: title_id");
+					_title_id = value;
+			
+                        }
+                    }
                     
-				try 
-				{
-					return ((System.String)(this[this.tabletitleauthors.title_idColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                    public virtual System.Byte au_ord
+                    {
+                        get
+                        {
+                            System.Diagnostics.Debug.WriteLine("Getting property au_ord");
+                            
+					//System.Diagnostics.Debug.WriteLine("Getting property: au_ord");
+					return _au_ord;
 			
-                }
-                set
-                {
+                        }
+                        set
+                        {
+                            System.Diagnostics.Debug.WriteLine("Setting property au_ord");
+                            
+					//System.Diagnostics.Debug.WriteLine("Setting property: au_ord");
+					_au_ord = value;
+			
+                        }
+                    }
                     
-				this[this.tabletitleauthors.title_idColumn] = value; 
+                    public virtual int royaltyper
+                    {
+                        get
+                        {
+                            System.Diagnostics.Debug.WriteLine("Getting property royaltyper");
+                            
+					//System.Diagnostics.Debug.WriteLine("Getting property: royaltyper");
+					return _royaltyper;
 			
-                }
-            }
-            
-            public virtual System.Byte au_ord
-            {
-                get
-                {
+                        }
+                        set
+                        {
+                            System.Diagnostics.Debug.WriteLine("Setting property royaltyper");
+                            
+					//System.Diagnostics.Debug.WriteLine("Setting property: royaltyper");
+					_royaltyper = value;
+			
+                        }
+                    }
                     
-				try 
-				{
-					return ((System.Byte)(this[this.tabletitleauthors.au_ordColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                    public class authors
+                    {
+                        
+                        
 			
-                }
-                set
-                {
-                    
-				this[this.tabletitleauthors.au_ordColumn] = value; 
+				System.String _au_id;
 			
-                }
-            }
-            
-            public virtual int royaltyper
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.Int32)(this[this.tabletitleauthors.royaltyperColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+				System.String _au_lname;
 			
-                }
-                set
-                {
-                    
-				this[this.tabletitleauthors.royaltyperColumn] = value; 
+				System.String _au_fname;
 			
-                }
-            }
-            
-            private bool Isau_idNull()
-            {
-                return this.IsNull(this.tabletitleauthors.au_idColumn);
-            }
-            
-            private void Setau_idNull()
-            {
-                this[this.tabletitleauthors.au_idColumn] = System.Convert.DBNull;
-            }
-            
-            private bool Istitle_idNull()
-            {
-                return this.IsNull(this.tabletitleauthors.title_idColumn);
-            }
-            
-            private void Settitle_idNull()
-            {
-                this[this.tabletitleauthors.title_idColumn] = System.Convert.DBNull;
-            }
-            
-            private bool Isau_ordNull()
-            {
-                return this.IsNull(this.tabletitleauthors.au_ordColumn);
-            }
-            
-            private void Setau_ordNull()
-            {
-                this[this.tabletitleauthors.au_ordColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IsroyaltyperNull()
-            {
-                return this.IsNull(this.tabletitleauthors.royaltyperColumn);
-            }
-            
-            private void SetroyaltyperNull()
-            {
-                this[this.tabletitleauthors.royaltyperColumn] = System.Convert.DBNull;
-            }
-        }
-        
-        [System.Diagnostics.DebuggerStepThrough()]
-        public class authorsRow : DataRow
-        {
-            
-            
-		private authorsDataTable tableauthors;
+				System.String _phone;
+			
+				System.String _address;
+			
+				System.String _city;
+			
+				System.String _state;
+			
+				System.String _zip;
+			
+				System.Boolean _contract;
+			
+			protected object GetInstance()
+			{
+				return new authors();
+			}
+			
+			public void Save()
+			{
+				DAL.SaveObject(this);
+			}
 
-		internal authorsRow(DataRowBuilder rb) : base(rb) 
-		{
-			this.tableauthors = ((authorsDataTable)(this.Table));
-		}
+			public void Load()
+			{
+				DAL.LoadObject(this);
+			}
 		
-            public virtual string au_id
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tableauthors.au_idColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                        public authors()
+                        {
+                            System.Diagnostics.Debug.WriteLine("Constructing object of type authors");
+                        }
+                        
+                        public virtual string au_id
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property au_id");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: au_id");
+					return _au_id;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.au_idColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property au_id");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: au_id");
+					_au_id = value;
 			
-                }
-            }
-            
-            public virtual string au_lname
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tableauthors.au_lnameColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                            }
+                        }
+                        
+                        public virtual string au_lname
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property au_lname");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: au_lname");
+					return _au_lname;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.au_lnameColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property au_lname");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: au_lname");
+					_au_lname = value;
 			
-                }
-            }
-            
-            public virtual string au_fname
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tableauthors.au_fnameColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                            }
+                        }
+                        
+                        public virtual string au_fname
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property au_fname");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: au_fname");
+					return _au_fname;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.au_fnameColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property au_fname");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: au_fname");
+					_au_fname = value;
 			
-                }
-            }
-            
-            public virtual string phone
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tableauthors.phoneColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                            }
+                        }
+                        
+                        public virtual string phone
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property phone");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: phone");
+					return _phone;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.phoneColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property phone");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: phone");
+					_phone = value;
 			
-                }
-            }
-            
-            public virtual string address
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tableauthors.addressColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                            }
+                        }
+                        
+                        public virtual string address
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property address");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: address");
+					return _address;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.addressColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property address");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: address");
+					_address = value;
 			
-                }
-            }
-            
-            public virtual string city
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tableauthors.cityColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                            }
+                        }
+                        
+                        public virtual string city
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property city");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: city");
+					return _city;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.cityColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property city");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: city");
+					_city = value;
 			
-                }
-            }
-            
-            public virtual string state
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tableauthors.stateColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                            }
+                        }
+                        
+                        public virtual string state
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property state");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: state");
+					return _state;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.stateColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property state");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: state");
+					_state = value;
 			
-                }
-            }
-            
-            public virtual string zip
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.String)(this[this.tableauthors.zipColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                            }
+                        }
+                        
+                        public virtual string zip
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property zip");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: zip");
+					return _zip;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.zipColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property zip");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: zip");
+					_zip = value;
 			
-                }
-            }
-            
-            public virtual bool contract
-            {
-                get
-                {
-                    
-				try 
-				{
-					return ((System.Boolean)(this[this.tableauthors.contractColumn]));
-				}
-				catch (InvalidCastException e) 
-				{
-					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
-				}
+                            }
+                        }
+                        
+                        public virtual bool contract
+                        {
+                            get
+                            {
+                                System.Diagnostics.Debug.WriteLine("Getting property contract");
+                                
+					//System.Diagnostics.Debug.WriteLine("Getting property: contract");
+					return _contract;
 			
-                }
-                set
-                {
-                    
-				this[this.tableauthors.contractColumn] = value; 
+                            }
+                            set
+                            {
+                                System.Diagnostics.Debug.WriteLine("Setting property contract");
+                                
+					//System.Diagnostics.Debug.WriteLine("Setting property: contract");
+					_contract = value;
 			
+                            }
+                        }
+                    }
                 }
-            }
-            
-            private bool Isau_idNull()
-            {
-                return this.IsNull(this.tableauthors.au_idColumn);
-            }
-            
-            private void Setau_idNull()
-            {
-                this[this.tableauthors.au_idColumn] = System.Convert.DBNull;
-            }
-            
-            private bool Isau_lnameNull()
-            {
-                return this.IsNull(this.tableauthors.au_lnameColumn);
-            }
-            
-            private void Setau_lnameNull()
-            {
-                this[this.tableauthors.au_lnameColumn] = System.Convert.DBNull;
-            }
-            
-            private bool Isau_fnameNull()
-            {
-                return this.IsNull(this.tableauthors.au_fnameColumn);
-            }
-            
-            private void Setau_fnameNull()
-            {
-                this[this.tableauthors.au_fnameColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IsphoneNull()
-            {
-                return this.IsNull(this.tableauthors.phoneColumn);
-            }
-            
-            private void SetphoneNull()
-            {
-                this[this.tableauthors.phoneColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IsaddressNull()
-            {
-                return this.IsNull(this.tableauthors.addressColumn);
-            }
-            
-            private void SetaddressNull()
-            {
-                this[this.tableauthors.addressColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IscityNull()
-            {
-                return this.IsNull(this.tableauthors.cityColumn);
-            }
-            
-            private void SetcityNull()
-            {
-                this[this.tableauthors.cityColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IsstateNull()
-            {
-                return this.IsNull(this.tableauthors.stateColumn);
-            }
-            
-            private void SetstateNull()
-            {
-                this[this.tableauthors.stateColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IszipNull()
-            {
-                return this.IsNull(this.tableauthors.zipColumn);
-            }
-            
-            private void SetzipNull()
-            {
-                this[this.tableauthors.zipColumn] = System.Convert.DBNull;
-            }
-            
-            private bool IscontractNull()
-            {
-                return this.IsNull(this.tableauthors.contractColumn);
-            }
-            
-            private void SetcontractNull()
-            {
-                this[this.tableauthors.contractColumn] = System.Convert.DBNull;
-            }
-        }
-        
-        [System.Diagnostics.DebuggerStepThrough()]
-        public class publishersDataTable : DataTable
-        {
-            
-            private System.Data.DataColumn columnstate;
-            
-            private System.Data.DataColumn columnpub_id;
-            
-            private System.Data.DataColumn columnpub_name;
-            
-            private System.Data.DataColumn columncity;
-            
-            private System.Data.DataColumn columncountry;
-            
-            
-		internal publishersDataTable() : base("publishers")
-		{
-			this.InitClass();
-		}
-		
-		internal publishersDataTable(DataTable table) : base(table.TableName) 
-		{
-			if ((table.CaseSensitive != table.DataSet.CaseSensitive))
-				this.CaseSensitive = table.CaseSensitive;
-			if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
-				this.Locale = table.Locale;
-			if ((table.Namespace != table.DataSet.Namespace))
-				this.Namespace = table.Namespace;
-			this.Prefix = table.Prefix;
-			this.MinimumCapacity = table.MinimumCapacity;
-			this.DisplayExpression = table.DisplayExpression;
-		}
-
-		[System.ComponentModel.Browsable(false)]
-		public int Count 
-		{
-			get { return this.Rows.Count; }
-		}
-		
-		public publishersRow this[int index] 
-		{
-			get { return ((publishersRow)(this.Rows[index])); }
-		}
-
-		public event publishersRowChangeEventHandler publishersRowChanged;
-		public event publishersRowChangeEventHandler publishersRowChanging;
-		public event publishersRowChangeEventHandler publishersRowDeleted;
-		public event publishersRowChangeEventHandler publishersRowDeleting;
-
-		public void AddpublishersRow(publishersRow row) 
-		{
-			this.Rows.Add(row);
-		}
-
-		public publishersRow Add(params object[] field)
-		{
-			publishersRow rowpublishers = ((publishersRow)(this.NewRow()));
-			rowpublishers.ItemArray = field;
-			this.Rows.Add(rowpublishers);
-			return rowpublishers;
-		}
-
-		public System.Collections.IEnumerator GetEnumerator() 
-		{
-			return this.Rows.GetEnumerator();
-		}
-
-		public override DataTable Clone() 
-		{
-			publishersDataTable cln = ((publishersDataTable)(base.Clone()));
-			cln.InitVars();
-			return cln;
-		}
-
-		public publishersRow NewpublishersRow() 
-		{
-			return ((publishersRow)(this.NewRow()));
-		}
-
-		protected override DataRow NewRowFromBuilder(DataRowBuilder builder) 
-		{
-			return new publishersRow(builder);
-		}
-
-		protected override System.Type GetRowType() 
-		{
-			return typeof(publishersRow);
-		}
-
-		protected override void OnRowChanged(DataRowChangeEventArgs e) 
-		{
-			base.OnRowChanged(e);
-			if ((this.publishersRowChanged != null))
-				this.publishersRowChanged(this, new publishersRowChangeEvent(((publishersRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowChanging(DataRowChangeEventArgs e) 
-		{
-			base.OnRowChanging(e);
-			if ((this.publishersRowChanging != null))
-				this.publishersRowChanging(this, new publishersRowChangeEvent(((publishersRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowDeleted(DataRowChangeEventArgs e) 
-		{
-			base.OnRowDeleted(e);
-			if ((this.publishersRowDeleted != null)) 
-				this.publishersRowDeleted(this, new publishersRowChangeEvent(((publishersRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowDeleting(DataRowChangeEventArgs e) 
-		{
-			base.OnRowDeleting(e);
-			if ((this.publishersRowDeleting != null))
-				this.publishersRowDeleting(this, new publishersRowChangeEvent(((publishersRow)(e.Row)), e.Action));
-		}
-
-		public void RemovepublishersRow(publishersRow row) 
-		{
-			this.Rows.Remove(row);
-		}
-		
-            internal System.Data.DataColumn stateColumn
-            {
-                get
-                {
-                    return this.columnstate;
-                }
-            }
-            
-            internal System.Data.DataColumn pub_idColumn
-            {
-                get
-                {
-                    return this.columnpub_id;
-                }
-            }
-            
-            internal System.Data.DataColumn pub_nameColumn
-            {
-                get
-                {
-                    return this.columnpub_name;
-                }
-            }
-            
-            internal System.Data.DataColumn cityColumn
-            {
-                get
-                {
-                    return this.columncity;
-                }
-            }
-            
-            internal System.Data.DataColumn countryColumn
-            {
-                get
-                {
-                    return this.columncountry;
-                }
-            }
-            
-            private void InitClass()
-            {
-                this.columnstate = new System.Data.DataColumn("state", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnstate);
-                this.columnpub_id = new System.Data.DataColumn("pub_id", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnpub_id);
-                this.columnpub_name = new System.Data.DataColumn("pub_name", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnpub_name);
-                this.columncity = new System.Data.DataColumn("city", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columncity);
-                this.columncountry = new System.Data.DataColumn("country", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columncountry);
-            }
-            
-            internal void InitVars()
-            {
-                this.columnstate = this.Columns["state"];
-                this.columnpub_id = this.Columns["pub_id"];
-                this.columnpub_name = this.Columns["pub_name"];
-                this.columncity = this.Columns["city"];
-                this.columncountry = this.Columns["country"];
-            }
-        }
-        
-        [System.Diagnostics.DebuggerStepThrough()]
-        public class titlesDataTable : DataTable
-        {
-            
-            private System.Data.DataColumn columntitle_id;
-            
-            private System.Data.DataColumn columntitle;
-            
-            private System.Data.DataColumn columntype;
-            
-            private System.Data.DataColumn columnpub_id;
-            
-            private System.Data.DataColumn columnprice;
-            
-            private System.Data.DataColumn columnadvance;
-            
-            private System.Data.DataColumn columnroyalty;
-            
-            private System.Data.DataColumn columnytd_sales;
-            
-            private System.Data.DataColumn columnnotes;
-            
-            private System.Data.DataColumn columnpubdate;
-            
-            
-		internal titlesDataTable() : base("titles")
-		{
-			this.InitClass();
-		}
-		
-		internal titlesDataTable(DataTable table) : base(table.TableName) 
-		{
-			if ((table.CaseSensitive != table.DataSet.CaseSensitive))
-				this.CaseSensitive = table.CaseSensitive;
-			if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
-				this.Locale = table.Locale;
-			if ((table.Namespace != table.DataSet.Namespace))
-				this.Namespace = table.Namespace;
-			this.Prefix = table.Prefix;
-			this.MinimumCapacity = table.MinimumCapacity;
-			this.DisplayExpression = table.DisplayExpression;
-		}
-
-		[System.ComponentModel.Browsable(false)]
-		public int Count 
-		{
-			get { return this.Rows.Count; }
-		}
-		
-		public titlesRow this[int index] 
-		{
-			get { return ((titlesRow)(this.Rows[index])); }
-		}
-
-		public event titlesRowChangeEventHandler titlesRowChanged;
-		public event titlesRowChangeEventHandler titlesRowChanging;
-		public event titlesRowChangeEventHandler titlesRowDeleted;
-		public event titlesRowChangeEventHandler titlesRowDeleting;
-
-		public void AddtitlesRow(titlesRow row) 
-		{
-			this.Rows.Add(row);
-		}
-
-		public titlesRow Add(params object[] field)
-		{
-			titlesRow rowtitles = ((titlesRow)(this.NewRow()));
-			rowtitles.ItemArray = field;
-			this.Rows.Add(rowtitles);
-			return rowtitles;
-		}
-
-		public System.Collections.IEnumerator GetEnumerator() 
-		{
-			return this.Rows.GetEnumerator();
-		}
-
-		public override DataTable Clone() 
-		{
-			titlesDataTable cln = ((titlesDataTable)(base.Clone()));
-			cln.InitVars();
-			return cln;
-		}
-
-		public titlesRow NewtitlesRow() 
-		{
-			return ((titlesRow)(this.NewRow()));
-		}
-
-		protected override DataRow NewRowFromBuilder(DataRowBuilder builder) 
-		{
-			return new titlesRow(builder);
-		}
-
-		protected override System.Type GetRowType() 
-		{
-			return typeof(titlesRow);
-		}
-
-		protected override void OnRowChanged(DataRowChangeEventArgs e) 
-		{
-			base.OnRowChanged(e);
-			if ((this.titlesRowChanged != null))
-				this.titlesRowChanged(this, new titlesRowChangeEvent(((titlesRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowChanging(DataRowChangeEventArgs e) 
-		{
-			base.OnRowChanging(e);
-			if ((this.titlesRowChanging != null))
-				this.titlesRowChanging(this, new titlesRowChangeEvent(((titlesRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowDeleted(DataRowChangeEventArgs e) 
-		{
-			base.OnRowDeleted(e);
-			if ((this.titlesRowDeleted != null)) 
-				this.titlesRowDeleted(this, new titlesRowChangeEvent(((titlesRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowDeleting(DataRowChangeEventArgs e) 
-		{
-			base.OnRowDeleting(e);
-			if ((this.titlesRowDeleting != null))
-				this.titlesRowDeleting(this, new titlesRowChangeEvent(((titlesRow)(e.Row)), e.Action));
-		}
-
-		public void RemovetitlesRow(titlesRow row) 
-		{
-			this.Rows.Remove(row);
-		}
-		
-            internal System.Data.DataColumn title_idColumn
-            {
-                get
-                {
-                    return this.columntitle_id;
-                }
-            }
-            
-            internal System.Data.DataColumn titleColumn
-            {
-                get
-                {
-                    return this.columntitle;
-                }
-            }
-            
-            internal System.Data.DataColumn typeColumn
-            {
-                get
-                {
-                    return this.columntype;
-                }
-            }
-            
-            internal System.Data.DataColumn pub_idColumn
-            {
-                get
-                {
-                    return this.columnpub_id;
-                }
-            }
-            
-            internal System.Data.DataColumn priceColumn
-            {
-                get
-                {
-                    return this.columnprice;
-                }
-            }
-            
-            internal System.Data.DataColumn advanceColumn
-            {
-                get
-                {
-                    return this.columnadvance;
-                }
-            }
-            
-            internal System.Data.DataColumn royaltyColumn
-            {
-                get
-                {
-                    return this.columnroyalty;
-                }
-            }
-            
-            internal System.Data.DataColumn ytd_salesColumn
-            {
-                get
-                {
-                    return this.columnytd_sales;
-                }
-            }
-            
-            internal System.Data.DataColumn notesColumn
-            {
-                get
-                {
-                    return this.columnnotes;
-                }
-            }
-            
-            internal System.Data.DataColumn pubdateColumn
-            {
-                get
-                {
-                    return this.columnpubdate;
-                }
-            }
-            
-            private void InitClass()
-            {
-                this.columntitle_id = new System.Data.DataColumn("title_id", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columntitle_id);
-                this.columntitle = new System.Data.DataColumn("title", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columntitle);
-                this.columntype = new System.Data.DataColumn("type", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columntype);
-                this.columnpub_id = new System.Data.DataColumn("pub_id", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnpub_id);
-                this.columnprice = new System.Data.DataColumn("price", typeof(System.Decimal), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnprice);
-                this.columnadvance = new System.Data.DataColumn("advance", typeof(System.Decimal), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnadvance);
-                this.columnroyalty = new System.Data.DataColumn("royalty", typeof(int), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnroyalty);
-                this.columnytd_sales = new System.Data.DataColumn("ytd_sales", typeof(int), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnytd_sales);
-                this.columnnotes = new System.Data.DataColumn("notes", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnnotes);
-                this.columnpubdate = new System.Data.DataColumn("pubdate", typeof(System.DateTime), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnpubdate);
-            }
-            
-            internal void InitVars()
-            {
-                this.columntitle_id = this.Columns["title_id"];
-                this.columntitle = this.Columns["title"];
-                this.columntype = this.Columns["type"];
-                this.columnpub_id = this.Columns["pub_id"];
-                this.columnprice = this.Columns["price"];
-                this.columnadvance = this.Columns["advance"];
-                this.columnroyalty = this.Columns["royalty"];
-                this.columnytd_sales = this.Columns["ytd_sales"];
-                this.columnnotes = this.Columns["notes"];
-                this.columnpubdate = this.Columns["pubdate"];
-            }
-        }
-        
-        [System.Diagnostics.DebuggerStepThrough()]
-        public class titleauthorsDataTable : DataTable
-        {
-            
-            private System.Data.DataColumn columnau_id;
-            
-            private System.Data.DataColumn columntitle_id;
-            
-            private System.Data.DataColumn columnau_ord;
-            
-            private System.Data.DataColumn columnroyaltyper;
-            
-            
-		internal titleauthorsDataTable() : base("titleauthors")
-		{
-			this.InitClass();
-		}
-		
-		internal titleauthorsDataTable(DataTable table) : base(table.TableName) 
-		{
-			if ((table.CaseSensitive != table.DataSet.CaseSensitive))
-				this.CaseSensitive = table.CaseSensitive;
-			if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
-				this.Locale = table.Locale;
-			if ((table.Namespace != table.DataSet.Namespace))
-				this.Namespace = table.Namespace;
-			this.Prefix = table.Prefix;
-			this.MinimumCapacity = table.MinimumCapacity;
-			this.DisplayExpression = table.DisplayExpression;
-		}
-
-		[System.ComponentModel.Browsable(false)]
-		public int Count 
-		{
-			get { return this.Rows.Count; }
-		}
-		
-		public titleauthorsRow this[int index] 
-		{
-			get { return ((titleauthorsRow)(this.Rows[index])); }
-		}
-
-		public event titleauthorsRowChangeEventHandler titleauthorsRowChanged;
-		public event titleauthorsRowChangeEventHandler titleauthorsRowChanging;
-		public event titleauthorsRowChangeEventHandler titleauthorsRowDeleted;
-		public event titleauthorsRowChangeEventHandler titleauthorsRowDeleting;
-
-		public void AddtitleauthorsRow(titleauthorsRow row) 
-		{
-			this.Rows.Add(row);
-		}
-
-		public titleauthorsRow Add(params object[] field)
-		{
-			titleauthorsRow rowtitleauthors = ((titleauthorsRow)(this.NewRow()));
-			rowtitleauthors.ItemArray = field;
-			this.Rows.Add(rowtitleauthors);
-			return rowtitleauthors;
-		}
-
-		public System.Collections.IEnumerator GetEnumerator() 
-		{
-			return this.Rows.GetEnumerator();
-		}
-
-		public override DataTable Clone() 
-		{
-			titleauthorsDataTable cln = ((titleauthorsDataTable)(base.Clone()));
-			cln.InitVars();
-			return cln;
-		}
-
-		public titleauthorsRow NewtitleauthorsRow() 
-		{
-			return ((titleauthorsRow)(this.NewRow()));
-		}
-
-		protected override DataRow NewRowFromBuilder(DataRowBuilder builder) 
-		{
-			return new titleauthorsRow(builder);
-		}
-
-		protected override System.Type GetRowType() 
-		{
-			return typeof(titleauthorsRow);
-		}
-
-		protected override void OnRowChanged(DataRowChangeEventArgs e) 
-		{
-			base.OnRowChanged(e);
-			if ((this.titleauthorsRowChanged != null))
-				this.titleauthorsRowChanged(this, new titleauthorsRowChangeEvent(((titleauthorsRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowChanging(DataRowChangeEventArgs e) 
-		{
-			base.OnRowChanging(e);
-			if ((this.titleauthorsRowChanging != null))
-				this.titleauthorsRowChanging(this, new titleauthorsRowChangeEvent(((titleauthorsRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowDeleted(DataRowChangeEventArgs e) 
-		{
-			base.OnRowDeleted(e);
-			if ((this.titleauthorsRowDeleted != null)) 
-				this.titleauthorsRowDeleted(this, new titleauthorsRowChangeEvent(((titleauthorsRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowDeleting(DataRowChangeEventArgs e) 
-		{
-			base.OnRowDeleting(e);
-			if ((this.titleauthorsRowDeleting != null))
-				this.titleauthorsRowDeleting(this, new titleauthorsRowChangeEvent(((titleauthorsRow)(e.Row)), e.Action));
-		}
-
-		public void RemovetitleauthorsRow(titleauthorsRow row) 
-		{
-			this.Rows.Remove(row);
-		}
-		
-            internal System.Data.DataColumn au_idColumn
-            {
-                get
-                {
-                    return this.columnau_id;
-                }
-            }
-            
-            internal System.Data.DataColumn title_idColumn
-            {
-                get
-                {
-                    return this.columntitle_id;
-                }
-            }
-            
-            internal System.Data.DataColumn au_ordColumn
-            {
-                get
-                {
-                    return this.columnau_ord;
-                }
-            }
-            
-            internal System.Data.DataColumn royaltyperColumn
-            {
-                get
-                {
-                    return this.columnroyaltyper;
-                }
-            }
-            
-            private void InitClass()
-            {
-                this.columnau_id = new System.Data.DataColumn("au_id", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnau_id);
-                this.columntitle_id = new System.Data.DataColumn("title_id", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columntitle_id);
-                this.columnau_ord = new System.Data.DataColumn("au_ord", typeof(System.Byte), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnau_ord);
-                this.columnroyaltyper = new System.Data.DataColumn("royaltyper", typeof(int), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnroyaltyper);
-            }
-            
-            internal void InitVars()
-            {
-                this.columnau_id = this.Columns["au_id"];
-                this.columntitle_id = this.Columns["title_id"];
-                this.columnau_ord = this.Columns["au_ord"];
-                this.columnroyaltyper = this.Columns["royaltyper"];
-            }
-        }
-        
-        [System.Diagnostics.DebuggerStepThrough()]
-        public class authorsDataTable : DataTable
-        {
-            
-            private System.Data.DataColumn columnau_id;
-            
-            private System.Data.DataColumn columnau_lname;
-            
-            private System.Data.DataColumn columnau_fname;
-            
-            private System.Data.DataColumn columnphone;
-            
-            private System.Data.DataColumn columnaddress;
-            
-            private System.Data.DataColumn columncity;
-            
-            private System.Data.DataColumn columnstate;
-            
-            private System.Data.DataColumn columnzip;
-            
-            private System.Data.DataColumn columncontract;
-            
-            
-		internal authorsDataTable() : base("authors")
-		{
-			this.InitClass();
-		}
-		
-		internal authorsDataTable(DataTable table) : base(table.TableName) 
-		{
-			if ((table.CaseSensitive != table.DataSet.CaseSensitive))
-				this.CaseSensitive = table.CaseSensitive;
-			if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
-				this.Locale = table.Locale;
-			if ((table.Namespace != table.DataSet.Namespace))
-				this.Namespace = table.Namespace;
-			this.Prefix = table.Prefix;
-			this.MinimumCapacity = table.MinimumCapacity;
-			this.DisplayExpression = table.DisplayExpression;
-		}
-
-		[System.ComponentModel.Browsable(false)]
-		public int Count 
-		{
-			get { return this.Rows.Count; }
-		}
-		
-		public authorsRow this[int index] 
-		{
-			get { return ((authorsRow)(this.Rows[index])); }
-		}
-
-		public event authorsRowChangeEventHandler authorsRowChanged;
-		public event authorsRowChangeEventHandler authorsRowChanging;
-		public event authorsRowChangeEventHandler authorsRowDeleted;
-		public event authorsRowChangeEventHandler authorsRowDeleting;
-
-		public void AddauthorsRow(authorsRow row) 
-		{
-			this.Rows.Add(row);
-		}
-
-		public authorsRow Add(params object[] field)
-		{
-			authorsRow rowauthors = ((authorsRow)(this.NewRow()));
-			rowauthors.ItemArray = field;
-			this.Rows.Add(rowauthors);
-			return rowauthors;
-		}
-
-		public System.Collections.IEnumerator GetEnumerator() 
-		{
-			return this.Rows.GetEnumerator();
-		}
-
-		public override DataTable Clone() 
-		{
-			authorsDataTable cln = ((authorsDataTable)(base.Clone()));
-			cln.InitVars();
-			return cln;
-		}
-
-		public authorsRow NewauthorsRow() 
-		{
-			return ((authorsRow)(this.NewRow()));
-		}
-
-		protected override DataRow NewRowFromBuilder(DataRowBuilder builder) 
-		{
-			return new authorsRow(builder);
-		}
-
-		protected override System.Type GetRowType() 
-		{
-			return typeof(authorsRow);
-		}
-
-		protected override void OnRowChanged(DataRowChangeEventArgs e) 
-		{
-			base.OnRowChanged(e);
-			if ((this.authorsRowChanged != null))
-				this.authorsRowChanged(this, new authorsRowChangeEvent(((authorsRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowChanging(DataRowChangeEventArgs e) 
-		{
-			base.OnRowChanging(e);
-			if ((this.authorsRowChanging != null))
-				this.authorsRowChanging(this, new authorsRowChangeEvent(((authorsRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowDeleted(DataRowChangeEventArgs e) 
-		{
-			base.OnRowDeleted(e);
-			if ((this.authorsRowDeleted != null)) 
-				this.authorsRowDeleted(this, new authorsRowChangeEvent(((authorsRow)(e.Row)), e.Action));
-		}
-
-		protected override void OnRowDeleting(DataRowChangeEventArgs e) 
-		{
-			base.OnRowDeleting(e);
-			if ((this.authorsRowDeleting != null))
-				this.authorsRowDeleting(this, new authorsRowChangeEvent(((authorsRow)(e.Row)), e.Action));
-		}
-
-		public void RemoveauthorsRow(authorsRow row) 
-		{
-			this.Rows.Remove(row);
-		}
-		
-            internal System.Data.DataColumn au_idColumn
-            {
-                get
-                {
-                    return this.columnau_id;
-                }
-            }
-            
-            internal System.Data.DataColumn au_lnameColumn
-            {
-                get
-                {
-                    return this.columnau_lname;
-                }
-            }
-            
-            internal System.Data.DataColumn au_fnameColumn
-            {
-                get
-                {
-                    return this.columnau_fname;
-                }
-            }
-            
-            internal System.Data.DataColumn phoneColumn
-            {
-                get
-                {
-                    return this.columnphone;
-                }
-            }
-            
-            internal System.Data.DataColumn addressColumn
-            {
-                get
-                {
-                    return this.columnaddress;
-                }
-            }
-            
-            internal System.Data.DataColumn cityColumn
-            {
-                get
-                {
-                    return this.columncity;
-                }
-            }
-            
-            internal System.Data.DataColumn stateColumn
-            {
-                get
-                {
-                    return this.columnstate;
-                }
-            }
-            
-            internal System.Data.DataColumn zipColumn
-            {
-                get
-                {
-                    return this.columnzip;
-                }
-            }
-            
-            internal System.Data.DataColumn contractColumn
-            {
-                get
-                {
-                    return this.columncontract;
-                }
-            }
-            
-            private void InitClass()
-            {
-                this.columnau_id = new System.Data.DataColumn("au_id", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnau_id);
-                this.columnau_lname = new System.Data.DataColumn("au_lname", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnau_lname);
-                this.columnau_fname = new System.Data.DataColumn("au_fname", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnau_fname);
-                this.columnphone = new System.Data.DataColumn("phone", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnphone);
-                this.columnaddress = new System.Data.DataColumn("address", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnaddress);
-                this.columncity = new System.Data.DataColumn("city", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columncity);
-                this.columnstate = new System.Data.DataColumn("state", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnstate);
-                this.columnzip = new System.Data.DataColumn("zip", typeof(string), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columnzip);
-                this.columncontract = new System.Data.DataColumn("contract", typeof(bool), null, System.Data.MappingType.Element);
-                this.Columns.Add(this.columncontract);
-            }
-            
-            internal void InitVars()
-            {
-                this.columnau_id = this.Columns["au_id"];
-                this.columnau_lname = this.Columns["au_lname"];
-                this.columnau_fname = this.Columns["au_fname"];
-                this.columnphone = this.Columns["phone"];
-                this.columnaddress = this.Columns["address"];
-                this.columncity = this.Columns["city"];
-                this.columnstate = this.Columns["state"];
-                this.columnzip = this.Columns["zip"];
-                this.columncontract = this.Columns["contract"];
             }
         }
     }

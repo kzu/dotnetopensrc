@@ -43,8 +43,15 @@ namespace NMatrix.XGoF.Visitors
 				if (member is CodeTypeDeclaration)
 				{
 					CodeTypeDeclaration current = member as CodeTypeDeclaration;
-					if (current.Name == match) return current;
-					else return RecurseMembers(current, match);
+					if (current.Name == match) 
+					{
+						return current;
+					}
+					else 
+					{
+						CodeTypeDeclaration inner = RecurseMembers(current, match);
+						if (inner != null) return inner;
+					}
 				}
 			}
 			return result;

@@ -10,7 +10,7 @@
                     EnableSQLServerDebugging = "false"
                     RemoteDebugEnabled = "false"
                     RemoteDebugMachine = ""
-                    StartAction = "Project"
+                    StartAction = "None"
                     StartArguments = ""
                     StartPage = ""
                     StartProgram = ""

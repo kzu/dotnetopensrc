@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<xsd:schema id="dsPublishers" targetNamespace="NMatrix.Generated.DataSets" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="NMatrix.Generated.DataSets" xmlns:mstns="NMatrix.Generated.DataSets" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+<xsd:schema id="dsPublishers" targetNamespace="NMatrix.Generated" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="NMatrix.Generated" xmlns:mstns="NMatrix.Generated.DataSets" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
 	<xsd:element name="dsPublishers" msdata:IsDataSet="true">
 		<xsd:complexType>
 			<xsd:choice maxOccurs="unbounded">

@@ -132,6 +132,7 @@
                 <File
                     RelPath = "NMatrix.XGoF.PlugIn.TypedDataSet.dll.cs"
                     DependentUpon = "NMatrix.XGoF.PlugIn.TypedDataSet.dll.config"
+                    SubType = "code"
                     BuildAction = "Compile"
                     DesignTime = "True"
                     AutoGen = "True"

@@ -98,6 +98,34 @@ namespace NMatrix.XGoF.Visitors
 		}
 
 		/// <summary>
+		/// Recursivelly traverses types and its members to find a matching type declaration.
+		/// </summary>
+		/// <param name="type">The type to traverse.</param>
+		/// <param name="match">The type name to find.</param>
+		/// <returns></returns>
+		private CodeTypeDeclaration RecurseMembers(CodeTypeDeclaration type, string match)
+		{
+			CodeTypeDeclaration result = null;
+			foreach (CodeTypeMember member in type.Members)
+			{
+				if (member is CodeTypeDeclaration)
+				{
+					CodeTypeDeclaration current = member as CodeTypeDeclaration;
+					if (current.Name == match) 
+					{
+						return current;
+					}
+					else 
+					{
+						CodeTypeDeclaration inner = RecurseMembers(current, match);
+						if (inner != null) return inner;
+					}
+				}
+			}
+			return result;
+		}
+
+		/// <summary>
 		/// Visitor implementation. Processes the passed element 
 		/// repositioning the CurrentType member variable.
 		/// </summary>
@@ -105,12 +133,24 @@ namespace NMatrix.XGoF.Visitors
 		public virtual void Visit(VisitableElementComplexType element)
 		{
 			CurrentType = null;
+
 			foreach (CodeTypeDeclaration type in CurrentNamespace.Types)
+			{
 				if (type.Name == element.TypeName)
 				{
 					CurrentType = type;
 					break;
 				}
+				else
+				{
+					CodeTypeDeclaration inner = RecurseMembers(type, element.TypeName);
+					if (inner != null)
+					{
+						CurrentType = inner;
+						break;
+					}
+				}
+			}
 		}
 
 		/// <summary>

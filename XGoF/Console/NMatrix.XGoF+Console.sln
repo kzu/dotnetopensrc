@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.Console", "NMatrix.XGoF.Console.csproj", "{A644B5CC-EE8E-49EA-B6EC-150625509C01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF", "..\src\NMatrix.XGoF.csproj", "{BEBC4573-CB09-44B3-AB1D-17E071B394AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Debug.ActiveCfg = Debug|.NET
+		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Debug.Build.0 = Debug|.NET
+		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Release.ActiveCfg = Release|.NET
+		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Release.Build.0 = Release|.NET
+		{BEBC4573-CB09-44B3-AB1D-17E071B394AB}.Debug.ActiveCfg = Debug|.NET
+		{BEBC4573-CB09-44B3-AB1D-17E071B394AB}.Debug.Build.0 = Debug|.NET
+		{BEBC4573-CB09-44B3-AB1D-17E071B394AB}.Release.ActiveCfg = Release|.NET
+		{BEBC4573-CB09-44B3-AB1D-17E071B394AB}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

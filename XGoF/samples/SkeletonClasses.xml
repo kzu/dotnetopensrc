@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Customization xmlns="http://sourceforge.net/projects/dotnetopensrc/xgof">
+	<Type>
+		<Property>
+			<Get>
+					//System.Diagnostics.Debug.WriteLine("Getting property: <CurrentProperty />");
+					return _<CurrentProperty />;
+			</Get>
+			<Set>
+					//System.Diagnostics.Debug.WriteLine("Setting property: <CurrentProperty />");
+					_<CurrentProperty /> = value;
+			</Set>
+		</Property>
+		
+		<Member>
+			<PropertiesIteration>
+				<PropertyType /> _<CurrentProperty />;
+			</PropertiesIteration>
+			protected object GetInstance()
+			{
+				return new <Current />();
+			}
+			
+			public void Save()
+			{
+				DAL.SaveObject(this);
+			}
+
+			public void Load()
+			{
+				DAL.LoadObject(this);
+			}
+		</Member>
+	</Type>
+</Customization>

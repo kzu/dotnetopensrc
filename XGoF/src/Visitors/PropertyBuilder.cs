@@ -41,9 +41,14 @@ namespace NMatrix.XGoF.Visitors
 			
 			if (nodes.Count != 0)
 			{
+				// Original type name is the current type name without the 
+				// type naming convention appended during tree parsing.
+				string name = (Configuration.TypeNaming != String.Empty) ?
+					CurrentType.Name.Replace(Configuration.TypeNaming, "") :
+					CurrentType.Name;
+
 				CodeMemberProperty prop = CodeDomHelper.BuildProperty(
-					CurrentType.Name.Replace(Configuration.TypeNaming, ""), 
-					element.Name, Configuration.TypeNaming, 
+					name, element.Name, Configuration.TypeNaming, 
 					Configuration.CollectionNaming,
 					type, nodes, CurrentNamespace);
 

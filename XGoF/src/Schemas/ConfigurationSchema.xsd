@@ -1,121 +1,121 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<xsd:schema id="ConfigurationSchema" elementFormDefault="unqualified" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" attributeFormDefault="unqualified">
-  <xsd:element name="configurations">
-    <xsd:complexType>
-      <xsd:sequence>
-        <xsd:element name="configSections" maxOccurs="1" minOccurs="0">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="section" minOccurs="0" maxOccurs="unbounded" type="nameTypeDef" />
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-        <xsd:element name="generator" minOccurs="0" maxOccurs="1">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="default" minOccurs="0" maxOccurs="1">
-                <xsd:complexType>
-                  <xsd:attribute name="collectionNaming" type="xsd:string" default="s" />
-                  <xsd:attribute name="createNamespaceFolders" type="xsd:boolean" default="true" />
-                  <xsd:attribute name="outputCompiled" type="xsd:boolean" default="true" />
-                  <xsd:attribute name="outputSource" type="xsd:boolean" default="false" />
-                  <xsd:attribute name="provider" type="xsd:string" default="Microsoft.CSharp.CSharpCodeProvider, System, Culture=neutral, Version=1.0.3300.0, PublicKeyToken=b77a5c561934e089" />
-                  <xsd:attribute name="targetAssembly" type="xsd:string" default="NMatrix.Generated.dll" />
-                  <xsd:attribute name="targetFolder" type="xsd:string" default="" />
-                  <xsd:attribute name="targetNamespace" type="xsd:string" default="" />
-                  <xsd:attribute name="typeNaming" type="xsd:string" default="" />
-                  <xsd:attribute name="validateCustomizations" type="xsd:boolean" />
-                  <xsd:attribute name="generateContainerProperty" type="xsd:boolean" default="false" />
-                  <xsd:attribute name="iterationType" type="iterationTypeDef" default="ComplexType" />
-                </xsd:complexType>
-              </xsd:element>
-              <xsd:element name="assemblyReference" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
-              <xsd:element name="namespaceImport" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-        <xsd:element name="extender" maxOccurs="1" minOccurs="0">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="traversers" maxOccurs="1" minOccurs="0">
-                <xsd:complexType>
-                  <xsd:sequence>
-                    <xsd:element name="traverser" minOccurs="0" maxOccurs="unbounded" type="typeEnableDef" />
-                  </xsd:sequence>
-                </xsd:complexType>
-              </xsd:element>
-              <xsd:element name="visitors" maxOccurs="1" minOccurs="0">
-                <xsd:complexType>
-                  <xsd:sequence>
-                    <xsd:element name="visitor" minOccurs="0" maxOccurs="unbounded">
-                      <xsd:complexType>
-                        <xsd:complexContent>
-                          <xsd:extension base="typeEnableDef">
-                            <xsd:attribute name="runOrder" type="xsd:int" />
-                          </xsd:extension>
-                        </xsd:complexContent>
-                      </xsd:complexType>
-                    </xsd:element>
-                  </xsd:sequence>
-                </xsd:complexType>
-              </xsd:element>
-              <xsd:element name="retrievers" maxOccurs="1" minOccurs="0">
-                <xsd:complexType>
-                  <xsd:sequence>
-                    <xsd:element name="retriever" minOccurs="0" maxOccurs="unbounded" type="typeEnableDef" />
-                  </xsd:sequence>
-                </xsd:complexType>
-              </xsd:element>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-        <xsd:element name="runner" minOccurs="0" maxOccurs="1">
-          <xsd:complexType>
-            <xsd:sequence>
-              <xsd:element name="customizations" type="customizationDef" minOccurs="0" maxOccurs="1" />
-              <xsd:element name="sources" minOccurs="0" maxOccurs="1">
-                <xsd:complexType>
-                  <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                    <xsd:element name="source" minOccurs="0" maxOccurs="unbounded">
-                      <xsd:complexType>
-                        <xsd:sequence>
-                          <xsd:element name="customizations" type="customizationDef" minOccurs="0" maxOccurs="1" />
-                        </xsd:sequence>
-                        <xsd:attribute name="file" type="xsd:string" />
-                      </xsd:complexType>
-                    </xsd:element>
-                  </xsd:sequence>
-                </xsd:complexType>
-              </xsd:element>
-            </xsd:sequence>
-          </xsd:complexType>
-        </xsd:element>
-      </xsd:sequence>
-    </xsd:complexType>
-  </xsd:element>
-  <xsd:complexType name="customizationDef">
-    <xsd:sequence>
-      <xsd:element name="customization" minOccurs="0" maxOccurs="unbounded">
-        <xsd:complexType>
-          <xsd:attribute name="file" type="xsd:string" />
-          <xsd:attribute name="runOrder" type="xsd:int" />
-          <xsd:attribute name="enabled" type="xsd:boolean" />
-        </xsd:complexType>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="nameTypeDef">
-    <xsd:attribute name="name" type="xsd:string" />
-    <xsd:attribute name="type" type="xsd:string" />
-  </xsd:complexType>
-  <xsd:complexType name="typeEnableDef">
-    <xsd:attribute name="type" type="xsd:string" />
-    <xsd:attribute name="enabled" type="xsd:boolean" />
-  </xsd:complexType>
-  <xsd:simpleType name="iterationTypeDef">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="ComplexElement" />
-      <xsd:enumeration value="ComplexType" />
-    </xsd:restriction>
-  </xsd:simpleType>
+<xsd:schema id="ConfigurationSchema" xmlns="http://sourceforge.net/projects/dotnetopensrc/xgof-config" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://sourceforge.net/projects/dotnetopensrc/xgof-config" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="configurations">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="configSections" maxOccurs="1" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="section" minOccurs="0" maxOccurs="unbounded" type="nameTypeDef" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="generator" minOccurs="0" maxOccurs="1">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="default" minOccurs="0" maxOccurs="1">
+								<xsd:complexType>
+									<xsd:attribute name="collectionNaming" type="xsd:string" default="s" />
+									<xsd:attribute name="createNamespaceFolders" type="xsd:boolean" default="true" />
+									<xsd:attribute name="outputCompiled" type="xsd:boolean" default="true" />
+									<xsd:attribute name="outputSource" type="xsd:boolean" default="false" />
+									<xsd:attribute name="provider" type="xsd:string" default="Microsoft.CSharp.CSharpCodeProvider, System, Culture=neutral, Version=1.0.3300.0, PublicKeyToken=b77a5c561934e089" />
+									<xsd:attribute name="targetAssembly" type="xsd:string" default="NMatrix.Generated.dll" />
+									<xsd:attribute name="targetFolder" type="xsd:string" default="" />
+									<xsd:attribute name="targetNamespace" type="xsd:string" default="" />
+									<xsd:attribute name="typeNaming" type="xsd:string" default="" />
+									<xsd:attribute name="validateCustomizations" type="xsd:boolean" />
+									<xsd:attribute name="generateContainerProperty" type="xsd:boolean" default="false" />
+									<xsd:attribute name="iterationType" type="iterationTypeDef" default="ComplexType" />
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="assemblyReference" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+							<xsd:element name="namespaceImport" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="extender" maxOccurs="1" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="traversers" maxOccurs="1" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="traverser" minOccurs="0" maxOccurs="unbounded" type="typeEnableDef" />
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="visitors" maxOccurs="1" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="visitor" minOccurs="0" maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:complexContent>
+													<xsd:extension base="typeEnableDef">
+														<xsd:attribute name="runOrder" type="xsd:int" />
+													</xsd:extension>
+												</xsd:complexContent>
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+							<xsd:element name="retrievers" maxOccurs="1" minOccurs="0">
+								<xsd:complexType>
+									<xsd:sequence>
+										<xsd:element name="retriever" minOccurs="0" maxOccurs="unbounded" type="typeEnableDef" />
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="runner" minOccurs="0" maxOccurs="1">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="customizations" type="customizationDef" minOccurs="0" maxOccurs="1" />
+							<xsd:element name="sources" minOccurs="0" maxOccurs="1">
+								<xsd:complexType>
+									<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+										<xsd:element name="source" minOccurs="0" maxOccurs="unbounded">
+											<xsd:complexType>
+												<xsd:sequence>
+													<xsd:element name="customizations" type="customizationDef" minOccurs="0" maxOccurs="1" />
+												</xsd:sequence>
+												<xsd:attribute name="file" type="xsd:string" />
+											</xsd:complexType>
+										</xsd:element>
+									</xsd:sequence>
+								</xsd:complexType>
+							</xsd:element>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="customizationDef">
+		<xsd:sequence>
+			<xsd:element name="customization" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:attribute name="file" type="xsd:string" />
+					<xsd:attribute name="runOrder" type="xsd:int" />
+					<xsd:attribute name="enabled" type="xsd:boolean" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="nameTypeDef">
+		<xsd:attribute name="name" type="xsd:string" />
+		<xsd:attribute name="type" type="xsd:string" />
+	</xsd:complexType>
+	<xsd:complexType name="typeEnableDef">
+		<xsd:attribute name="type" type="xsd:string" />
+		<xsd:attribute name="enabled" type="xsd:boolean" />
+	</xsd:complexType>
+	<xsd:simpleType name="iterationTypeDef">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ComplexElement" />
+			<xsd:enumeration value="ComplexType" />
+		</xsd:restriction>
+	</xsd:simpleType>
 </xsd:schema>

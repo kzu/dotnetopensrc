@@ -112,7 +112,7 @@ namespace NMatrix.XGoF.Configuration
 			foreach (XmlNode node in nodes)
 			{
 				attr = node.Attributes["runOrder"];
-				int order = 0;
+				int order = -1;
 				if (attr != null)
 					order = int.Parse(attr.Value);
 				if (order == -1) order = int.MaxValue;

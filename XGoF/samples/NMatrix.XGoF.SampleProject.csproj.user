@@ -1,7 +1,7 @@
 <VisualStudioProject>
     <CSHARP>
         <Build>
-            <Settings ReferencePath = "F:\Disco Dany\Proyectos\Framework\Core\bin\Debug\;E:\DiscoDany\Proyectos\Framework\bin\;E:\DiscoDany\NMatrix\bin\;\\devmaster\e$\DiscoDany\NMatrix\bin\" >
+            <Settings ReferencePath = "E:\DiscoDany\NMatrix\bin\" >
                 <Config
                     Name = "Debug"
                     EnableASPDebugging = "false"
@@ -11,12 +11,12 @@
                     RemoteDebugEnabled = "false"
                     RemoteDebugMachine = ""
                     StartAction = "Project"
-                    StartArguments = "E:\DiscoDany\NMatrix\XGoF\samples\SkeletonClasses.config"
+                    StartArguments = ""
                     StartPage = ""
                     StartProgram = ""
                     StartURL = ""
                     StartWorkingDirectory = ""
-                    StartWithIE = "true"
+                    StartWithIE = "false"
                 />
                 <Config
                     Name = "Release"
@@ -27,7 +27,7 @@
                     RemoteDebugEnabled = "false"
                     RemoteDebugMachine = ""
                     StartAction = "Project"
-                    StartArguments = "NMatrix.XGoF.PlugIn.DataLayer.dll.config"
+                    StartArguments = ""
                     StartPage = ""
                     StartProgram = ""
                     StartURL = ""
@@ -40,7 +40,7 @@
             CopyProjectDestinationFolder = ""
             CopyProjectUncPath = ""
             CopyProjectOption = "0"
-            ProjectView = "ProjectFiles"
+            ProjectView = "ShowAllFiles"
             ProjectTrust = "0"
         />
     </CSHARP>
