@@ -4,6 +4,8 @@ using Microsoft.VSDesigner.CodeGenerator;
 using Microsoft.Win32;
 using System.Runtime.InteropServices; 
 using System.IO;
+using System.Reflection;
+using System.Security.Policy;
 using NMatrix.XGoF;
 using NMatrix.Core;
 
@@ -28,11 +30,24 @@ namespace NMatrix.XGoF.CustomTool
         {
             _output = String.Empty;
 
-			AppDomain gen = AppDomain.CreateDomain("Generator");
+			/*
+			// Create the AppDomain
+			Evidence evidence = new Evidence(AppDomain.CurrentDomain.Evidence);
+			AppDomainSetup setup = new AppDomainSetup();
+			setup.ApplicationBase = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+			setup.PrivateBinPath = AppDomain.CurrentDomain.SetupInformation.PrivateBinPath;
+			setup.PrivateBinPathProbe = AppDomain.CurrentDomain.SetupInformation.PrivateBinPathProbe;
+
+			AppDomain gen = AppDomain.CreateDomain("Generator", null, AppDomain.CurrentDomain.SetupInformation);
+			gen.SetShadowCopyFiles();
+			//gen.SetupInformation.ApplicationBase = setup.ApplicationBase;
+			*/
+	
 			try
 			{
-				Runner r = (Runner)gen.CreateInstanceFromAndUnwrap("NMatrix.XGoF", "NMatrix.XGoF.Runner");
-				r.File = fileName;
+				//Runner r = (Runner)gen.CreateInstanceFromAndUnwrap("NMatrix.XGoF", "NMatrix.XGoF.Runner");
+				//r.File = fileName;
+				Runner r = new Runner(fileName);
 				r.FileFinished += new ProgressEventHandler(OnFileFinished);
 				r.Start();
 			}
@@ -43,7 +58,7 @@ namespace NMatrix.XGoF.CustomTool
 			}
 			finally
 			{
-				AppDomain.Unload(gen);
+				//AppDomain.Unload(gen);
 			}
 
             return System.Text.Encoding.ASCII.GetBytes(_output);

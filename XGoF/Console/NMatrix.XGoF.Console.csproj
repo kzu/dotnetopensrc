@@ -74,14 +74,14 @@
                     AssemblyName = "System.Windows.Forms"
                 />
                 <Reference
+                    Name = "NMatrix.XGoF"
+                    AssemblyName = "NMatrix.XGoF"
+                    HintPath = "..\..\bin\NMatrix.XGoF.dll"
+                />
+                <Reference
                     Name = "NMatrix.Core"
                     AssemblyName = "NMatrix.Core"
                     HintPath = "..\..\bin\NMatrix.Core.dll"
-                />
-                <Reference
-                    Name = "NMatrix.XGoF"
-                    Project = "{BEBC4573-CB09-44B3-AB1D-17E071B394AB}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
             </References>
         </Build>

@@ -1,8 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 7.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF", "src\NMatrix.XGoF.csproj", "{BEBC4573-CB09-44B3-AB1D-17E071B394AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.Console", "Console\NMatrix.XGoF.Console.csproj", "{A644B5CC-EE8E-49EA-B6EC-150625509C01}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.PlugIn.TypedDataSet", "TypedDataSet\NMatrix.XGoF.PlugIn.TypedDataSet.csproj", "{F7FC2260-0020-4952-A84D-3D6964B17F74}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.Core", "..\Core\src\NMatrix.Core.csproj", "{2C128D1B-7A74-4448-B2E3-08C6E31428EF}"
@@ -10,10 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XDL", "..\XDL\src\NMatrix.XDL.csproj", "{4891F336-99BD-43ED-807E-46A185C47B70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.PlugIn.XDL", "..\XDL\XGoF.PlugIn\NMatrix.XGoF.PlugIn.XDL.csproj", "{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.AddIn", "AddIn\NMatrix.XGoF.AddIn.csproj", "{DE58F62A-DDFE-4908-8442-F6AB6B2D6691}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.CustomTool", "CustomTool\NMatrix.XGoF.CustomTool.csproj", "{C4ECD2B2-2A06-49EF-A1EF-0E6DE9133901}"
 EndProject
 Global
 	GlobalSection(SolutionConfiguration) = preSolution
@@ -27,10 +21,6 @@ Global
 		{BEBC4573-CB09-44B3-AB1D-17E071B394AB}.Debug.Build.0 = Debug|.NET
 		{BEBC4573-CB09-44B3-AB1D-17E071B394AB}.Release.ActiveCfg = Release|.NET
 		{BEBC4573-CB09-44B3-AB1D-17E071B394AB}.Release.Build.0 = Release|.NET
-		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Debug.ActiveCfg = Debug|.NET
-		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Debug.Build.0 = Debug|.NET
-		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Release.ActiveCfg = Release|.NET
-		{A644B5CC-EE8E-49EA-B6EC-150625509C01}.Release.Build.0 = Release|.NET
 		{F7FC2260-0020-4952-A84D-3D6964B17F74}.Debug.ActiveCfg = Debug|.NET
 		{F7FC2260-0020-4952-A84D-3D6964B17F74}.Debug.Build.0 = Debug|.NET
 		{F7FC2260-0020-4952-A84D-3D6964B17F74}.Release.ActiveCfg = Release|.NET
@@ -47,14 +37,6 @@ Global
 		{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}.Debug.Build.0 = Debug|.NET
 		{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}.Release.ActiveCfg = Release|.NET
 		{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}.Release.Build.0 = Release|.NET
-		{DE58F62A-DDFE-4908-8442-F6AB6B2D6691}.Debug.ActiveCfg = Debug|.NET
-		{DE58F62A-DDFE-4908-8442-F6AB6B2D6691}.Debug.Build.0 = Debug|.NET
-		{DE58F62A-DDFE-4908-8442-F6AB6B2D6691}.Release.ActiveCfg = Release|.NET
-		{DE58F62A-DDFE-4908-8442-F6AB6B2D6691}.Release.Build.0 = Release|.NET
-		{C4ECD2B2-2A06-49EF-A1EF-0E6DE9133901}.Debug.ActiveCfg = Debug|.NET
-		{C4ECD2B2-2A06-49EF-A1EF-0E6DE9133901}.Debug.Build.0 = Debug|.NET
-		{C4ECD2B2-2A06-49EF-A1EF-0E6DE9133901}.Release.ActiveCfg = Release|.NET
-		{C4ECD2B2-2A06-49EF-A1EF-0E6DE9133901}.Release.Build.0 = Release|.NET
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 	EndGlobalSection

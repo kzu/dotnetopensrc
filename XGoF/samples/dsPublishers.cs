@@ -331,7 +331,6 @@ namespace NMatrix.Generated.DataSets
 			this.tablepublishers = ((publishersDataTable)(this.Table));
 		}
 		
-            /// <summary>XGoF generated member.</summary>
             public virtual string pub_id
             {
                 get
@@ -355,7 +354,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string pub_name
             {
                 get
@@ -379,7 +377,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string city
             {
                 get
@@ -403,7 +400,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string state
             {
                 get
@@ -427,7 +423,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string country
             {
                 get
@@ -514,7 +509,6 @@ namespace NMatrix.Generated.DataSets
 			this.tabletitles = ((titlesDataTable)(this.Table));
 		}
 		
-            /// <summary>XGoF generated member.</summary>
             public virtual string title_id
             {
                 get
@@ -538,7 +532,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string title
             {
                 get
@@ -562,7 +555,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string type
             {
                 get
@@ -586,7 +578,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string titlepub_id
             {
                 get
@@ -610,7 +601,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual System.Decimal price
             {
                 get
@@ -634,7 +624,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual System.Decimal advance
             {
                 get
@@ -658,7 +647,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual int royalty
             {
                 get
@@ -682,7 +670,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual int ytd_sales
             {
                 get
@@ -706,7 +693,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string notes
             {
                 get
@@ -730,7 +716,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual System.DateTime pubdate
             {
                 get
@@ -867,7 +852,6 @@ namespace NMatrix.Generated.DataSets
 			this.tabletitleauthors = ((titleauthorsDataTable)(this.Table));
 		}
 		
-            /// <summary>XGoF generated member.</summary>
             public virtual string au_id
             {
                 get
@@ -891,7 +875,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual string title_id
             {
                 get
@@ -915,7 +898,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual System.Byte au_ord
             {
                 get
@@ -939,7 +921,6 @@ namespace NMatrix.Generated.DataSets
                 }
             }
             
-            /// <summary>XGoF generated member.</summary>
             public virtual int royaltyper
             {
                 get

@@ -81,8 +81,8 @@
                 />
                 <Reference
                     Name = "NMatrix.XDL"
-                    Project = "{4891F336-99BD-43ED-807E-46A185C47B70}"
-                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                    AssemblyName = "NMatrix.XDL"
+                    HintPath = "..\..\bin\NMatrix.XDL.dll"
                 />
             </References>
         </Build>
@@ -111,6 +111,16 @@
                 <File
                     RelPath = "NMatrix.XGoF.PlugIn.XDL.dll.config"
                     BuildAction = "Content"
+                    Generator = "XGoF"
+                    LastGenOutput = "NMatrix.XGoF.PlugIn.XDL.dll.cs"
+                />
+                <File
+                    RelPath = "NMatrix.XGoF.PlugIn.XDL.dll.cs"
+                    DependentUpon = "NMatrix.XGoF.PlugIn.XDL.dll.config"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
                 />
                 <File
                     RelPath = "Notes.txt"
