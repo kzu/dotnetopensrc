@@ -60,10 +60,8 @@ namespace NMatrix.Core.Collections
 		{
       SortedDuplicateKey key = obj as SortedDuplicateKey;
       
-      //COmpatible Change
-      
 			// If the passed call order is MaxValue or is equal to us, put it above us.
-			if (key.Order > int.MaxValue || key.Order == _order || key.Order > _order)
+			if (key.Order == int.MaxValue || key.Order == _order || key.Order > _order)
 				return -1;
 			// If the order is less, it goes before us.
 			else if (key.Order < _order)
