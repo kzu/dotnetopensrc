@@ -101,58 +101,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "attributevalue.xml"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "attributevalue.xsd"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "attributevalue.xsx"
-                    DependentUpon = "attributevalue.xsd"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "cmattribute.xml"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "cmattribute.xsd"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "cmattribute.xsx"
-                    DependentUpon = "cmattribute.xsd"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "cmattrtype.xml"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "cmattrtype.xsd"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "cmattrtype.xsx"
-                    DependentUpon = "cmattrtype.xsd"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "cmelement.xml"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "cmelement.xsd"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "cmelement.xsx"
-                    DependentUpon = "cmelement.xsd"
-                    BuildAction = "None"
-                />
-                <File
                     RelPath = "Home.cs"
                     SubType = "Form"
                     BuildAction = "Compile"
@@ -161,44 +109,6 @@
                     RelPath = "Home.resx"
                     DependentUpon = "Home.cs"
                     BuildAction = "EmbeddedResource"
-                />
-                <File
-                    RelPath = "mutualexclusion.xml"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "mutualexclusion.xsd"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "mutualexclusion.xsx"
-                    DependentUpon = "mutualexclusion.xsd"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "po-instance.xml"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "po-schema.xml"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "po-schema.xsd"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "po-schema.xsx"
-                    DependentUpon = "po-schema.xsd"
-                    BuildAction = "None"
-                />
-                <File
-                    RelPath = "po-schema-abstract.xml"
-                    BuildAction = "Content"
-                />
-                <File
-                    RelPath = "po-schema-workflow.xml"
-                    BuildAction = "Content"
                 />
                 <File
                     RelPath = "schematron1-5.xsd"
@@ -210,16 +120,123 @@
                     BuildAction = "None"
                 />
                 <File
-                    RelPath = "siblingcontent.xml"
+                    RelPath = "co-constraints\1-siblingcontent.xml"
                     BuildAction = "Content"
                 />
                 <File
-                    RelPath = "siblingcontent.xsd"
+                    RelPath = "co-constraints\1-siblingcontent.xsd"
                     BuildAction = "Content"
                 />
                 <File
-                    RelPath = "siblingcontent.xsx"
-                    DependentUpon = "siblingcontent.xsd"
+                    RelPath = "co-constraints\1-siblingcontent.xsx"
+                    DependentUpon = "1-siblingcontent.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "co-constraints\2-mutualexclusion.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "co-constraints\2-mutualexclusion.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "co-constraints\2-mutualexclusion.xsx"
+                    DependentUpon = "2-mutualexclusion.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "co-constraints\3-attributevalueexclusion.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "co-constraints\3-attributevalueexclusion.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "co-constraints\3-attributevalueexclusion.xsx"
+                    DependentUpon = "3-attributevalueexclusion.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "content-model\1-attributepresence.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "content-model\1-attributepresence.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "content-model\1-attributepresence.xsx"
+                    DependentUpon = "1-attributepresence.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "content-model\2-attributevalue.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "content-model\2-attributevalue.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "content-model\2-attributevalue.xsx"
+                    DependentUpon = "2-attributevalue.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "content-model\3-attributetype.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "content-model\3-attributetype.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "content-model\3-attributetype.xsx"
+                    DependentUpon = "3-attributetype.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "schematron\po-instance.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\po-output.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\po-schema.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\po-schema.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\po-schema.xsx"
+                    DependentUpon = "po-schema.xsd"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "schematron\po-schema-abstract.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\po-schema-workflow.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\Tournament.xml"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\Tournament.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "schematron\Tournament.xsx"
+                    DependentUpon = "Tournament.xsd"
                     BuildAction = "None"
                 />
             </Include>

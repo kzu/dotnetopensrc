@@ -286,6 +286,20 @@
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
+                <File
+                    RelPath = "Formatters\XmlFormatter.cs"
+                    SubType = "Code"
+                    BuildAction = "Compile"
+                />
+                <File
+                    RelPath = "Formatters\XmlFormatter.xsd"
+                    BuildAction = "Content"
+                />
+                <File
+                    RelPath = "Formatters\XmlFormatter.xsx"
+                    DependentUpon = "XmlFormatter.xsd"
+                    BuildAction = "None"
+                />
             </Include>
         </Files>
     </CSHARP>
