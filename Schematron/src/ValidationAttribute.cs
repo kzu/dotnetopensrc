@@ -15,7 +15,7 @@ namespace NMatrix.Schematron
 		/// Initializes the attribute for a certain schema.
 		/// </summary>
 		/// <param name="schema">The schema to validate the webmethod with.</param>
-		public ValidationAttribute(string schema) : this(new string[] { schema }, null, OutputFormatting.Simple)
+		public ValidationAttribute(string schema) : this(new string[] { schema }, OutputFormatting.Simple)
 		{
 		}
 
@@ -23,7 +23,7 @@ namespace NMatrix.Schematron
 		/// Initializes the attribute for a certain schema.
 		/// </summary>
 		/// <param name="schemas">The set of schemas to validate the webmethod with.</param>
-		public ValidationAttribute(string[] schemas) : this(schemas, null, OutputFormatting.Simple)
+		public ValidationAttribute(string[] schemas) : this(schemas, OutputFormatting.Simple)
 		{
 		}
 
@@ -32,7 +32,7 @@ namespace NMatrix.Schematron
 		/// </summary>
 		/// <param name="schema">The schema to validate the webmethod with.</param>
 		/// <param name="formatting">The formatting to use for the validation output.</param>
-		public ValidationAttribute(string schema, OutputFormatting formatting) : this(new string[] { schema }, null, formatting)
+		public ValidationAttribute(string schema, OutputFormatting formatting) : this(new string[] { schema }, formatting)
 		{
 		}
 
@@ -41,7 +41,7 @@ namespace NMatrix.Schematron
 		/// </summary>
 		/// <param name="schemas">The set of schemas to validate the webmethod with.</param>
 		/// <param name="formatting">The formatting to use for the validation output.</param>
-		public ValidationAttribute(string[] schemas, OutputFormatting formatting) : this(schemas, null, formatting)
+		public ValidationAttribute(string[] schemas, OutputFormatting formatting) 
 		{
 			this.schemas = schemas;
 			this.formatting = formatting;
@@ -79,7 +79,7 @@ namespace NMatrix.Schematron
 		} OutputFormatting formatting;
 
 		/// <summary>
-		/// Gets/Sets a type that implements <see cref="IFormatter"/> to use 
+		/// Gets/Sets a type that implements <see cref="Formatting.IFormatter"/> to use 
 		/// to format error messages. If set, this property takes precedence 
 		/// over <see cref="Formatting"/>.
 		/// </summary>
@@ -95,7 +95,7 @@ namespace NMatrix.Schematron
 		
 		/// <summary>
 		/// Gets the type of this extension attribute, which is always 
-		/// <see cref="SchematronValidationExtension"/>.
+		/// <see cref="ValidationExtension"/>.
 		/// </summary>
 		public override Type ExtensionType
 		{
