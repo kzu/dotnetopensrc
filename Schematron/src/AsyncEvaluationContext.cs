@@ -12,7 +12,7 @@ using NMatrix.Schematron.Formatters;
 namespace NMatrix.Schematron
 {
 	/// <summary>
-	/// Evaluates <see cref="Assert"/> and <see cref="Report"/> elements asynchronously.
+	/// Evaluates <see cref="Assert"/> and <see cref="Report"/> elements asynchronously. 
 	/// </summary>
 	/// <remarks>
 	/// See <see cref="EvaluationContextBase"/> for a description of the purpose and 
