@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema id="Temp" targetNamespace="NMatrix.Generated" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="http://tempuri.org/Temp.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xsd:element name="Config" msdata:CaseSensitive="true">
+		<xsd:annotation>
+			<xsd:documentation>Root element in the schema</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:choice maxOccurs="unbounded">
+				<xsd:element name="IterationType" type="xsd:string" />
+				<xsd:element name="CodeDomProvider" type="xsd:string" />
+				<xsd:element name="CollectionNaming" type="xsd:string" />
+				<xsd:element name="TypeNaming" type="xsd:string" />
+				<xsd:element name="Namespace" type="xsd:string" />
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="IntrinsicType" type="xsd:string"></xsd:element>
+	<xsd:simpleType name="RestrictedSimple">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Yes" />
+			<xsd:enumeration value="No" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="RestrictedElement" type="RestrictedSimple"></xsd:element>
+	<xsd:element name="EmbededSimpleType">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="Male" />
+				<xsd:enumeration value="Female" />
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,31 @@
+Additional thoughts:
+1 - What should be done with SimpleTypes? Validation? Serialization? CLR/XSD Convertion?
+2 - Add the posibility to specify wildcards in ApplyTo/ExceptOf filters?
+
+Limitations:
+1 - From source XSD, in the ApplyTo/ExceptOf sections, only UnhandledAttributes cause effect (see MSDN help)
+2 - The Add method with a parameter for each field of the dataset isn't generated. We added one which
+	receives an object array of parameters, or a variable length parameters for each field.
+3 - Look for support for external schemas.
+
+
+Design decisions:
+1 - ApplyTo and ExceptOf sections take element names without TypeNaming or CollectionNaming conventions. 
+	That is, they match the element in the source schema as is.
+2 - Configurations are accumulative if more than one file is selected for the same schema.
+3 - Traverses are managed by the Traverser class.
+4 - If a complex element has the msdata:IsDataSet=true attribute, the TypeNaming convention won't be applied.
+5 - All UnhandledAttributes are appended to the type members while they are being added to the CodeDom graph.
+	The key used to add them is the LocalName. (View potencial namespace conflicts.)
+6 - Commented code lines above a complex CodeDom statement represents the result of it in C# source code.
+7 - IsNested property of a Relation defined in the XSD designer is ignored. It is only set for the relation when
+	the element is contained inside another one.
+8 - The GetXXX property to retrieve child rows is only added if the relation is defined and it doesn't have
+	the ConstraintOnly attribute set to "true". This is the MS generator default behavior.
+9 - Every <Runner><Customizations><Customization> row without a runOrder attribute is assigned the "0" runOrder.
+	All the rows with the same runOrder are executed simultaneously. To execute one row last, assign the -1
+	value to the runOrder attribute.
+	
+TODO Features:
+1 - Add traverser element as optional child of <source>, as an specific file may need an special traverser.
+2 - Review the namespace handling for customization files. I think there's plenty of room for improvements there.

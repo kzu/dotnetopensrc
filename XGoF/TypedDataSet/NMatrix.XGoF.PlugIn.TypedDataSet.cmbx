@@ -1,0 +1,16 @@
+<Combine name="TypedDataSet" fileversion="1.0" description="">
+  <StartMode startupentry="TypedDataSet" single="True">
+    <Execute entry="TypedDataSet" type="None" />
+  </StartMode>
+  <Entries>
+    <Entry filename=".\Deverest.XGoF.PlugIn.TypedDataSet.prjx" />
+  </Entries>
+  <Configurations active="Debug">
+    <Configuration name="Release" description="">
+      <Entry name="TypedDataSet" configurationname="Debug" build="False" />
+    </Configuration>
+    <Configuration name="Debug" description="">
+      <Entry name="TypedDataSet" configurationname="Debug" build="False" />
+    </Configuration>
+  </Configurations>
+</Combine>

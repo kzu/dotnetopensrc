@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NMatrix.XDL</name>
+    </assembly>
+    <members>
+        <member name="T:NMatrix.XDL.PublisherSchema">
+            <summary>
+            Summary description for PublisherSchema.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XDL.BaseDataSet">
+            <summary>
+            Base class for the data access layer datasets.
+            </summary>	
+        </member>
+        <member name="M:NMatrix.XDL.BaseDataSet.#ctor(System.String)">
+            <summary>
+            Internal constructor.
+            </summary>	
+            <param name="schemaFile"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseDataSet.#ctor(System.String,NMatrix.XDL.Wrappers.InternalDataSet)">
+            <summary>
+            Internal constructor.
+            </summary>	
+            <param name="schemaFile"></param>
+            <param name="state"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseDataSet.RetrieveDataTable(System.Type,System.String)">
+            <summary>
+            Check existence of the requested table and returns the correct type with a Prototype pattern.
+            </summary>	
+            <param name="tableType">The table to look for.</param>
+            <param name="tableName">Tha table name.</param>
+        </member>
+        <member name="T:NMatrix.XDL.BaseDataTable">
+            <summary>
+            Base class for the data access layer datatables.
+            </summary>	
+        </member>
+        <member name="M:NMatrix.XDL.BaseDataTable.#ctor(System.Data.DataTable)">
+            <summary>
+            Internal constructor.
+            </summary>	
+            <param name="table"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseDataTable.GetRowType">
+            <summary>
+            Returns the right datatype to build.
+            </summary>	
+        </member>
+        <member name="M:NMatrix.XDL.BaseDataTable.RetrieveDataColumn(System.String)">
+            <summary>
+            Looks for the specified column in the datatable.
+            </summary>	
+            <param name="columnName"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseDataTable.GetEnumerator">
+            <summary>
+            <c>IEnumerable</c> implementation.
+            </summary>	
+            <param name="columnName"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseDataTable.InitClass">
+            <summary>
+            Method to override in desdencent classes to customize initialization of the class.
+            </summary>	
+        </member>
+        <member name="P:NMatrix.XDL.BaseDataTable.Count">
+            <summary>
+            The number of rows in the datatable.
+            </summary>	
+        </member>
+        <member name="T:NMatrix.XDL.BaseRow">
+            <summary>
+            Base class for the data access layer data rows.
+            </summary>	
+        </member>
+        <member name="M:NMatrix.XDL.BaseRow.#ctor(System.Data.DataRow)">
+            <summary>
+            Internal constructor.
+            </summary>	
+            <param name="row"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseRow.#ctor">
+            <summary>
+            Internal constructor.
+            </summary>	
+        </member>
+        <member name="M:NMatrix.XDL.BaseRow.GetRowType">
+            <summary>
+            Returns the right datatype to build.
+            </summary>	
+        </member>
+        <member name="M:NMatrix.XDL.BaseRow.GetTableType">
+            <summary>
+            Returns the right datatype to build.
+            </summary>	
+        </member>
+        <member name="M:NMatrix.XDL.BaseRow.GetValue(System.String)">
+            <summary>
+            Returns the current value for the specified column.
+            </summary>	
+            <param name="columnName"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseRow.SetValue(System.String,System.Object)">
+            <summary>
+            Sets the value for a field.
+            </summary>	
+            <param name="columnName"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseRow.IsNullColumn(System.String)">
+            <summary>
+            Checks if the column is null.
+            </summary>	
+            <param name="columnName"></param>
+        </member>
+        <member name="M:NMatrix.XDL.BaseRow.SetNullColumn(System.String)">
+            <summary>
+            Sets the column to null.
+            </summary>	
+            <param name="columnName"></param>
+        </member>
+        <member name="T:NMatrix.XDL.Wrappers.RowCollectionWrapper.RowCollectionWrapperEnumerator">
+            <summary>
+            	A custom enumerator for the collection, made private to avoid direct creation
+            </summary>
+        </member>
+        <member name="T:ThisAssembly">
+            <summary>
+            Contains assembly level documentation.
+            </summary>
+            <license>MPL1.1</license>
+            <author id="dcazzulino" name="Daniel Cazzulino" email="nmatrixdotnet@msn.com">Project starter.</author>
+        </member>
+        <member name="T:NMatrix.XDL.ConsoleFactory">
+            <summary>
+            Default factory for objects.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XDL.Factory">
+            <summary>
+            Default factory for objects.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XDL.Engine">
+            <summary>
+            The class responsible for loading and updating data.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XDL.Engine.Test(System.String)">
+            <summary>
+            Newsgroup test method.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XDL.Engine.FactoryInstance">
+            <summary>
+            	Singleton pattern for the abstract factory.
+            </summary>
+        </member>
+    </members>
+</doc>

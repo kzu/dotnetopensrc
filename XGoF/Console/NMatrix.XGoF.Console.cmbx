@@ -1,0 +1,16 @@
+<Combine name="Console" fileversion="1.0" description="">
+  <StartMode startupentry="Console" single="True">
+    <Execute entry="Console" type="None" />
+  </StartMode>
+  <Entries>
+    <Entry filename=".\Deverest.XGoF.Console.prjx" />
+  </Entries>
+  <Configurations active="Debug">
+    <Configuration name="Release" description="">
+      <Entry name="Console" configurationname="Debug" build="False" />
+    </Configuration>
+    <Configuration name="Debug" description="">
+      <Entry name="Console" configurationname="Debug" build="False" />
+    </Configuration>
+  </Configurations>
+</Combine>

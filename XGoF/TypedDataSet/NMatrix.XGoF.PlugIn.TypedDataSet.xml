@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NMatrix.XGoF.PlugIn.TypedDataSet</name>
+    </assembly>
+    <members>
+        <member name="T:ThisAssembly">
+            <summary>
+            Contains assembly level documentation.
+            </summary>
+            <license>MPL1.1</license>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor">
+            <summary>
+            Base class for TypedDataSet visitors.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.IsDataSet">
+            <summary>
+            Flag indicating that the current element has the IsDataSet="true" attribute.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.CurrentDataSetType">
+            <summary>
+            Save a reference to the dataset type declaration inside the current schema.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.Namespaces">
+            <summary>
+            Represents the namespaces in the schema.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. Processes the passed element 
+            and sets the IsDataSet flag if appropiate.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Visitor implementation. Initializes CurrentDataSetType and Namespaces member variables.
+            </summary>
+            <param name="schema"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.RetrieveMethod(System.CodeDom.CodeTypeDeclaration,System.String)">
+            <summary>
+            Returns the method specified. If the method doesn't exist, it adds a new private 
+            final (sealed) method without return type.
+            </summary>
+            <param name="type">The type to return the method from.</param>
+            <param name="method">The name of the method to return.</param>
+            <returns>The method type member.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.RetrievePrefix">
+            <summary>
+            Returns the prefix associated to the target namespace of the source file.
+            </summary>
+            <remarks>Replaces the 
+            <c>XmlNamespaceManager.LookupPrefix(string namespace)</c>
+            that doesn't work.</remarks>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.BaseTypedDataSetVisitor.ThrowDataSetNotFound">
+            <summary>
+            Throws an exception signaling that the DataSet type declaration was't found.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.TypedDataSet.CodeDomHelper">
+            <summary>
+            Helper class for CodeDOM generation
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.CodeDomHelper.AddProperty(System.CodeDom.CodeTypeDeclaration,NMatrix.XGoF.XSD.BaseLeafSchemaElement,System.Type,System.CodeDom.CodeNamespace,System.CodeDom.CodeMemberMethod,System.CodeDom.CodeMemberMethod)">
+            <summary>
+            Adds code statements to InitClass and InitVars methods.
+            </summary>
+            <param name="currentType">The type whose property we will add.</param>
+            <param name="element">The current property element.</param>
+            <param name="propertyType">The property type.</param>
+            <param name="currentNamespace">Current namespace type declaration.</param>
+            <param name="initClass">InitClass method declaration.</param>
+            <param name="initVars">InitVars method declaration.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.CodeDomHelper.BuildUniqueConstraint(System.String,System.Boolean,System.Collections.ArrayList)">
+            <summary>
+            Builds the statements to create and initialize a unique constraint.
+            </summary>
+            <param name="name">The element name.</param>
+            <param name="isPrimaryKey">Is the current constraint the DataTable primerty key?</param>
+            <param name="fields">List of fields composing the constraint.</param>
+            <returns>A <c>CodeStatementCollection</c> object with the statements.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.CodeDomHelper.BuildInternalPrimaryKey(System.CodeDom.CodeTypeDeclaration,NMatrix.XGoF.XSD.VisitableElementComplexType,System.CodeDom.CodeMemberMethod,System.CodeDom.CodeMemberMethod)">
+            <summary>
+            Add the statements required to define a hidden primary key to a DataTable. This
+            is needed when no primary key is defined for it, and is used for internal purposes by the 
+            DataTable object. Adds the variable declaration, internal property accessor and
+            statements in InitClass and InitVars methods.
+            </summary>
+            <param name="currentType">The current DataTable corresponding to the element being visited.</param>
+            <param name="element">The element being visited.</param>
+            <param name="initClassMethod">The InitClass method.</param>
+            <param name="initVarsMethod">The InitVars method.</param>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.TypedDataSet.Constraints">
+            <summary>
+            Adds constraints to the DataTable objects defined.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Constraints.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Constraints.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. Creates the constraints.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Constraints.ProcessUniqueKey(System.Xml.XmlNode,System.CodeDom.CodeMemberMethod,System.Boolean@,System.Boolean@)">
+            <summary>
+            Processes a unique key and adds the corresponding code to the initClass parameter.
+            </summary>
+            <param name="node"></param>
+            <param name="initClass"></param>
+            <param name="hasPK"></param>
+            <param name="isPK"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Constraints.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Notifies progress.
+            </summary>
+            <param name="schema"></param>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.TypedDataSet.Constructors">
+            <summary>
+            Removes default constructors from the generated classes.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Constructors.#ctor">
+            <summary>
+            Empty default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Constructors.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Remove the public constructor added by the base generator to both DataTable and DataRow.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Constructors.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Perform the visit operation on the schema.
+            </summary>
+            <param name="schema">The schema being visited.</param>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.TypedDataSet.DataRows">
+            <summary>
+            Initializes DataColumn properties in the DataTable object.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataRows.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataRows.Visit(NMatrix.XGoF.XSD.VisitableAttributeIntrinsicType)">
+            <summary>
+            Visitor implementation. Adds a property to the class declaration.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataRows.Visit(NMatrix.XGoF.XSD.VisitableAttributeSimpleType)">
+            <summary>
+            Visitor implementation. Adds a property to the class declaration.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataRows.Visit(NMatrix.XGoF.XSD.VisitableElementIntrinsicType)">
+            <summary>
+            Visitor implementation. Adds a property to the class declaration.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataRows.Visit(NMatrix.XGoF.XSD.VisitableElementSimpleType)">
+            <summary>
+            Visitor implementation. Adds a property to the class declaration.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataRows.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Reposition the CurrentType variable to point to the DataTable object.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataRows.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Visitor implementation. Notifies progress.
+            </summary>
+            <param name="schema"></param>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.TypedDataSet.DataSetOrganizer">
+            <summary>
+            Organizes classes in the generated dataset.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataSetOrganizer.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataSetOrganizer.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. Puts classes inside the dataset element.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.DataSetOrganizer.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Visitor implementation. Notifies progress.
+            </summary>
+            <param name="schema"></param>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.TypedDataSet.Initializations">
+            <summary>
+            Adds DataRelation objects to the DataSet.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Initializations.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Initializations.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. Adds code to InitClass and InitVars methods of the DataTable classes.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.TypedDataSet.Initializations.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Initializes the InitClass and InitVars methods for the DataSet. We process
+            in this method as it is called only once per schema.
+            </summary>
+            <param name="schema"></param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,16 @@
+<Combine name="DataLayer" fileversion="1.0" description="">
+  <StartMode startupentry="DataLayer" single="True">
+    <Execute entry="DataLayer" type="None" />
+  </StartMode>
+  <Entries>
+    <Entry filename=".\Deverest.XGoF.PlugIn.DataLayer.prjx" />
+  </Entries>
+  <Configurations active="Debug">
+    <Configuration name="Release" description="">
+      <Entry name="DataLayer" configurationname="Debug" build="False" />
+    </Configuration>
+    <Configuration name="Debug" description="">
+      <Entry name="DataLayer" configurationname="Debug" build="False" />
+    </Configuration>
+  </Configurations>
+</Combine>

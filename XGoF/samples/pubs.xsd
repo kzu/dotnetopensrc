@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema id="dsPubs" elementFormDefault="qualified" 
+targetNamespace="NMatrix.Generated" xmlns="NMatrix.Generated" 
+xmlns:sql="urn:schemas-microsoft-com:mapping-schema" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" 
+attributeFormDefault="unqualified">
+    <xsd:annotation>
+        <xsd:appinfo>
+            <xsd:relationship name="publisherstitles" parent="publishers" parent-key="pub_id" child="titles" child-key="pub_id" xmlns:xsd="urn:schemas-microsoft-com:mapping-schema" />
+            <xsd:relationship name="titlestitleauthor" parent="titles" parent-key="title_id" child="titleauthor" child-key="title_id" xmlns:xsd="urn:schemas-microsoft-com:mapping-schema" />
+            <xsd:relationship name="titleauthorauthors" parent="titleauthor" parent-key="au_id" child="authors" child-key="au_id" xmlns:xsd="urn:schemas-microsoft-com:mapping-schema" />
+        </xsd:appinfo>
+    </xsd:annotation>
+    <xsd:element name="dsPubs" sql:is-constant="true" msdata:IsDataSet="true">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="publishers" sql:relation="publishers" sql:key-fields="pub_id">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="pub_id" type="xsd:string" msdata:Caption="Publisher Key" />
+                            <xsd:element name="pub_name" type="NameDef" msdata:Caption="Publisher Name" minOccurs="0" />
+                            <xsd:element name="city" type="xsd:string" minOccurs="0" msdata:Caption="City" />
+                            <xsd:element name="country" type="xsd:string" minOccurs="0" msdata:Caption="Country" />
+                            <xsd:element name="titles" type="title" minOccurs="0" sql:relation="titles" sql:key-fields="title_id" sql:relationship="publisherstitles" />
+                        </xsd:sequence>
+                        <xsd:attribute name="state" type="xsd:string" msdata:Caption="State" />
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="title">
+        <xsd:sequence>
+            <xsd:element name="title_id" type="xsd:string" />
+            <xsd:element name="title" type="NameDef" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="pub_id" type="xsd:string" minOccurs="0" />
+            <xsd:element name="price" type="xsd:decimal" minOccurs="0" />
+            <xsd:element name="advance" type="xsd:decimal" minOccurs="0" />
+            <xsd:element name="royalty" type="xsd:int" minOccurs="0" />
+            <xsd:element name="ytd_sales" type="xsd:int" minOccurs="0" />
+            <xsd:element name="notes" type="xsd:string" minOccurs="0" />
+            <xsd:element name="pubdate" type="xsd:dateTime" sql:datatype="dateTime" />
+            <xsd:element name="titleauthors" type="titleauthor" sql:relation="titleauthor" sql:key-fields="title_id" sql:relationship="titlestitleauthor" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="titleauthor">
+        <xsd:sequence>
+            <xsd:element name="au_id" type="xsd:string" />
+            <xsd:element name="title_id" type="xsd:string" />
+            <xsd:element name="au_ord" type="xsd:unsignedByte" minOccurs="0" />
+            <xsd:element name="royaltyper" type="xsd:int" minOccurs="0" />
+            <xsd:element name="authors" type="author" sql:relation="authors" sql:key-fields="au_id" sql:relationship="titleauthorauthors" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="author">
+        <xsd:sequence>
+        </xsd:sequence>
+        <xsd:attribute name="au_id" type="xsd:string" />
+        <xsd:attribute name="au_lname" type="NameDef" />
+        <xsd:attribute name="au_fname" type="NameDef" />
+        <xsd:attribute name="phone" type="xsd:string" />
+        <xsd:attribute name="address" type="xsd:string" />
+        <xsd:attribute name="city" type="xsd:string" />
+        <xsd:attribute name="state" type="xsd:string" />
+        <xsd:attribute name="zip" type="xsd:string" />
+        <xsd:attribute name="contract" type="xsd:boolean" />
+    </xsd:complexType>
+    <xsd:simpleType name="NameDef">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="80" />
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

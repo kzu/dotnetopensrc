@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema id="CustomizationSchema" targetNamespace="http://sourceforge.net/projects/dotnetopensrc/xgof" xmlns:xgf="http://sourceforge.net/projects/dotnetopensrc/xgof" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://sourceforge.net/projects/dotnetopensrc/xgof" xmlns:xsd="http://www.w3.org/2001/XMLSchema" version="1.0">
+    <xsd:annotation>
+        <xsd:documentation>
+			    This schema defines the structure of customization 
+			    templates for the generator.
+		    </xsd:documentation>
+    </xsd:annotation>
+    <xsd:element name="Customization">
+        <xsd:annotation>
+            <xsd:documentation>Root element in the schema.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element name="Type" type="xgf:TypeDef" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+						            Any number of Element customizations can be applied. 
+						            An Element maps to a class in the generated code.					
+						            </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="Collection" type="xgf:TypeDef" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                        <xsd:documentation>
+						            Any number of Collection customizations can be applied. 
+						            Elements which don't have a collection to apply will be made arrays.
+						            </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:group name="Constraints">
+        <xsd:sequence>
+            <xsd:element name="ApplyTo" type="xgf:ConstraintDef" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="ExceptOf" type="xgf:ConstraintDef" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:group>    
+    <xsd:complexType name="TypeDef">
+        <xsd:sequence>
+            <xsd:group ref="Constraints" />
+            <xsd:element name="CustomAttribute" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Adds Attributes to the class definition.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="BaseType" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Defines the inheritance or interface implementation types.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Constructor" minOccurs="0" maxOccurs="unbounded" type="xgf:ConstructorDef">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Defines the custom constructor for the generated class. If there
+						          is at least one custom contructor for the element, the default
+						          public empty constructor for the class will be ommited.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Property" type="xgf:PropertyDef" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						Defines any code to put inside a property of the current element.
+					</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Member" type="xgf:CodeContainerDef" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Defines any code to put inside class: variables, methods, properties, etc.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NameValueDef">
+        <xsd:attribute name="Name" type="xsd:string" />
+        <xsd:attribute name="Value" type="xsd:string" />
+    </xsd:complexType>
+    <xsd:complexType name="CodeContainerDef" mixed="true">
+        <xsd:annotation>
+            <xsd:documentation>
+				      Encapsulates a unit of source code. Any mix of Code and TypesIteration elements can be specified.
+			      </xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Current" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Outputs the current element name.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CurrentType" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Outputs the current string representation of the current type being visited.
+						          Equals Current + TypeNaming
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CurrentCollection" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Outputs the current string representation of the collection type of the element being visited.
+						          Equals Current + CollectionNaming
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="PropertiesIteration" type="xgf:PropertiesIterationDef" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="TypesIteration" type="xgf:CodeContainerDef" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="PropertiesIterationDef" mixed="true">
+        <xsd:annotation>
+            <xsd:documentation>
+				      Defines a property iteration unit. When it is present, the generator will repeat the code 
+				      inside this element for each property generated for the current type.
+			      </xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Current" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Outputs the current element name, that is, the container type of the property.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CurrentType" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Outputs the class name of the current type being visited.
+						          Equals Current + TypeNaming
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CurrentCollection" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Outputs the collection class name corresponding to the element being visited.
+						          Equals Current + CollectionNaming
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CurrentProperty" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Outputs the property name of the current property in the iteration.
+						          Only has a meaning inside a PropertyIteration block or in property Get/Set.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="PropertyType" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+				              Outputs the current string representation of the current property type.
+				              Only applies when iterating properties or to property Get/Set.
+			              </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TypesIteration" type="xgf:CodeContainerDef" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Provides a means to output code for each type found.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="ConstructorDef">
+        <xsd:annotation>
+            <xsd:documentation>
+				      Defines the constructor for an element. Contains any number of parameters and a single Code element.
+			      </xsd:documentation>
+        </xsd:annotation>
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="Parameter" type="xgf:ParameterDef" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          A parameter recieved by the constructor.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="SourceCode" type="xgf:CodeContainerDef" minOccurs="0" maxOccurs="1" />
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="ParameterDef">
+        <xsd:annotation>
+            <xsd:documentation>
+				      A parameter element, with its name and type.
+			      </xsd:documentation>
+        </xsd:annotation>
+        <xsd:attribute name="Name" type="xsd:string" use="required" />
+        <xsd:attribute name="Type" type="xsd:string" use="required" />
+    </xsd:complexType>
+    <xsd:complexType name="PropertyDef">
+        <xsd:sequence>
+            <xsd:group ref="Constraints" />
+            <xsd:element name="CustomAttribute" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+            <xsd:element name="Get" type="xgf:PropertiesIterationDef" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="Set" type="xgf:PropertiesIterationDef" minOccurs="0" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ConstraintDef">
+        <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Specifies the name/names of the source element/elements to which the custom section applies.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Attribute" type="xgf:NameValueDef" minOccurs="0" maxOccurs="unbounded">
+                <xsd:annotation>
+                    <xsd:documentation>
+						          Defines additional attributes the source element must have in order to apply the custom section.
+					          </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

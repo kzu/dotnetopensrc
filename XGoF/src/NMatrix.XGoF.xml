@@ -1,0 +1,1221 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NMatrix.XGoF</name>
+    </assembly>
+    <members>
+        <member name="T:NMatrix.XGoF.Configuration.ExtenderSection">
+            <summary>
+            Keeps configuration from an Extenders section.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.ExtenderSection.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.ExtenderSection.Clone">
+            <summary>
+            <c>ICloneable</c> implementation. Returns a shallow copy of the object.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.ExtenderSection.Retrievers">
+            <summary>
+            Retrievers defined in the section.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.ExtenderSection.Traverser">
+            <summary>
+            Active <c>ITraverser</c> to use.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.ExtenderSection.Visitors">
+            <summary>
+            Configured Visitor Plug-ins.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Configuration.ExtenderSectionHandler">
+            <summary>
+            Loads configuration for the Extenders section.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.ExtenderSectionHandler.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.ExtenderSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Creates and initializes the configuration options.
+            </summary>
+            <param name="parent">Parent configuration node, the root configuration.</param>
+            <param name="configContext">Not used.</param>
+            <param name="configNode">The configuration node.</param>
+            <returns>An <c>ExtenderSection</c> object.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.ExtenderSectionHandler.Merge(System.Object,System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Merges an existing ExtenderSection object with the new data.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.ExtenderSectionHandler.AddConfigurations(System.Xml.XmlNode,NMatrix.XGoF.Configuration.ExtenderSection)">
+            <summary>
+            Processes the configuration node and adds the objects to the ExtenderSection.
+            </summary>
+            <param name="configNode">The node with the configuration data.</param>
+            <param name="extender">The extender object to configure.</param>
+        </member>
+        <member name="T:NMatrix.XGoF.Configuration.IterationType">
+            <summary>
+            Defines different types of enumeration.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Configuration.IterationType.ComplexElement">
+            <summary>
+            Creates a class for each element whose type is not a 
+            simple type or an XSD intrinsic data type.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Configuration.IterationType.ComplexType">
+            <summary>
+            Default. Generates a class for each complex type found.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Configuration.GeneratorSection">
+            <summary>
+            Maintains configuration settings.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.GeneratorSection.#ctor(NMatrix.XGoF.Configuration.OptionsData)">
+            <summary>
+            Initializes and clones the ArrayList members;
+            </summary>
+            <param name="data">The object to use as source of the cloning.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.GeneratorSection.#ctor">
+            <summary>
+            Initializes the default values.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.GeneratorSection.Clone">
+            <summary>
+            Clones the current instance.
+            </summary>
+            <returns>The cloned instance.</returns>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.Iteration">
+            <summary>
+            The type of iteration for traversing the schemas.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.Provider">
+            <summary>
+            Provider for code generation.
+            </summary>
+            <remarks>Default provider is C#.</remarks>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.CollectionNaming">
+            <summary>
+            The suffix to append to collections.
+            </summary>
+            <remarks>By default, appends an "s" to the type.</remarks>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.TypeNaming">
+            <summary>
+            Specifies any string to append to class names.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.TargetAssembly">
+            <summary>
+            The assembly to generate if OutputCompiled is selected.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.TargetFolder">
+            <summary>
+            The folder to put assembly and/or source in.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.TargetNamespace">
+            <summary>
+            A namespace to put classes in. 
+            </summary>
+            <remarks>If this value is not set and the source files are 
+            XmlSchema files, the targetnamespace of the schema is used.</remarks>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.OutputSource">
+            <summary>
+            Generate output source code?
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.OutputCompiled">
+            <summary>
+            Generate compiled output?
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.NamespaceImports">
+            <summary>
+            Imports at the schema/namespace level.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.AssemblyReferences">
+            <summary>
+            References for compiled output generation.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.CreateNamespaceFolders">
+            <summary>
+            Defines if a subfolder is created for each Namespace.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.GeneratorSection.ValidateCustomizations">
+            <summary>
+            Defines if the default customization retriever should validate XML 
+            customization files against the default customization schema.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Configuration.GeneratorSectionHandler">
+            <summary>
+            Initializes generator configuration options.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.GeneratorSectionHandler.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.GeneratorSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Creates and initializes the configuration options.
+            </summary>
+            <param name="parent">Parent configuration node, the root configuration.</param>
+            <param name="configContext">Not used.</param>
+            <param name="configNode">The configuration node.</param>
+            <returns>An <c>GeneratorOptions</c> object.</returns>
+            <remarks>Only uses the first node found, which can have any suitable name, such as "Defaults".
+            Node attributes are used for initialization.</remarks>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.GeneratorSectionHandler.Merge(System.Object,System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            <c>IMergableConfigurationSectionHandler</c> implementation.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Configuration.RunnerCustomization">
+            <summary>
+            Represents a single customization row in the configuration file.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerCustomization.#ctor(System.String)">
+            <summary>
+            Initialize the class with the received parameters.
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerCustomization.#ctor(System.String,System.Int32)">
+            <summary>
+            Initialize the class with the received parameters.
+            </summary>
+            <param name="fileName"></param>
+            <param name="runOrder"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerCustomization.Clone">
+            <summary>
+            <c>ICloneable</c> implementation. Returns a shallow copy of the object.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.RunnerCustomization.File">
+            <summary>
+            Returns the loaded <c>XmlDocument</c> corresponding to the file.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.RunnerCustomization.FileName">
+            <summary>
+            Returns the file name.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.RunnerCustomization.RunOrder">
+            <summary>
+            The order in which this customization will be run.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Configuration.RunnerSection">
+            <summary>
+            Represents the runner section in the configuration file. 
+            Mantains the collection of customizations and schemas to be run.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerSection.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerSection.Clone">
+            <summary>
+            <c>ICloneable</c> implementation. Returns a shallow copy of the object.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.RunnerSection.Customizations">
+            <summary>
+            Returns the sorted list of customizations, according to their runOrder attribute.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.RunnerSection.Sources">
+            <summary>
+            Returns the list of sources configured in the section.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Configuration.RunnerSectionHandler">
+            <summary>
+            Administers Runner sections in the configuration file.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerSectionHandler.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerSectionHandler.Create(System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Creates and initializes the configuration options.
+            </summary>
+            <param name="parent">Parent configuration node, the root configuration.</param>
+            <param name="configContext">Not used.</param>
+            <param name="configNode">The configuration node.</param>
+            <returns>A <c>RunnerSection</c> object.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerSectionHandler.Merge(System.Object,System.Object,System.Object,System.Xml.XmlNode)">
+            <summary>
+            Merges an existing RunnerSection object with the new data.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerSectionHandler.ProcessCustomizations(System.Xml.XmlNodeList,System.Collections.SortedList)">
+            <summary>
+            Loads customization elements to the passed <c>SortedList</c>
+            </summary>
+            <param name="nodes">The customization nodes.</param>
+            <param name="customizations">The collection to add elements to.</param>
+        </member>
+        <member name="T:NMatrix.XGoF.Configuration.RunnerSource">
+            <summary>
+            Represents a single schema row in the configuration file. Schema is validated
+            at initialization time.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerSource.#ctor(System.String)">
+            <summary>
+            Initialize the class with the received parameters.
+            </summary>
+            <param name="sourceFile"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Configuration.RunnerSource.Clone">
+            <summary>
+            <c>ICloneable</c> implementation. Returns a shallow copy of the object.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.RunnerSource.Customizations">
+            <summary>
+            Returns the sorted list of customizations, according to their runOrder attribute.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Configuration.RunnerSource.FileName">
+            <summary>
+            Returns the file name.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Customization.CustomizationManager">
+            <summary>
+            Retrieves customization information from all the files set in the Initialize method.
+            </summary>
+            <remarks>This class iterates though all the configured <c>ICustomizationRetriever</c>
+            objects and accumulates their results.</remarks>
+        </member>
+        <member name="T:NMatrix.XGoF.Customization.ICustomizationManager">
+            <summary>
+            Interface used by extenders to ask for the customization manager instance.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.ICustomizationManager.RetrieveCustomization(NMatrix.XGoF.XSD.BaseSchemaTypedElement,NMatrix.XGoF.Customization.NodeType)">
+            <summary>
+            Retrieve customizations that apply to the passed element.
+            </summary>
+            <param name="element">Current element to use as filter.</param>
+            <param name="type">Type of configuration nodes to retrieve (Colletion|Type).</param>
+            <returns>A list of <c>XmlNode</c> with the matching nodes.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.ICustomizationManager.RetrieveCustomization(NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Retrieve customizations that apply to the passed element.
+            </summary>
+            <param name="element">Current element to use as filter.</param>
+            <returns>A list of <c>XmlNode</c> with the matching nodes.</returns>
+        </member>
+        <member name="P:NMatrix.XGoF.Customization.ICustomizationManager.Files">
+            <summary>
+            The list of configured customizations to run.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationManager.#ctor">
+            <summary>
+            Default empty constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationManager.Initialize(System.Collections.ArrayList)">
+            <summary>
+            Initializes the class with the list of files to use for customization retrieval.
+            </summary>
+            <param name="files">List of <c>XmlDocument</c> objects to use.</param>
+            <remarks>Validates each customization file against the corresponding customization schema.</remarks>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationManager.RetrieveCustomization(NMatrix.XGoF.XSD.BaseSchemaTypedElement,NMatrix.XGoF.Customization.NodeType)">
+            <summary>
+            Retrieve customizations that apply to the passed element.
+            </summary>
+            <param name="element">Current element to use as filter.</param>
+            <param name="type">Type of configuration nodes to retrieve (Colletion|Type).</param>
+            <returns>A list of <c>XmlNode</c> with the matching nodes.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationManager.RetrieveCustomization(NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Retrieve customizations that apply to the passed element.
+            </summary>
+            <param name="element">Current element to use as filter.</param>
+            <returns>A list of <c>XmlNode</c> with the matching nodes.</returns>
+        </member>
+        <member name="P:NMatrix.XGoF.Customization.CustomizationManager.Files">
+            <summary>
+            Provides access to the list of files currently used to retrieve customizations.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Customization.CustomizationManager.Retrievers">
+            <summary>
+            List of customization retrievers, loaded from the configuration file.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Customization.CustomizationRetriever">
+            <summary>
+            Administers retrieval of customizations applicable to a specific element.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Customization.ICustomizationRetriever">
+            <summary>
+            Retrieves customization for typed schema elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.ICustomizationRetriever.RetrieveCustomization(NMatrix.XGoF.XSD.BaseSchemaTypedElement,NMatrix.XGoF.Customization.NodeType,System.Collections.ArrayList)">
+            <summary>
+            Retrieves the customization nodes that apply to the specified element.
+            </summary>
+            <param name="element">The element to use as a filter.</param>
+            <param name="type">The type of node to look for (Type or Collection)</param>
+            <param name="files">The list of XmlDocuments to use for retrieval.</param>
+            <returns>An <c>ArrayList</c> of matching XmlNodes.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.ICustomizationRetriever.RetrieveCustomization(NMatrix.XGoF.XSD.BaseSchemaTypedElement,System.Collections.ArrayList)">
+            <summary>
+            Retrieves the customization nodes that apply to the specified element.
+            </summary>
+            <param name="element">The element to use as a filter.</param>
+            <param name="files">The list of XmlDocuments to use for retrieval.</param>
+            <returns>An <c>ArrayList</c> of matching XmlNodes.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationRetriever.#ctor">
+            <summary>
+            Constructor initializes the namespace manager used by XPath queries.
+            It loads the configuration schema from the same location as the assembly.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationRetriever.RetrieveCustomization(NMatrix.XGoF.XSD.BaseSchemaTypedElement,NMatrix.XGoF.Customization.NodeType,System.Collections.ArrayList)">
+            <summary>
+            Retrieves the customization nodes that apply to the specified element.
+            </summary>
+            <param name="element">The element to use as a filter.</param>
+            <param name="type">The type of node to look for (Type or Collection)</param>
+            <param name="files">The list of XmlDocuments to use for retrieval.</param>
+            <returns>An <c>ArrayList</c> of matching XmlNodes.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationRetriever.RetrieveCustomization(NMatrix.XGoF.XSD.BaseSchemaTypedElement,System.Collections.ArrayList)">
+            <summary>
+            Retrieves the customization nodes that apply to the specified element.
+            </summary>
+            <param name="element">The element to use as a filter.</param>
+            <param name="files">The list of XmlDocuments to use for retrieval.</param>
+            <returns>An <c>ArrayList</c> of matching XmlNodes.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationRetriever.GetTypeConfiguration(NMatrix.XGoF.XSD.VisitableElementComplexType,NMatrix.XGoF.Customization.NodeType,System.Collections.ArrayList)">
+            <summary>
+            Retrieves a list containing XmlNode objects with the configurations that apply to
+            the element and nodeType (Type or Collection).
+            </summary>
+            <param name="element">The XmlSchemaElement to filter by.</param>
+            <param name="nodeType">Can be eiter "Type" or "Collection", which are the possible
+            configuration nodes</param>
+            <param name="files">The list of XmlDocuments to use for retrieval.</param>
+            <returns>ArrayList with the XmlNode objects matching the criteria.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationRetriever.GetPropertyConfiguration(NMatrix.XGoF.XSD.BaseLeafSchemaElement,System.Collections.ArrayList)">
+            <summary>
+            Retrieves a list containing XmlNode objects with the configurations that apply to
+            a property (Attribute or Element with a SimpleType or intrinsic XSD type.
+            </summary>
+            <param name="element">The XmlSchemaElement to filter by.</param>
+            <param name="files">The list of XmlDocuments to use for retrieval.</param>
+            <returns>ArrayList with the XmlNode objects matching the criteria.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.Customization.CustomizationRetriever.GetManager(System.Xml.XmlDocument)">
+            <summary>
+            Retrieves the namespace manager applicable to the current <c>XmlDocument</c>.
+            </summary>
+            <param name="currentDocument">The document which NameTable is going to be used.</param>
+            <remarks>The managers are cached for improved performance, and are indexed by the
+            XmlDocument.</remarks>
+        </member>
+        <member name="T:NMatrix.XGoF.Customization.NodeType">
+            <summary>
+            Specifies what type of configuration node is going to be retrieved.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Customization.NodeType.Type">
+            <summary>
+            Represents a Class.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Customization.NodeType.Collection">
+            <summary>
+            Represents a Collection class.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Host.CurrentState">
+            <summary>
+            Provides information about changing state in the processing.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Host.ICurrentState">
+            <summary>
+            Interface used to retrieve the CurrentState object with information about
+            the transient state in the generation process. 
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Host.ICurrentState.Source">
+            <summary>
+            The current source being processed.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Host.ICurrentState.Unit">
+            <summary>
+            The current code in the output.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Host.CurrentState.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Host.CurrentState.Init(NMatrix.XGoF.Configuration.RunnerSource,System.CodeDom.CodeCompileUnit)">
+            <summary>
+            Reinitialize values for the current processing state.
+            </summary>
+            <param name="source">The current source in use.</param>
+            <param name="unit">The code graph to compile.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.Host.CurrentState.Source">
+            <summary>
+            The current source being processed.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.Host.CurrentState.Unit">
+            <summary>
+            The current code in the output.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Host.GeneratorHost">
+            <summary>
+            The hosting environment for the application.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Host.GeneratorHost.Namespace">
+            <summary>
+            The XGoF namespace for schemas and customization files.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Host.GeneratorHost.Instance">
+            <summary>
+            Singleton implementation to access an instance of this object.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Host.GeneratorHost.ThrowInvalidHostResponse(System.String)">
+            <summary>
+            Throws an exception with the received message.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Host.GeneratorHost.ThrowInvalidHostResponse(System.Type)">
+            <summary>
+            Throws an exception with the received type.
+            Typically used when the host doesn't return an instance of the expected 
+            service type.
+            </summary>
+            <param name="requestedType"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Host.GeneratorHost.GetService(System.Type)">
+            <summary>
+            Returns an instance of the requested service type. May return null.
+            </summary>
+            <param name="serviceType"></param>
+        </member>
+        <member name="T:NMatrix.XGoF.Visitors.BaseCodeVisitor">
+            <summary>
+            The base class of all the visitors.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Visitors.BaseCodeVisitor.Unit">
+            <summary>
+            The current unit of code being generated.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Visitors.BaseCodeVisitor.CurrentNamespace">
+            <summary>
+            The namespace in use, according to the source file.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Visitors.BaseCodeVisitor.CurrentType">
+            <summary>
+            The class type declaration of the current element.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Visitors.BaseCodeVisitor.Configuration">
+            <summary>
+            The global generator options.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Visitors.BaseCodeVisitor.Retriever">
+            <summary>
+            The active retriever to perform queries against customization schemas.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Visitors.BaseCodeVisitor.CurrentSchemaDom">
+            <summary>
+            Keeps a reference to the current schema in XmlDocument format.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.Visitors.BaseCodeVisitor.CurrentSchema">
+            <summary>
+            Keeps a reference to the current schema in XmlDocument format.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.BaseCodeVisitor.Initialize(System.IServiceProvider)">
+            <summary>
+            Initializes the component passing the environment host variable.
+            </summary>
+            <param name="environment">The host reference</param>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.BaseCodeVisitor.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.BaseCodeVisitor.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. Processes the passed element 
+            repositioning the CurrentType member variable.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.BaseCodeVisitor.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Visitor implementation. Processes the passed element 
+            repositioning the CurrentNamespace and CurrentSchema member variables.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.BaseCodeVisitor.OnProgress(System.String)">
+            <summary>
+            The method called for notifications.
+            </summary>
+            <param name="message">The message to use.</param>
+        </member>
+        <member name="E:NMatrix.XGoF.Visitors.BaseCodeVisitor.Progress">
+            <summary>
+            Notify listeners about progress in lengthy processes.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Visitors.CollectionBuilder">
+            <summary>
+            Build the collection type for a complex element.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Visitors.CommentBuilder">
+            <summary>
+            Adds empty Xml documentation comments to all public types and members that 
+            don't already have one, to avoid compiler warnings.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Visitors.ConstructorBuilder">
+            <summary>
+            Adds constructors to the generated types.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.ConstructorBuilder.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.ConstructorBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. Processes the passed element 
+            adding the corresponding constructors.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.ConstructorBuilder.AddConstructor(NMatrix.XGoF.XSD.VisitableElementComplexType,System.Collections.ArrayList)">
+            <summary>
+            Adds constructors to the CurrentType based on the configuration nodes passed.
+            </summary>
+            <param name="element">Current element.</param>
+            <param name="nodes">Configuration nodes to use.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.ConstructorBuilder.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Visitor implementation. Notifies progress.
+            </summary>
+            <param name="schema"></param>
+        </member>
+        <member name="T:NMatrix.XGoF.Visitors.MemberBuilder">
+            <summary>
+            Adds raw code members to the generated types.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.MemberBuilder.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.MemberBuilder.ParseNodes(System.Collections.ArrayList,System.String)">
+            <summary>
+            Adds members from the CodeSnippetTypeMember parsed by the CodeDomHelper helper class.
+            </summary>
+            <param name="nodes">The configuration nodes.</param>
+            <param name="elementName">The name of the element.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.MemberBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. Processes the passed element 
+            adding the member elements defined in the customization.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.MemberBuilder.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Notifies progress.
+            </summary>
+            <param name="schema"></param>
+        </member>
+        <member name="T:NMatrix.XGoF.Visitors.Organizer">
+            <summary>
+            Organizes types inside the CompileUnit, putting each class
+            inside its enclosing type if applicable.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.Organizer.RecurseMembers(System.CodeDom.CodeTypeDeclaration,System.String)">
+            <summary>
+            Recursivelly traverses types and its members to find a matching type declaration.
+            </summary>
+            <param name="type">The type to traverse.</param>
+            <param name="match">The type name to find.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NMatrix.XGoF.Visitors.PropertyBuilder">
+            <summary>
+            Adds properties to the generated output.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Visitors.PropertyBuilder.AddProperty(NMatrix.XGoF.XSD.BaseLeafSchemaElement,System.Type)">
+            <summary>
+            If no customization files are defined, add an empty read/write property.
+            </summary>
+            <remarks>
+            Beware that with this configuration code may not compile because of the 
+            warnings about the properties not returning any value.
+            </remarks>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.BaseCompositeSchemaElement">
+            <summary>
+            The abstract base class for all the visitable composites.
+            Implements common functionality among composite components.
+            </summary>
+            <remarks>Adds IVisitableComponent implementation for composites.</remarks>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.BaseSchemaTypedElement">
+            <summary>
+            Base class for schema elements with a schema type.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseSchemaTypedElement.#ctor(System.Xml.Schema.XmlSchemaObject,System.Xml.Schema.XmlSchemaType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Protected constructor for use by the descendents.
+            </summary>
+            <param name="element">The schema object.</param>
+            <param name="type">The schema type of the object.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="typeName">The type name, which can be different from the 
+            schema type name because of TypeNaming conventions.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseSchemaTypedElement.Parent">
+            <summary>
+            The parent element.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseSchemaTypedElement.SchemaObject">
+            <summary>
+            The schema object represented by this class.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseSchemaTypedElement.SchemaType">
+            <summary>
+            The schema type of the element.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseSchemaTypedElement.Name">
+            <summary>
+            Element name.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseSchemaTypedElement.TypeName">
+            <summary>
+            Element's type name.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.XSD.BaseCompositeSchemaElement._children">
+            <summary>
+            Keep the list of children elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseCompositeSchemaElement.#ctor(System.Xml.Schema.XmlSchemaObject,System.Xml.Schema.XmlSchemaType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Protected constructor for use by the descendents.
+            </summary>
+            <param name="element">The schema object.</param>
+            <param name="type">The schema type of the object.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="typeName">The type name, which can be different from the 
+            schema type name because of TypeNaming conventions.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseCompositeSchemaElement.Add(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Adds a child element to the composite.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseCompositeSchemaElement.Remove(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Removes a child element from the composite.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseCompositeSchemaElement.Accept(NMatrix.Core.Patterns.IVisitor)">
+            <summary>
+            First visits itself, and then traverses all the children elements and passes the visitor to them.
+            </summary>
+            <param name="visitor">The visitor to pass to children elements.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseCompositeSchemaElement.Item(System.Int32)">
+            <summary>
+            Provides access to the indexed child element.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.BaseLeafSchemaElement">
+            <summary>
+            The abstract base class for all the visitable leafs.
+            </summary>
+            <remarks>Implements IVisitableComponent for leaf components</remarks>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseLeafSchemaElement.#ctor(System.Xml.Schema.XmlSchemaObject,System.Xml.Schema.XmlSchemaType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Protected constructor for use by the descendents.
+            </summary>
+            <param name="element">The schema object.</param>
+            <param name="type">The schema type of the object.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="typeName">The type name, which can be different from the 
+            schema type name because of TypeNaming conventions.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseLeafSchemaElement.Add(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Unimplemented method. Can't add a children to a leaf component.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseLeafSchemaElement.Remove(NMatrix.Core.Patterns.IVisitableComponent)">
+            <summary>
+            Unimplemented method. Can't remove a children from a leaf component.
+            </summary>
+            <param name="component">The child component.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseLeafSchemaElement.Accept(NMatrix.Core.Patterns.IVisitor)">
+            <summary>
+            Implements the visitable interface. 
+            </summary>
+            <param name="visitor">The visitor to call Visit on.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseLeafSchemaElement.Item(System.Int32)">
+            <summary>
+            Unimplemented method. Leaf component doesn't have children.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.BaseVisitableAttribute">
+            <summary>
+            Abstract base class for visitable attributes. 
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseVisitableAttribute.#ctor(System.Xml.Schema.XmlSchemaAttribute,System.Xml.Schema.XmlSchemaSimpleType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Protected constructor for use by the descendents.
+            </summary>
+            <param name="attribute">The schema attribute.</param>
+            <param name="type">The schema type of the object.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="typeName">The type name, which can be different from the 
+            schema type name because of TypeNaming conventions.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseVisitableAttribute.SchemaObject">
+            <summary>
+            New implementation of the base <c>SchemaObject</c> property.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.BaseVisitableElement">
+            <summary>
+            Abstract base class for visitable elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.BaseVisitableElement.#ctor(System.Xml.Schema.XmlSchemaElement,System.Xml.Schema.XmlSchemaType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Default constructor, for use by descendents.
+            </summary>
+            <param name="element">The schema element.</param>
+            <param name="type">The schema type of the object.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="typeName">The type name, which can be different from the 
+            schema type name because of TypeNaming conventions.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.BaseVisitableElement.SchemaObject">
+            <summary>
+            New implementation of the base <c>SchemaObject</c> property.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.Traverser">
+            <summary>
+            Class responsible for building the visitable tree from a file containing an XSD Schema.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.ITraverser">
+            <summary>
+            Interface for use by extenders to provide custom traversing of the XmlSchema.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.ITraverser.Traverse(System.String)">
+            <summary>
+            Starts traversal of the file passed and returns the loaded component.
+            </summary>
+            <param name="sourceFile">The source file to traverse.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.Traverser.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.Traverser.Traverse(System.String)">
+            <summary>
+            Initializes the traversing with the XmlSchema.
+            </summary>
+            <param name="sourceFile">The schema file to traverse.</param>
+            <returns>An <c>IVisitableComponent</c> containing all the visitable nodes.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.Traverser.Build(System.Xml.Schema.XmlSchemaAttribute,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Builds an IVisitableComponent with the attribute passed.
+            </summary>
+            <param name="attribute">The attribute to use to build the visitable component.</param>
+            <param name="parent">The parent element of the visitable component to build.</param>
+            <returns>The visitable component.</returns>
+            <remarks>If attribute type is a named simple type, that will be the typeName used for the component if
+            IterationType.ComplexType is selected. Otherwise, the same naming convention for unnamed simpletypes is followed.
+            If the simple type is unnamed, the attribute name plus the TypeNaming is used as the typeName parameter 
+            for component.
+            </remarks>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.Traverser.Build(System.Xml.Schema.XmlSchemaElement,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Builds an IVisitableComponent with the element passed.
+            </summary>
+            <param name="element">The element to use to build the visitable component.</param>
+            <param name="parent">The parent element of the visitable component to build.</param>
+            <returns>The visitable component.</returns>
+            <remarks>If element type is a named complex type, the component typeName will depend on the IterationType
+            selected in the configuration. So it IterationType.ComplexElements is selected, the typeName will 
+            be the element name plus the TypeNaming convention specified. Else, the ComplexType name is used.
+            If it is a simple type, the simple type name is used. If the type is unnamed, the element name
+            plus the TypeNaming is used.
+            </remarks>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.Traverser.RecurseElement(System.Xml.Schema.XmlSchemaElement,System.Xml.Schema.XmlSchemaComplexType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Traverses a complex element.
+            </summary>
+            <param name="element">The current element.</param>
+            <param name="type">The current element type.</param>
+            <param name="name">The element name.</param>
+            <param name="typeName">The element type name, that is, name + typeNaming.</param>
+            <param name="parent">The parent of the element received.</param>
+            <returns>The IVisitableComponent to add to the composite parent.</returns>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.VisitableAttributeIntrinsicType">
+            <summary>
+            An attribute element whose type is defined in the XSD Schema specification.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.VisitableAttributeIntrinsicType.#ctor(System.Xml.Schema.XmlSchemaAttribute,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="attribute">The schema attribute.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.VisitableAttributeSimpleType">
+            <summary>
+            An attribute element whose type is a SimpleType defined by the developer.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.VisitableAttributeSimpleType.#ctor(System.Xml.Schema.XmlSchemaAttribute,System.Xml.Schema.XmlSchemaSimpleType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="attribute">The schema attribute.</param>
+            <param name="type">The schema type of the object.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="typeName">The type name, which can be different from the 
+            schema type name because of TypeNaming conventions.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.VisitableAttributeSimpleType.SchemaType">
+            <summary>
+            New implementation of the base <c>SchemaType</c> property.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.VisitableElementComplexType">
+            <summary>
+            Element whose type is a ComplexType. It is a composite.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.VisitableElementComplexType.#ctor(System.Xml.Schema.XmlSchemaObject,System.Xml.Schema.XmlSchemaComplexType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="element">The schema element.</param>
+            <param name="type">The schema type of the object.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="typeName">The type name, which can be different from the 
+            schema type name because of TypeNaming conventions.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.VisitableElementComplexType.SchemaObject">
+            <summary>
+            New implementation of the base <c>SchemaObject</c> property.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.VisitableElementComplexType.SchemaType">
+            <summary>
+            New implementation of the base <c>SchemaType</c> property.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.VisitableElementIntrinsicType">
+            <summary>
+            An element whose type is defined in the XSD Schema specification.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.VisitableElementIntrinsicType.#ctor(System.Xml.Schema.XmlSchemaElement,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="element">The schema element.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.VisitableElementSimpleType">
+            <summary>
+            An element whose type is a SimpleType defined by the developer.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.VisitableElementSimpleType.#ctor(System.Xml.Schema.XmlSchemaElement,System.Xml.Schema.XmlSchemaSimpleType,System.String,System.String,NMatrix.XGoF.XSD.BaseSchemaTypedElement)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="element">The schema element.</param>
+            <param name="type">The schema type of the object.</param>
+            <param name="name">The name the element will have.</param>
+            <param name="typeName">The type name, which can be different from the 
+            schema type name because of TypeNaming conventions.</param>
+            <param name="parent">The parent of the element.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.VisitableElementSimpleType.SchemaType">
+            <summary>
+            New implementation of the base <c>SchemaType</c> property.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.XSD.VisitableSchemaRoot">
+            <summary>
+            Represents the root schema object, which contains all the elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.XSD.VisitableSchemaRoot.#ctor(System.Xml.Schema.XmlSchemaObject,System.Xml.XmlDocument,System.String)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="schema">The schema element.</param>
+            <param name="schemaDocument">The schema element in XmlDocument format.</param>
+            <param name="name">The name the element will have.</param>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.VisitableSchemaRoot.SchemaObject">
+            <summary>
+            New implementation of the base <c>SchemaObject</c> property.
+            </summary>
+        </member>
+        <member name="P:NMatrix.XGoF.XSD.VisitableSchemaRoot.SchemaDocument">
+            <summary>
+            Provides access to the schema in XmlDocument format.
+            </summary>
+        </member>
+        <member name="T:ThisAssembly">
+            <summary>
+            Contains assembly level documentation.
+            </summary>
+            <license>MPL1.1</license>
+            <author id="dcazzulino" name="Daniel Cazzulino" email="nmatrixdotnet@msn.com">Project starter.</author>
+        </member>
+        <member name="T:NMatrix.XGoF.CodeDomHelper">
+            <summary>
+            Helper class for CodeDom generation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.CodeDomHelper.BuildNamespaceImports(System.Collections.ArrayList)">
+            <summary>
+            Creates an array of namespaces to append to the CompileUnit.
+            </summary>
+            <param name="values">The ArrayList with the namespaces.</param>
+            <returns>An array of CodeNamespaceImport objects.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.CodeDomHelper.BuildCustomAttributes(System.Collections.ArrayList)">
+            <summary>
+            Builds the attribute declaration objects to add to a class or property.
+            </summary>
+            <param name="nodes">The XmlNodes containing the attributes.</param>
+            <returns>The CodeAttributeDeclarationCollection to add.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.CodeDomHelper.BuildBaseTypes(System.Collections.ArrayList)">
+            <summary>
+            Builds the collection of CodeTypeReference for base types of a class.
+            </summary>
+            <param name="nodes">The nodes containing the configuration.</param>
+            <returns>The CodeTypeReferenceCollection to add.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.CodeDomHelper.ParseCodeContainer(System.String,System.String,System.String,System.Xml.XmlNode,System.CodeDom.CodeNamespace)">
+            <summary>
+            Parses the element's content, replacing Current and TypesIteration blocks.
+            </summary>
+            <param name="element">The string element name, to be replaced in Current instances, without the TypeNaming appended.</param>
+            <param name="typeNaming">The string to append to the type name for class names.</param>
+            <param name="collectionNaming">The string to append to the type name for collections.</param>
+            <param name="source">The XmlNode with the source code to parse.</param>
+            <param name="ns">The current namespace being used, for TypesIteration processing.</param>
+            <returns>The parsed string, used to build CodeSnipped objects.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.CodeDomHelper.ParseProperties(System.String,System.String,System.String,System.Xml.XmlNode,System.CodeDom.CodeNamespace)">
+            <summary>
+            Parses PropertyIteration blocks.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.CodeDomHelper.ParseTypes(System.String,System.String,System.String,System.Xml.XmlNode,System.CodeDom.CodeNamespace)">
+            <summary>
+            Parses TypesIteration blocks.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.CodeDomHelper.BuildProperty(System.String,System.String,System.String,System.String,System.Type,System.Collections.ArrayList,System.CodeDom.CodeNamespace)">
+            <summary>
+            Creates a property object to add to the type.
+            </summary>
+            <param name="elementName">The element name, that is, the class containing the property.</param>
+            <param name="propertyName">The property name.</param>
+            <param name="typeNaming">The naming convention in effect for class naming (the postfix).</param>
+            <param name="collectionNaming">The naming convention in effect for collection naming (the postfix).</param>
+            <param name="propertyType">The Type of the property.</param>
+            <param name="nodes">The configuration nodes that apply to this property.</param>
+            <param name="currentNamespace">The current namespace in use, for source code parsing purposes.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NMatrix.XGoF.CodeDomHelper.ParseProperty(System.String,System.String,System.String,System.String,System.String,System.Xml.XmlNode,System.CodeDom.CodeNamespace)">
+            <summary>
+            Parses a single Property block (Get or Set)
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.Runner">
+            <summary>
+            Class responsible for running generations.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Runner.#ctor(System.String)">
+            <summary>
+            Initialize the process with the specified file.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Runner.Start">
+            <summary>
+            Starts processing the file passed in the constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Runner.RunSource(NMatrix.XGoF.Configuration.RunnerSource)">
+            <summary>
+            Runs all the subscribed visitors against the visitable tree 
+            parsed by the ITraverser implementation.
+            </summary>
+            <param name="source">The <c>RunnerSource</c> object to process.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.Runner.GenerateOutput(System.CodeDom.CodeCompileUnit,NMatrix.XGoF.Configuration.RunnerSource)">
+            <summary>
+            Compiles the generated code in the output assembly.
+            </summary>
+            <param name="unit">The code graph to compile.</param>
+            <param name="source">The current source in use.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.Runner.OnBubbleProgress(System.Object,NMatrix.Core.ProgressEventArgs)">
+            <summary>
+            Bubble an inner progress event notification revieved from a plug-in.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.Runner.OnProgress(System.String)">
+            <summary>
+            The method called for notifications.
+            </summary>
+            <param name="message">The message to use.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.Runner.OnFileFinished(System.String)">
+            <summary>
+            The method called each time a single file has been generated.
+            </summary>
+            <param name="path">The path to the file.</param>
+            <remarks>Would it be better to have a separate argument class?</remarks>
+        </member>
+        <member name="E:NMatrix.XGoF.Runner.Progress">
+            <summary>
+            Notify listeners of a progress in the process.
+            </summary>
+        </member>
+        <member name="E:NMatrix.XGoF.Runner.FileFinished">
+            <summary>
+            Notify listeners that a input source file has been processed.
+            </summary>
+        </member>
+    </members>
+</doc>

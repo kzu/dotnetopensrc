@@ -1,0 +1,48 @@
+<VisualStudioProject>
+    <CSHARP>
+        <Build>
+            <Settings ReferencePath = "E:\DiscoDany\NMatrix\bin\;F:\Disco Dany\Proyectos\Wrox\Data Layer XPath - SQLXML - XML Schemas\Part5\DataLayer\bin\Debug\;F:\Disco Dany\Proyectos\Framework\Core\bin\Debug\;F:\Disco Dany\Proyectos\Framework\Patterns\bin\Debug\;E:\DiscoDany\Proyectos\Framework\bin\;E:\DiscoDany\Proyectos\XGoF\bin\;E:\DiscoDany\NMatrix\XGoF\bin\;\\devmaster\e$\DiscoDany\NMatrix\bin\" >
+                <Config
+                    Name = "Debug"
+                    EnableASPDebugging = "false"
+                    EnableASPXDebugging = "false"
+                    EnableUnmanagedDebugging = "false"
+                    EnableSQLServerDebugging = "false"
+                    RemoteDebugEnabled = "false"
+                    RemoteDebugMachine = ""
+                    StartAction = "Project"
+                    StartArguments = ""
+                    StartPage = ""
+                    StartProgram = ""
+                    StartURL = ""
+                    StartWorkingDirectory = ""
+                    StartWithIE = "true"
+                />
+                <Config
+                    Name = "Release"
+                    EnableASPDebugging = "false"
+                    EnableASPXDebugging = "false"
+                    EnableUnmanagedDebugging = "false"
+                    EnableSQLServerDebugging = "false"
+                    RemoteDebugEnabled = "false"
+                    RemoteDebugMachine = ""
+                    StartAction = "Project"
+                    StartArguments = ""
+                    StartPage = ""
+                    StartProgram = ""
+                    StartURL = ""
+                    StartWorkingDirectory = ""
+                    StartWithIE = "true"
+                />
+            </Settings>
+        </Build>
+        <OtherProjectSettings
+            CopyProjectDestinationFolder = ""
+            CopyProjectUncPath = ""
+            CopyProjectOption = "0"
+            ProjectView = "ShowAllFiles"
+            ProjectTrust = "0"
+        />
+    </CSHARP>
+</VisualStudioProject>
+

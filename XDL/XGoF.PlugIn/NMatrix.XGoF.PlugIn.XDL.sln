@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NMatrix.XGoF.PlugIn.XDL", "NMatrix.XGoF.PlugIn.XDL.csproj", "{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}.Debug.ActiveCfg = Debug|.NET
+		{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}.Debug.Build.0 = Debug|.NET
+		{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}.Release.ActiveCfg = Release|.NET
+		{2A88C9EC-877C-4ADA-B38A-67C4AC11A717}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

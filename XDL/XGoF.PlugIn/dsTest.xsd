@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsd:schema id="dsTest" targetNamespace="NMatrix.XDL.Generated" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="NMatrix.XDL.Generated" xmlns:mstns="NMatrix.XDL.Generated" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="dsTest" msdata:IsDataSet="true">
+        <xsd:complexType>
+            <xsd:choice maxOccurs="unbounded">
+                <xsd:element name="publishers">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="pub_id" type="xsd:string" />
+                            <xsd:element name="pub_name" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="city" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="state" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="country" type="xsd:string" minOccurs="0" />
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+                <xsd:element name="titles">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="title_id" type="xsd:string" />
+                            <xsd:element name="title" type="xsd:string" />
+                            <xsd:element name="type" type="xsd:string" />
+                            <xsd:element name="pub_id" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="price" type="xsd:decimal" minOccurs="0" />
+                            <xsd:element name="advance" type="xsd:decimal" minOccurs="0" />
+                            <xsd:element name="royalty" type="xsd:int" minOccurs="0" />
+                            <xsd:element name="ytd_sales" type="xsd:int" minOccurs="0" />
+                            <xsd:element name="notes" type="xsd:string" minOccurs="0" />
+                            <xsd:element name="pubdate" type="xsd:dateTime" />
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:choice>
+        </xsd:complexType>
+        <xsd:unique name="titlesKey" msdata:PrimaryKey="true">
+            <xsd:selector xpath=".//mstns:titles" />
+            <xsd:field xpath="mstns:title_id" />
+        </xsd:unique>
+        <xsd:keyref name="publisherstitles" refer="publisherKey">
+            <xsd:selector xpath=".//mstns:titles" />
+            <xsd:field xpath="mstns:pub_id" />
+        </xsd:keyref>
+        <xsd:key name="publisherKey">
+            <xsd:selector xpath=".//mstns:publishers" />
+            <xsd:field xpath="mstns:pub_id" />
+        </xsd:key>
+    </xsd:element>
+</xsd:schema>

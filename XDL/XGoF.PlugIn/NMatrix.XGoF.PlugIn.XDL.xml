@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NMatrix.XGoF.PlugIn.XDL</name>
+    </assembly>
+    <members>
+        <member name="T:NMatrix.XGoF.PlugIn.XDL.DataRows.DataRowBuilder">
+            <summary>
+            Builds the <c>DataRow</c> classes.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.XDL.BaseVisitor">
+            <summary>
+            Base class for XDL visitors.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.IsDataSet">
+            <summary>
+            Flag indicating that the current element has the IsDataSet="true" attribute.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.CurrentDataSetType">
+            <summary>
+            Save a reference to the dataset type declaration inside the current schema.
+            </summary>
+        </member>
+        <member name="F:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.Namespaces">
+            <summary>
+            Represents the namespaces in the schema.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Called for complex elements. Sets the <c>IsDataSet</c> flag.
+            </summary>
+            <param name="element"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Initializes <c>CurrentDataSetType</c> and <c>Namespaces</c> protected members.
+            </summary>
+            <param name="schema"></param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.RetrieveMethod(System.CodeDom.CodeTypeDeclaration,System.String)">
+            <summary>
+            Returns the method specified. If the method doesn't exist, it adds a new private 
+            final (sealed) method without return type.
+            </summary>
+            <param name="type">The type to return the method from.</param>
+            <param name="method">The name of the method to return.</param>
+            <returns>The method type member.</returns>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.RetrievePrefix">
+            <summary>
+            Returns the prefix associated to the target namespace of the source file.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.BaseVisitor.ThrowDataSetNotFound">
+            <summary>
+            Throws an exception signaling that the DataSet type declaration was't found.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.DataRowBuilder.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.DataRowBuilder.AddPropertyCode(NMatrix.XGoF.XSD.BaseLeafSchemaElement,System.Type)">
+            <summary>
+            Adds code for the property.
+            </summary>
+            <param name="element">The element from which to build the property.</param>
+            <param name="type">The type of the property to generate.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.DataRowBuilder.Visit(NMatrix.XGoF.XSD.VisitableAttributeIntrinsicType)">
+            <summary>
+            Visitor implementation. Builds a property for the element.
+            </summary>
+            <param name="element">The element from which to build the property.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.DataRowBuilder.Visit(NMatrix.XGoF.XSD.VisitableAttributeSimpleType)">
+            <summary>
+            Visitor implementation. Builds a property for the element.
+            </summary>
+            <param name="element">The element from which to build the property.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.DataRowBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementIntrinsicType)">
+            <summary>
+            Visitor implementation. Builds a property for the element.
+            </summary>
+            <param name="element">The element from which to build the property.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.DataRowBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementSimpleType)">
+            <summary>
+            Visitor implementation. Builds a property for the element.
+            </summary>
+            <param name="element">The element from which to build the property.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.DataRowBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Adds the inheritance, constructors and appropiate overrides for the generated class.
+            </summary>
+            <param name="element">The element from which to build the class.</param>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.XDL.DataRows.RelationsBuilder">
+            <summary>
+            Analyzes and adds properties and variables corresponding to ForeignKey,
+            UniqueKey and PrimaryKeys associated with the element. Adds child-related methods
+            to the class.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.RelationsBuilder.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataRows.RelationsBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Looks for keys which use the element, and adds parent or child references.
+            </summary>
+            <param name="element">The element being inspected.</param>
+            <remarks>In an xsd schema, the following represents a foreign-key:
+            	&gt;xsd:keyref name="publisherstitles" refer="publisherKey"&lt;
+            		&gt;xsd:selector xpath=".//mstns:titles" /&lt;
+            		&gt;xsd:field xpath="mstns:pub_id" /&lt;
+            	&gt;/xsd:keyref&lt;
+            the "refer" attribute designates the parent key.
+            The xsd:selector represents the child element and xsd:field the 
+            children field which points to the parent key. There may be multiple fields.
+            </remarks>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.XDL.DataSets.DataSetBuilder">
+            <summary>
+            Builds the <c>DataSet</c> class.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataSets.DataSetBuilder.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataSets.DataSetBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataSets.DataSetBuilder.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Visitor implementation.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.XDL.DataSets.DataSetOrganizer">
+            <summary>
+            Organizes classes in the generated dataset.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataSets.DataSetOrganizer.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataSets.DataSetOrganizer.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataSets.DataSetOrganizer.Visit(NMatrix.XGoF.XSD.VisitableSchemaRoot)">
+            <summary>
+            Visitor implementation.
+            </summary>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.XDL.DataSets.DelegatesBuilder">
+            <summary>
+            Adds delegate declarations and events to the DataTable elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataSets.DelegatesBuilder.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataSets.DelegatesBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. 
+            </summary>
+            <param name="element">The element from which to build the code.</param>
+        </member>
+        <member name="T:NMatrix.XGoF.PlugIn.XDL.DataTables.DataTableBuilder">
+            <summary>
+            Creates the DataTable elements.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataTables.DataTableBuilder.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataTables.DataTableBuilder.Visit(NMatrix.XGoF.XSD.VisitableElementComplexType)">
+            <summary>
+            Visitor implementation. 
+            </summary>
+            <param name="element">The element from which to build the code.</param>
+        </member>
+        <member name="M:NMatrix.XGoF.PlugIn.XDL.DataTables.DataTableBuilder.OnEvent(System.String,System.String)">
+            <summary>
+            Creates the handler which raises the event, i.e. OnRowChanged.
+            </summary>
+            <param name="elementTypeName">The class corresponding to the element. i.e. AuthorDataRow</param>
+            <param name="eventName">The name of the event to be raised, i.e. Changing.</param>
+        </member>
+        <member name="T:ThisAssembly">
+            <summary>
+            Contains assembly level documentation.
+            </summary>
+            <license>MPL1.1</license>
+            <author id="dcazzulino" name="Daniel Cazzulino" email="nmatrixdotnet@msn.com">Project starter.</author>
+        </member>
+    </members>
+</doc>

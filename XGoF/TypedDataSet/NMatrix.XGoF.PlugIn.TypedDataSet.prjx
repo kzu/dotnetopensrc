@@ -1,0 +1,28 @@
+<Project name="TypedDataSet" projecttype="C#" fileversion="1.0" description="" newfilesearch="None" enableviewstate="True" projectdocumentation="">
+  <DeploymentInformation target="" script="" strategy="File" />
+  <References>
+    <Reference assembly="..\..\Framework\bin\Deverest.Framework.dll" />
+    <Reference assembly="..\..\Framework\bin\Deverest.Framework.Patterns.dll" />
+    <Reference assembly="..\bin\Deverest.XGoF.Generator.dll" />
+  </References>
+  <Contents>
+    <File name=".\BaseTypedDataSetVisitor.cs" subtype="Code" buildaction="Compile" />
+    <File name=".\CodeDomBuilder.cs" subtype="Code" buildaction="Compile" />
+    <File name=".\Constraints.cs" subtype="Code" buildaction="Compile" />
+    <File name=".\DataRows.cs" subtype="Code" buildaction="Compile" />
+    <File name=".\DataSetOrganizer.cs" subtype="Code" buildaction="Compile" />
+    <File name=".\Initializations.cs" subtype="Code" buildaction="Compile" />
+  </Contents>
+  <Configurations active="Debug">
+    <Configuration name="Debug" description="">
+      <Output directory="..\bin" assembly="Deverest.XGoF.PlugIn.TypedDataSet" />
+      <CodeGeneration warninglevel="4" includedebuginformation="True" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" target="Library" definesymbols="" generatexmldocumentation="True" />
+      <Execution consolepause="True" runwithwarnings="False" />
+    </Configuration>
+    <Configuration name="Release" description="">
+      <Output directory="..\bin" assembly="Deverest.XGoF.PlugIn.TypedDataSet" />
+      <CodeGeneration warninglevel="4" includedebuginformation="True" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" target="Library" definesymbols="" generatexmldocumentation="False" />
+      <Execution consolepause="True" runwithwarnings="False" />
+    </Configuration>
+  </Configurations>
+</Project>

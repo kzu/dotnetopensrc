@@ -1,0 +1,26 @@
+<Project name="Console" projecttype="C#" fileversion="1.0" description="Console front-end to XGoF" newfilesearch="None" enableviewstate="True" projectdocumentation="">
+  <DeploymentInformation target="" script="" strategy="File" />
+  <References>
+    <Reference assembly="..\..\Framework\bin\Deverest.Framework.dll" />
+    <Reference assembly="..\..\Framework\bin\Deverest.Framework.Patterns.dll" />
+    <Reference assembly="..\bin\Deverest.XGoF.Generator.dll" />
+    <Reference assembly="..\bin\Deverest.XGoF.PlugIn.DataLayer.dll" />
+    <Reference assembly="..\bin\Deverest.XGoF.PlugIn.TypedDataSet.dll" />
+  </References>
+  <Contents>
+    <File name=".\AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name=".\ConsoleMain.cs" subtype="Code" buildaction="Compile" />
+  </Contents>
+  <Configurations active="Debug">
+    <Configuration name="Debug" description="">
+      <Output directory="..\bin" assembly="Deverest.XGoF.Console" />
+      <CodeGeneration warninglevel="4" includedebuginformation="True" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="ConsoleMain" target="Exe" definesymbols="" generatexmldocumentation="True" />
+      <Execution consolepause="True" runwithwarnings="False" />
+    </Configuration>
+    <Configuration name="Release" description="">
+      <Output directory="..\bin" assembly="Deverest.XGoF.Console" />
+      <CodeGeneration warninglevel="4" includedebuginformation="True" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" mainclass="" target="Exe" definesymbols="" generatexmldocumentation="False" />
+      <Execution consolepause="True" runwithwarnings="False" />
+    </Configuration>
+  </Configurations>
+</Project>

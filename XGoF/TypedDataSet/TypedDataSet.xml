@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Customization xmlns="http://sourceforge.net/projects/dotnetopensrc/xgof">
+	<Collection>
+		<ApplyTo>
+			<Attribute Name="msdata:IsDataSet" Value="true" />
+		</ApplyTo>
+		<CustomAttribute>Serializable()</CustomAttribute>
+		<CustomAttribute>System.ComponentModel.DesignerCategoryAttribute("code")</CustomAttribute>
+		<CustomAttribute>System.Diagnostics.DebuggerStepThrough()</CustomAttribute>
+		<CustomAttribute>System.ComponentModel.ToolboxItem(true)</CustomAttribute>
+		<BaseType>DataSet</BaseType>
+		<Constructor>
+			<SourceCode>
+			this.InitClass();
+			System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+			this.Tables.CollectionChanged += schemaChangedHandler;
+			this.Relations.CollectionChanged += schemaChangedHandler;
+			</SourceCode>
+		</Constructor>
+		<Member>
+			<TypesIteration>
+		private <CurrentCollection /> table<Current />;
+			</TypesIteration>
+
+		protected <Current />(SerializationInfo info, StreamingContext context) 
+		{
+			string strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
+			if ((strSchema != null)) {
+				DataSet ds = new DataSet();
+				ds.ReadXmlSchema(new XmlTextReader(new System.IO.StringReader(strSchema)));
+			<TypesIteration>
+				if ((ds.Tables["<Current />"] != null)) 
+					this.Tables.Add(new <CurrentCollection />(ds.Tables["<Current />"]));
+			</TypesIteration>
+				this.DataSetName = ds.DataSetName;
+				this.Prefix = ds.Prefix;
+				this.Namespace = ds.Namespace;
+				this.Locale = ds.Locale;
+				this.CaseSensitive = ds.CaseSensitive;
+				this.EnforceConstraints = ds.EnforceConstraints;
+				this.Merge(ds, false, System.Data.MissingSchemaAction.Add);
+				this.InitVars();
+			}
+			else 
+				this.InitClass();
+
+			this.GetSerializationData(info, context);
+			System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
+			this.Tables.CollectionChanged += schemaChangedHandler;
+			this.Relations.CollectionChanged += schemaChangedHandler;
+		}
+        
+		<TypesIteration>
+		[System.ComponentModel.Browsable(false)]
+		[System.ComponentModel.DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Content)]
+		public <CurrentCollection /> <Current /> 
+		{
+			get { return this.table<Current />; }
+		}
+			</TypesIteration>
+		public override DataSet Clone() 
+		{
+			<Current /> cln = ((<Current />)(base.Clone()));
+			cln.InitVars();
+			return cln;
+		}
+
+		protected override bool ShouldSerializeTables() 
+		{
+			return false;
+		}
+
+		protected override bool ShouldSerializeRelations() 
+		{
+			return false;
+		}
+
+		protected override void ReadXmlSerializable(XmlReader reader) 
+		{
+			this.Reset();
+			DataSet ds = new DataSet();
+			ds.ReadXml(reader);
+			<TypesIteration>
+			if ((ds.Tables["<Current />"] != null))
+				this.Tables.Add(new <CurrentCollection />(ds.Tables["<Current />"]));
+			</TypesIteration>
+			this.DataSetName = ds.DataSetName;
+			this.Prefix = ds.Prefix;
+			this.Namespace = ds.Namespace;
+			this.Locale = ds.Locale;
+			this.CaseSensitive = ds.CaseSensitive;
+			this.EnforceConstraints = ds.EnforceConstraints;
+			this.Merge(ds, false, System.Data.MissingSchemaAction.Add);
+			this.InitVars();
+		}
+
+		protected override System.Xml.Schema.XmlSchema GetSchemaSerializable() 
+		{
+			System.IO.MemoryStream stream = new System.IO.MemoryStream();
+			this.WriteXmlSchema(new XmlTextWriter(stream, null));
+			stream.Position = 0;
+			return System.Xml.Schema.XmlSchema.Read(new XmlTextReader(stream), null);
+		}
+			
+			<TypesIteration>
+		private bool ShouldSerialize<Current />() 
+		{
+			return false;
+		}
+			</TypesIteration>
+
+		private void SchemaChanged(object sender, System.ComponentModel.CollectionChangeEventArgs e) 
+		{
+			if ((e.Action == System.ComponentModel.CollectionChangeAction.Remove)) {
+				this.InitVars();
+			}
+		}
+			<TypesIteration>
+		public delegate void <CurrentType />ChangeEventHandler(object sender, <CurrentType />ChangeEvent e);
+			</TypesIteration>			
+			<TypesIteration>
+		[System.Diagnostics.DebuggerStepThrough()]
+		public class <CurrentType />ChangeEvent : EventArgs 
+		{    
+			private <CurrentType /> eventRow;
+			private DataRowAction eventAction;
+		    
+			public <CurrentType />ChangeEvent(<CurrentType /> row, DataRowAction action) 
+			{
+				this.eventRow = row;
+				this.eventAction = action;
+			}
+		    
+			public <CurrentType /> Row 
+			{
+				get { return this.eventRow; }
+			}
+		    
+			public DataRowAction Action 
+			{
+				get { return this.eventAction; }
+			}
+		}
+			</TypesIteration>
+		</Member>
+	</Collection>
+</Customization>

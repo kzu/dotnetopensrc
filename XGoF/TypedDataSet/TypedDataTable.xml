@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Customization xmlns="http://sourceforge.net/projects/dotnetopensrc/xgof">
+	<Type>
+		<ExceptOf>
+			<Attribute Name="msdata:IsDataSet" Value="true" />
+		</ExceptOf>
+		<CustomAttribute>System.Diagnostics.DebuggerStepThrough()</CustomAttribute>
+		<BaseType>DataRow</BaseType>
+		<Property>
+			<Get>
+				try 
+				{
+					return ((<PropertyType />)(this[this.table<Current />.<CurrentProperty />Column]));
+				}
+				catch (InvalidCastException e) 
+				{
+					throw new StrongTypingException("Cannot get value because it is DBNull.", e);
+				}
+			</Get>
+			<Set>
+				this[this.table<Current />.<CurrentProperty />Column] = value; 
+			</Set>
+		</Property>
+		<Member>
+		private <CurrentCollection /> table<Current />;
+
+		internal <CurrentType />(DataRowBuilder rb) : base(rb) 
+		{
+			this.table<Current /> = ((<CurrentCollection />)(this.Table));
+		}
+		</Member>
+	</Type>
+	<Collection>
+		<ExceptOf>
+			<Attribute Name="msdata:IsDataSet" Value="true" />
+		</ExceptOf>
+		<CustomAttribute>System.Diagnostics.DebuggerStepThrough()</CustomAttribute>
+		<BaseType>DataTable</BaseType>
+		<Member>
+		internal <CurrentCollection />() : base("<Current />")
+		{
+			this.InitClass();
+		}
+		
+		internal <CurrentCollection />(DataTable table) : base(table.TableName) 
+		{
+			if ((table.CaseSensitive != table.DataSet.CaseSensitive))
+				this.CaseSensitive = table.CaseSensitive;
+			if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
+				this.Locale = table.Locale;
+			if ((table.Namespace != table.DataSet.Namespace))
+				this.Namespace = table.Namespace;
+			this.Prefix = table.Prefix;
+			this.MinimumCapacity = table.MinimumCapacity;
+			this.DisplayExpression = table.DisplayExpression;
+		}
+
+		[System.ComponentModel.Browsable(false)]
+		public int Count 
+		{
+			get { return this.Rows.Count; }
+		}
+		
+		public <CurrentType /> this[int index] 
+		{
+			get { return ((<CurrentType />)(this.Rows[index])); }
+		}
+
+		public event <CurrentType />ChangeEventHandler <CurrentType />Changed;
+		public event <CurrentType />ChangeEventHandler <CurrentType />Changing;
+		public event <CurrentType />ChangeEventHandler <CurrentType />Deleted;
+		public event <CurrentType />ChangeEventHandler <CurrentType />Deleting;
+
+		public void Add<CurrentType />(<CurrentType /> row) 
+		{
+			this.Rows.Add(row);
+		}
+
+		public <CurrentType /> Add(params object[] field)
+		{
+			<CurrentType /> row<Current /> = ((<CurrentType />)(this.NewRow()));
+			row<Current />.ItemArray = field;
+			this.Rows.Add(row<Current />);
+			return row<Current />;
+		}
+
+		public System.Collections.IEnumerator GetEnumerator() 
+		{
+			return this.Rows.GetEnumerator();
+		}
+
+		public override DataTable Clone() 
+		{
+			<CurrentCollection /> cln = ((<CurrentCollection />)(base.Clone()));
+			cln.InitVars();
+			return cln;
+		}
+
+		public <CurrentType /> New<CurrentType />() 
+		{
+			return ((<CurrentType />)(this.NewRow()));
+		}
+
+		protected override DataRow NewRowFromBuilder(DataRowBuilder builder) 
+		{
+			return new <CurrentType />(builder);
+		}
+
+		protected override System.Type GetRowType() 
+		{
+			return typeof(<CurrentType />);
+		}
+
+		protected override void OnRowChanged(DataRowChangeEventArgs e) 
+		{
+			base.OnRowChanged(e);
+			if ((this.<CurrentType />Changed != null))
+				this.<CurrentType />Changed(this, new <CurrentType />ChangeEvent(((<CurrentType />)(e.Row)), e.Action));
+		}
+
+		protected override void OnRowChanging(DataRowChangeEventArgs e) 
+		{
+			base.OnRowChanging(e);
+			if ((this.<CurrentType />Changing != null))
+				this.<CurrentType />Changing(this, new <CurrentType />ChangeEvent(((<CurrentType />)(e.Row)), e.Action));
+		}
+
+		protected override void OnRowDeleted(DataRowChangeEventArgs e) 
+		{
+			base.OnRowDeleted(e);
+			if ((this.<CurrentType />Deleted != null)) 
+				this.<CurrentType />Deleted(this, new <CurrentType />ChangeEvent(((<CurrentType />)(e.Row)), e.Action));
+		}
+
+		protected override void OnRowDeleting(DataRowChangeEventArgs e) 
+		{
+			base.OnRowDeleting(e);
+			if ((this.<CurrentType />Deleting != null))
+				this.<CurrentType />Deleting(this, new <CurrentType />ChangeEvent(((<CurrentType />)(e.Row)), e.Action));
+		}
+
+		public void Remove<CurrentType />(<CurrentType /> row) 
+		{
+			this.Rows.Remove(row);
+		}
+		</Member>
+	</Collection>
+</Customization>
