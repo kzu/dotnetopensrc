@@ -242,14 +242,14 @@ namespace NMatrix.Core.Configuration
 				throw new ConfigurationException("Section " + sectionName + " doesn't have a valid handler.");
 
 			// Handle specially the mergable handlers.
-			if (handler is IMergableConfigurationSectionHandler)
+			if (handler is IMergeConfigurationSectionHandler)
 			{
 				// Retrieve the global application values first.
 				object current = handler.Create(
 					ConfigurationLoader.GetRootNode(_appsettings),
 					null, ConfigurationLoader.GetNode(sectionName, _appsettings)); 
 				// Merge the results.
-				result = ((IMergableConfigurationSectionHandler)handler).Merge(
+				result = ((IMergeConfigurationSectionHandler)handler).Merge(
 					current, ConfigurationLoader.GetRootNode(_file), 
 					null, ConfigurationLoader.GetNode(sectionName, _file));
 			}
