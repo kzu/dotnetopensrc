@@ -1,8 +1,8 @@
 <VisualStudioProject>
     <CSHARP
         ProjectType = "Local"
-        ProductVersion = "7.0.9466"
-        SchemaVersion = "1.0"
+        ProductVersion = "7.10.3077"
+        SchemaVersion = "2.0"
         ProjectGuid = "{D114B53A-FE68-4465-AAE1-14940402B124}"
     >
         <Build>
@@ -16,7 +16,10 @@
                 DefaultTargetSchema = "IE50"
                 DelaySign = "false"
                 OutputType = "WinExe"
+                PreBuildEvent = ""
+                PostBuildEvent = ""
                 RootNamespace = "WinTest"
+                RunPostBuildEvent = "OnBuildSuccess"
                 StartupObject = ""
             >
                 <Config
@@ -30,6 +33,8 @@
                     DebugSymbols = "true"
                     FileAlignment = "4096"
                     IncrementalBuild = "true"
+                    NoStdLib = "false"
+                    NoWarn = ""
                     Optimize = "false"
                     OutputPath = "bin\"
                     RegisterForComInterop = "false"
@@ -48,6 +53,8 @@
                     DebugSymbols = "false"
                     FileAlignment = "4096"
                     IncrementalBuild = "false"
+                    NoStdLib = "false"
+                    NoWarn = ""
                     Optimize = "true"
                     OutputPath = "bin\"
                     RegisterForComInterop = "false"
@@ -86,6 +93,11 @@
                     Name = "NMatrix.Schematron"
                     Project = "{DB7369F1-69CF-4821-98E3-9D6422A7CC36}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
+                <Reference
+                    Name = "System.Web.Services"
+                    AssemblyName = "System.Web.Services"
+                    HintPath = "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.Services.dll"
                 />
             </References>
         </Build>
@@ -242,6 +254,37 @@
                     RelPath = "schematron\Tournament.xsx"
                     DependentUpon = "Tournament.xsd"
                     BuildAction = "None"
+                />
+                <File
+                    RelPath = "Web References\SchematronWS\Reference.map"
+                    BuildAction = "None"
+                    Generator = "MSDiscoCodeGenerator"
+                    LastGenOutput = "Reference.cs"
+                />
+                <File
+                    RelPath = "Web References\SchematronWS\Reference.cs"
+                    DependentUpon = "Reference.map"
+                    SubType = "code"
+                    BuildAction = "Compile"
+                    DesignTime = "True"
+                    AutoGen = "True"
+                />
+                <File
+                    RelPath = "Web References\SchematronWS\ValidatedWS.disco"
+                    BuildAction = "None"
+                />
+                <File
+                    RelPath = "Web References\SchematronWS\ValidatedWS.wsdl"
+                    BuildAction = "None"
+                />
+                <Folder
+                    RelPath = "Web References\SchematronWS\"
+                    WebReferenceUrl = "http://localhost/SchematronWS/ValidatedWS.asmx"
+                    UrlBehavior = "Static"
+                />
+                <Folder
+                    RelPath = "Web References\"
+                    WebReferences = "TRUE"
                 />
             </Include>
         </Files>

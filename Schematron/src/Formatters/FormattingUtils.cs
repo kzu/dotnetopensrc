@@ -65,9 +65,10 @@ namespace NMatrix.Schematron.Formatters
 
 				if (!namespaces.ContainsKey(context.NamespaceURI))
 				{
-					namespaces.Add(context.NamespaceURI, pref);
+					namespaces.Add(context.NamespaceURI, pref != null ? pref : "");
 				}
-				else if (((String)namespaces[context.NamespaceURI]) != pref && !namespaces.ContainsKey(context.NamespaceURI + ":" + pref))
+				else if (((String)namespaces[context.NamespaceURI]) != pref && 
+					!namespaces.ContainsKey(context.NamespaceURI + ":" + pref))
 				{
 					namespaces.Add(context.NamespaceURI + " " + pref, pref);
 				}

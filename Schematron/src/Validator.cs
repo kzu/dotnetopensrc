@@ -21,6 +21,8 @@ namespace NMatrix.Schematron
 	/// </remarks>
 	public class Validator
 	{
+		#region Fields & Ctors
+
 		XmlSchemaCollection _xmlschemas = new XmlSchemaCollection();
 		SchemaCollection _schematrons = new SchemaCollection();
 		EvaluationContextBase _evaluationctx;
@@ -65,6 +67,8 @@ namespace NMatrix.Schematron
 		{
 			InitValidator(format, type);
 		}
+
+		#endregion Fields & Ctors
 
 		/// <summary>
 		/// Initializes the validator with the options received from the constructor overloads.
@@ -146,6 +150,23 @@ namespace NMatrix.Schematron
 			get { return _evaluationctx.Phase; }
 			set { _evaluationctx.Phase = value; }
 		}
+
+		/// <summary>
+		/// Exposes the schematron schemas to use for validation.
+		/// </summary>
+		public SchemaCollection Schemas
+		{
+			get { return _schematrons; }
+		}
+
+		/// <summary>
+		/// Exposes the XML schemas to use for validation.
+		/// </summary>
+		public XmlSchemaCollection XmlSchemas
+		{
+			get { return _xmlschemas; }
+		}
+
 		#endregion
 
 		#region AddSchema overloads
@@ -217,10 +238,8 @@ namespace NMatrix.Schematron
 			if (reader.MoveToContent() == XmlNodeType.None) throw new BadSchemaException("No information found to read");
 
 			// Determine type of schema received.
-			bool standalone = false;
-			bool wxs = true;
-			if (reader.NamespaceURI == Schema.Namespace) standalone = true;
-			if (reader.NamespaceURI != XmlSchema.Namespace) wxs = false;
+			bool standalone = (reader.NamespaceURI == Schema.Namespace);
+			bool wxs = (reader.NamespaceURI == XmlSchema.Namespace);
 
 			// The whole schema must be read first to preserve the state for later.
 			string state = reader.ReadOuterXml();
