@@ -20,5 +20,15 @@ namespace NMatrix.XGoF.SampleProject
 		{
 			//Store object in some state bag.
 		}
+
+		public void Save()
+		{
+			DAL.SaveObject(this);
+		}
+
+		public void Load()
+		{
+			DAL.LoadObject(this);
+		}
 	}
 }

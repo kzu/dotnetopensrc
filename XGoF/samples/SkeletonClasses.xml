@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Customization xmlns="http://sourceforge.net/projects/dotnetopensrc/xgof">
 	<Type>
+		<BaseType>DataObject</BaseType>
 		<Property>
 			<Get>
 					//System.Diagnostics.Debug.WriteLine("Getting property: <CurrentProperty />");

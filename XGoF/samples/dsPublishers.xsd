@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<xsd:schema id="dsPublishers" targetNamespace="NMatrix.Generated" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="NMatrix.Generated" xmlns:mstns="NMatrix.Generated.DataSets" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+<xsd:schema id="dsPublishers" targetNamespace="NMatrix.Generated" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns="NMatrix.Generated" xmlns:mstns="NMatrix.Generated.DataSets" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:NS="NMatrix.Generated">
 	<xsd:element name="dsPublishers" msdata:IsDataSet="true">
 		<xsd:complexType>
 			<xsd:choice maxOccurs="unbounded">
@@ -51,19 +51,10 @@
 			<xsd:field xpath="mstns:pub_id" />
 			<xsd:field xpath="mstns:pub_name" />
 		</xsd:key>
-		<xsd:keyref name="publisherstitles" refer="publishersKey">
-			<xsd:selector xpath=".//mstns:titles" />
-			<xsd:field xpath="mstns:titlepub_id" />
-			<xsd:field xpath="mstns:title" />
-		</xsd:keyref>
 		<xsd:key name="titleauthorsKey" msdata:PrimaryKey="true">
 			<xsd:selector xpath=".//mstns:titleauthors" />
 			<xsd:field xpath="mstns:au_id" />
 			<xsd:field xpath="mstns:title_id" />
 		</xsd:key>
-		<xsd:keyref name="titlestitleauthors" refer="titlesKey">
-			<xsd:selector xpath=".//mstns:titleauthors" />
-			<xsd:field xpath="mstns:title_id" />
-		</xsd:keyref>
 	</xsd:element>
 </xsd:schema>

@@ -15,7 +15,7 @@ namespace NMatrix.Generated
     using NMatrix.XGoF.SampleProject;
     
     
-    public class dsPublishers
+    public class dsPublishers : DataObject
     {
         
         
@@ -40,7 +40,7 @@ namespace NMatrix.Generated
             System.Diagnostics.Debug.WriteLine("Constructing object of type dsPublishers");
         }
         
-        public class publishers
+        public class publishers : DataObject
         {
             
             
@@ -176,7 +176,7 @@ namespace NMatrix.Generated
             }
         }
         
-        public class titles
+        public class titles : DataObject
         {
             
             
@@ -422,7 +422,7 @@ namespace NMatrix.Generated
             }
         }
         
-        public class titleauthors
+        public class titleauthors : DataObject
         {
             
             
