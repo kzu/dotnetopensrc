@@ -178,7 +178,7 @@ namespace NMatrix.Core.Utility
 								catch (Exception ex)
 								{
 									Debug.Write(new string(' ', 30 - p.Name.Length) + " - FAILED CALL: ");
-									Debug.Write(ex);
+									Debug.Write(ex.InnerException.Message);
 								}
 							}
 							else
@@ -200,7 +200,7 @@ namespace NMatrix.Core.Utility
 									catch (Exception ex)
 									{
 										Debug.Write(new string(' ', 30 - p.Name.Length) + " - FAILED CALL: ");
-										Debug.Write(ex);
+										Debug.Write(ex.InnerException.Message);
 									}
 								}
 								else
@@ -227,7 +227,7 @@ namespace NMatrix.Core.Utility
 								catch (Exception ex)
 								{
 									Debug.Write(Indentation + " - FAILED CALL: ");
-									Debug.Write(ex);
+									Debug.Write(ex.InnerException.Message);
 									Debug.WriteLine(string.Empty);
 								}
 							}
@@ -242,7 +242,7 @@ namespace NMatrix.Core.Utility
 									catch (Exception ex)
 									{
 										Debug.Write(Indentation + " - FAILED CALL: ");
-										Debug.Write(ex);
+										Debug.Write(ex.InnerException.Message);
 										Debug.WriteLine(string.Empty);
 									}
 								}
@@ -265,7 +265,7 @@ namespace NMatrix.Core.Utility
 										catch (Exception ex)
 										{
 											Debug.Write(Indentation + " - FAILED CALL: ");
-											Debug.Write(ex);
+											Debug.Write(ex.InnerException.Message);
 											Debug.WriteLine(string.Empty);
 										}
 									}
