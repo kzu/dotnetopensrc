@@ -2,8 +2,7 @@
 // NMatrix XGoF Generator.
 // http://sourceforge.net/projects/dotnetopensrc/
 //
-// PropertyBackerBuilder.cs
-// The visitor that adds the private field for each empty property getter/setter found.
+// DiagnosticsBuilder.cs
 // 
 // Author: Daniel Cazzulino
 //===============================================================================
@@ -59,6 +58,7 @@ namespace NMatrix.XGoF.SampleProject
 							"WriteLine", new CodeExpression[] { new CodePrimitiveExpression(
 													  "Setting property " + element.Name) 
 												  })));				
+			System.Diagnostics.Debug.WriteLine("");
 		}
 
 		#region Simple types are converted to properties
@@ -86,6 +86,9 @@ namespace NMatrix.XGoF.SampleProject
 		public override void Visit(VisitableElementComplexType element)
 		{
 			base.Visit(element);
+			// If no type declaration was created for the current 
+			// complex type element, exit the process.
+			if (CurrentType == null) return;
 
 			CodeConstructor ctor = null;
 			// Locate existing constructor.

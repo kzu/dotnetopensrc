@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Customization xmlns="http://sourceforge.net/projects/dotnetopensrc/xgof">
 	<Type>
+		<ApplyTo>
+			<Attribute Name="IsDataSet" Value="True" />
+		</ApplyTo>
 		<BaseType>DataObject</BaseType>
 		<Property>
 			<Get>
@@ -19,18 +22,8 @@
 			</PropertiesIteration>
 			protected object GetInstance()
 			{
-				return new <Current />();
-			}
-			
-			public void Save()
-			{
-				DAL.SaveObject(this);
-			}
-
-			public void Load()
-			{
-				DAL.LoadObject(this);
-			}
+				return new <CurrentType />();
+			}			
 		</Member>
 	</Type>
 </Customization>
