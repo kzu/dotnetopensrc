@@ -4,7 +4,7 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 using System.Xml.Schema;
-using MSXML2;
+//using MSXML2;
 using System.Diagnostics;
 using NMatrix.Schematron;
 
@@ -198,21 +198,21 @@ namespace Test
 			Debug.Listeners["SchematronSchemaExec"].Write((TimeSpan.FromTicks(end - start).TotalMilliseconds).ToString() + ";");
 
 			// **** MSXML4 preparation
-			MSXML2.FreeThreadedDOMDocument msdoc = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-			msdoc.async = false;
-			msdoc.load(@"..\Files\tournament-schema.xml");
-
-			MSXML2.FreeThreadedDOMDocument xdoc = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-			xdoc.async = false;
-			xdoc.loadXML(xsldoc.DocumentElement.OuterXml);
-
-			//MSXML4 execution.
-			start = DateTime.Now.Ticks;
-			for (int i = 0; i < iterations; i++)
-			{
-				msdoc.transformNode(xdoc);
-			}
-			end = DateTime.Now.Ticks;
+//			MSXML2.FreeThreadedDOMDocument msdoc = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//			msdoc.async = false;
+//			msdoc.load(@"..\Files\tournament-schema.xml");
+//
+//			MSXML2.FreeThreadedDOMDocument xdoc = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//			xdoc.async = false;
+//			xdoc.loadXML(xsldoc.DocumentElement.OuterXml);
+//
+//			//MSXML4 execution.
+//			start = DateTime.Now.Ticks;
+//			for (int i = 0; i < iterations; i++)
+//			{
+//				msdoc.transformNode(xdoc);
+//			}
+//			end = DateTime.Now.Ticks;
 
 			//Console.WriteLine(msdoc.transformNode(xdoc));
 			//Console.WriteLine(string.Empty);
@@ -221,7 +221,7 @@ namespace Test
 			//Console.WriteLine("MSXML4 execution : {0}", TimeSpan.FromTicks(end - start).TotalMilliseconds);
 			//Console.WriteLine(new String('-', 60));
 			//Console.WriteLine(string.Empty);
-			Debug.Listeners["SchematronSchemaExec"].WriteLine((TimeSpan.FromTicks(end - start).TotalMilliseconds).ToString());
+//			Debug.Listeners["SchematronSchemaExec"].WriteLine((TimeSpan.FromTicks(end - start).TotalMilliseconds).ToString());
 			Debug.Listeners["SchematronSchemaExec"].Flush();
 		}
 
@@ -318,28 +318,28 @@ namespace Test
 
 
 			// **** MSXML4 preparation
-			MSXML2.FreeThreadedDOMDocument msxsd = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-			msxsd.async = false;
-			msxsd.load(@"..\Files\xsd.xsl");
-
-			MSXML2.FreeThreadedDOMDocument msmeta = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-			msmeta.async = false;
-			msmeta.load(@"..\Files\diag.xsl");
-
-			MSXML2.FreeThreadedDOMDocument msval = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-			MSXML2.FreeThreadedDOMDocument msdoc = null;
-
-			//XSLT extraction and schema loading.
-			start = DateTime.Now.Ticks;
-			for (int i = 0; i < iterations; i++)
-			{
-				XmlSchema s = XmlSchema.Read(new XmlTextReader(@"..\Files\Tournament.xsd"), null);
-				msdoc = new FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-				msdoc.load(@"..\Files\Tournament.xsd");
-				msval.loadXML(msdoc.transformNode(msxsd));
-				msdoc.loadXML(msval.transformNode(msmeta));
-			}
-			end = DateTime.Now.Ticks;
+//			MSXML2.FreeThreadedDOMDocument msxsd = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//			msxsd.async = false;
+//			msxsd.load(@"..\Files\xsd.xsl");
+//
+//			MSXML2.FreeThreadedDOMDocument msmeta = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//			msmeta.async = false;
+//			msmeta.load(@"..\Files\diag.xsl");
+//
+//			MSXML2.FreeThreadedDOMDocument msval = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//			MSXML2.FreeThreadedDOMDocument msdoc = null;
+//
+//			//XSLT extraction and schema loading.
+//			start = DateTime.Now.Ticks;
+//			for (int i = 0; i < iterations; i++)
+//			{
+//				XmlSchema s = XmlSchema.Read(new XmlTextReader(@"..\Files\Tournament.xsd"), null);
+//				msdoc = new FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//				msdoc.load(@"..\Files\Tournament.xsd");
+//				msval.loadXML(msdoc.transformNode(msxsd));
+//				msdoc.loadXML(msval.transformNode(msmeta));
+//			}
+//			end = DateTime.Now.Ticks;
 
 			//msval.load(@"..\Files\Tournament.xml");
 			////Console.WriteLine(msval.transformNode(msdoc));
@@ -349,7 +349,7 @@ namespace Test
 			//Console.WriteLine("MSXML4 execution : {0}", TimeSpan.FromTicks(end - start).TotalMilliseconds);
 			//Console.WriteLine(new String('-', 60));
 			//Console.WriteLine(string.Empty);
-			Debug.Listeners["EmbeddedSchemaExtractionAndLoading"].WriteLine((TimeSpan.FromTicks(end - start).TotalMilliseconds).ToString());
+//			Debug.Listeners["EmbeddedSchemaExtractionAndLoading"].WriteLine((TimeSpan.FromTicks(end - start).TotalMilliseconds).ToString());
 			Debug.Listeners["EmbeddedSchemaExtractionAndLoading"].Flush();
 		}
 
@@ -409,22 +409,22 @@ namespace Test
 
 		
 			// **** MSXML4 preparation
-			MSXML2.FreeThreadedDOMDocument msmeta = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-			msmeta.async = false;
-			msmeta.load(@"..\Files\diag.xsl");
-
-			MSXML2.FreeThreadedDOMDocument msval = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-			MSXML2.FreeThreadedDOMDocument msdoc = null;
-
-			//MSXSLT execution.
-			start = DateTime.Now.Ticks;
-			for (int i = 0; i < iterations; i++)
-			{
-				msdoc = new FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
-				msdoc.load(@"..\Files\schematron1-5.sch");
-				msval.loadXML(msdoc.transformNode(msmeta));
-			}
-			end = DateTime.Now.Ticks;
+//			MSXML2.FreeThreadedDOMDocument msmeta = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//			msmeta.async = false;
+//			msmeta.load(@"..\Files\diag.xsl");
+//
+//			MSXML2.FreeThreadedDOMDocument msval = new MSXML2.FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//			MSXML2.FreeThreadedDOMDocument msdoc = null;
+//
+//			//MSXSLT execution.
+//			start = DateTime.Now.Ticks;
+//			for (int i = 0; i < iterations; i++)
+//			{
+//				msdoc = new FreeThreadedDOMDocument40Class() as FreeThreadedDOMDocument;
+//				msdoc.load(@"..\Files\schematron1-5.sch");
+//				msval.loadXML(msdoc.transformNode(msmeta));
+//			}
+//			end = DateTime.Now.Ticks;
 
 			////Console.WriteLine(msdoc.transformNode(msmeta));
 			////Console.WriteLine(string.Empty);
@@ -433,7 +433,7 @@ namespace Test
 			//Console.WriteLine("MSXML4 preparation time : {0}", TimeSpan.FromTicks(end - start).TotalMilliseconds);
 			//Console.WriteLine(new String('-', 60));
 			//Console.WriteLine(string.Empty);		
-			Debug.Listeners["StandaloneSchemaLoading"].WriteLine((TimeSpan.FromTicks(end - start).TotalMilliseconds).ToString());
+//			Debug.Listeners["StandaloneSchemaLoading"].WriteLine((TimeSpan.FromTicks(end - start).TotalMilliseconds).ToString());
 			Debug.Listeners["StandaloneSchemaLoading"].Flush();
 		}
 
