@@ -21,10 +21,10 @@ namespace NMatrix.Schematron
 		/// <summary>Use the <see cref="Formatters.SimpleFormatter"/> class.</summary>
 		Simple,
 		/// <summary>Use the default formatter, which is the <see cref="OutputFormatting.Log"/>.</summary>
-		Default
-		/*
+		Default,
 		/// <summary>Use the <see cref="Formatters.XmlFormatter"/> class.</summary>
-		XML,
+		XML
+		/*
 		/// <summary>Use the <see cref="Formatters.HtmlFormatter"/> class.</summary>
 		HTML
 		*/

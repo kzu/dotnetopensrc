@@ -7,27 +7,22 @@ using System.Xml.Schema;
 
 namespace NMatrix.Schematron.Formatters
 {
-	/// <summary />
-	public class BooleanFormatter : BaseFormatter
+	/// <summary>
+	/// Provides a simple failure message, without any details of specific validation errors.
+	/// </summary>
+	public class BooleanFormatter : FormatterBase
 	{
 		/// <summary />
 		public BooleanFormatter()
 		{
 		}
 
-		/// <summary />
-		public override string Format(Test source, XPathNavigator context)
+        /// <summary>
+        /// Look at <see cref="IFormatter.Format"/> documentation.
+        /// </summary>
+		public override void Format(Schema source, XPathNavigator context, StringBuilder output)
 		{
-			return "-";
-		}
-
-		/// <summary />
-		public override string Format(Schema source, string messages, XPathNavigator context)
-		{
-			if (messages != String.Empty)
-				return "Validation failed!";
-
-			return messages;
+            output.Append("Validation failed!");
 		}
 	}
 }

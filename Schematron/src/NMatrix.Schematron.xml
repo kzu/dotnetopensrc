@@ -4,73 +4,222 @@
         <name>NMatrix.Schematron</name>
     </assembly>
     <members>
-        <member name="T:NMatrix.Schematron.Formatters.BaseFormatter">
-            <summary />
+        <member name="T:NMatrix.Schematron.Formatters.BooleanFormatter">
+            <summary>
+            Provides a simple failure message, without any details of specific validation errors.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Schematron.Formatters.FormatterBase">
+            <summary>
+            Look at <see cref="T:NMatrix.Schematron.Formatters.IFormatter"/> documentation.
+            </summary>
         </member>
         <member name="T:NMatrix.Schematron.Formatters.IFormatter">
+            <summary>
+            Interface for custom formatters, which are used to generate
+            output from schema validation.
+            </summary>
+            <remarks>
+            Provides formatting methods for Schematron specific elements and 
+            for <see cref="T:System.Xml.Schema.XmlSchema"/> validation through the <see cref="T:System.Xml.XmlValidatingReader"/>.
+            Custom formatters implement methods to provide message formatting.
+            <p>
+            Am abstract base implementation is provided in <see cref="T:NMatrix.Schematron.Formatters.FormatterBase"/> to ease
+            the extending process.
+            </p>
+            </remarks>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Provides formatting of both <see cref="T:NMatrix.Schematron.Assert"/> and <see cref="T:NMatrix.Schematron.Report"/> elements.
+            </summary>
+            <remarks>
+            Implementations may use the received context to add details to the output message.
+            The <paramref name="output"/> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="context">The current navigator node where the test failed.</param>
+            <param name="output">The message to output.</param>
+            <param name="source">The <see cref="T:NMatrix.Schematron.Assert"/> or <see cref="T:NMatrix.Schematron.Report"/> element 
+            which failed.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Rule,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Provides formatting for a <see cref="T:NMatrix.Schematron.Rule"/> element.
+            </summary>
+            <remarks>
+            Implementations may use the received context to add details to the output message.
+            The <paramref name="output"/> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="context">The navigator where the inner <see cref="T:NMatrix.Schematron.Assert"/> or 
+            <see cref="T:NMatrix.Schematron.Report"/> elements failed.</param>
+            <param name="output">The message to output.</param>
+            <param name="source">The <see cref="T:NMatrix.Schematron.Rule"/> element containing failed 
+            <see cref="T:NMatrix.Schematron.Assert"/> or <see cref="T:NMatrix.Schematron.Report"/> elements.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Pattern,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Provides formatting for a <see cref="T:NMatrix.Schematron.Pattern"/> element.
+            </summary>
+            <remarks>
+            Implementations may use the received context to add details to the output message.
+            The <paramref name="output"/> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="context">The source document navigator where evaluation took place.</param>
+            <param name="output">The message to output.</param>
+            <param name="source">The <see cref="T:NMatrix.Schematron.Pattern"/> element containing failed <see cref="T:NMatrix.Schematron.Rule"/> elements.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Phase,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Provides formatting for a <see cref="T:NMatrix.Schematron.Phase"/> element.
+            </summary>
+            <remarks>
+            Implementations may use the received context to add details to the output message.
+            The <paramref name="output"/> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="context">The source document navigator where evaluation took place.</param>
+            <param name="output">The message to output.</param>
+            <param name="source">The <see cref="T:NMatrix.Schematron.Phase"/> being evaluated.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Schema,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Provides formatting for a <see cref="T:NMatrix.Schematron.Schema"/> element.
+            </summary>
+            <remarks>
+            Implementations may use the received context to add details to the output message.
+            The <paramref name="output"/> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="context">The source document navigator where evaluation took place.</param>
+            <param name="output">The message to output.</param>
+            <param name="source">The <see cref="T:NMatrix.Schematron.Schema"/> being evaluated.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(System.Xml.XmlValidatingReader,System.Text.StringBuilder)">
+            <summary>
+            Provides formatting for a <see cref="T:System.Xml.Schema.XmlSchema"/> element being validated 
+            through a <see cref="T:System.Xml.XmlValidatingReader"/>.
+            </summary>
+            <remarks>
+            Usually will output schema-level formatting for XmlSchema validation. Recall that
+            multiple schemas may have been configured with the reader and validated simultaneously.
+            The <paramref name="output"/> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="output">The message to output.</param>
+            <param name="reader">The reader in use to validate the schema.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(System.Xml.Schema.ValidationEventArgs,System.Text.StringBuilder)">
+            <summary>
+            Formats the output of XmlSchema validation.
+            </summary>
+            <remarks>
+            The <paramref name="output"/> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="output">The message to output.</param>
+            <param name="source">The argument received by the <see cref="T:System.Xml.Schema.ValidationEventHandler"/> handler
+            during XmlSchema validation.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(System.Xml.Schema.XmlSchemaCollection,System.Text.StringBuilder)">
+            <summary>
+            Enclosing message for all schemas being validated.
+            </summary>
+            <remarks>
+            Usually will add any enclosing message to the results of the global Xml validation.
+            The <paramref name="output" /> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="output">The message to output.</param>
+            <param name="schemas">The collection of schemas in use for validation.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.SchemaCollection,System.Text.StringBuilder)">
+            <summary>
+            Enclosing message for all schemas being validated.
+            </summary>
+            <remarks>
+            Usually will add any enclosing message to the results of the global Schematron validation.
+            The <paramref name="output" /> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="output">The message to output.</param>
+            <param name="schemas">The collection of schemas in use for validation.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(System.Text.StringBuilder)">
+            <summary>
+            Formats the whole message built so far.
+            </summary>
+            <remarks>
+            Usually will perform any last-minute formatting of the whole message before
+            being returned by the calling application. For example, the <see cref="T:NMatrix.Schematron.Formatters.XmlFormatter"/> 
+            uses this method to enclose the whole message in an &lt;output&gt; element.
+            The <paramref name="output"/> contains messages accumulated so far in the validation process.
+            </remarks>
+            <param name="output">The message to output.</param>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.#ctor">
             <summary />
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Rule,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(NMatrix.Schematron.Rule,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Pattern,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(NMatrix.Schematron.Pattern,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Phase,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(NMatrix.Schematron.Phase,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Schema,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(NMatrix.Schematron.Schema,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(System.Xml.XmlValidatingReader,System.String)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(System.Xml.XmlValidatingReader,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.IFormatter.Format(System.Xml.Schema.ValidationEventArgs)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(System.Xml.Schema.ValidationEventArgs,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.BaseFormatter.#ctor">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(System.Xml.Schema.XmlSchemaCollection,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.BaseFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(NMatrix.Schematron.SchemaCollection,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.BaseFormatter.Format(NMatrix.Schematron.Rule,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
-        </member>
-        <member name="M:NMatrix.Schematron.Formatters.BaseFormatter.Format(NMatrix.Schematron.Pattern,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
-        </member>
-        <member name="M:NMatrix.Schematron.Formatters.BaseFormatter.Format(NMatrix.Schematron.Phase,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
-        </member>
-        <member name="M:NMatrix.Schematron.Formatters.BaseFormatter.Format(NMatrix.Schematron.Schema,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
-        </member>
-        <member name="M:NMatrix.Schematron.Formatters.BaseFormatter.Format(System.Xml.XmlValidatingReader,System.String)">
-            <summary />
-        </member>
-        <member name="M:NMatrix.Schematron.Formatters.BaseFormatter.Format(System.Xml.Schema.ValidationEventArgs)">
-            <summary />
-        </member>
-        <member name="T:NMatrix.Schematron.Formatters.BooleanFormatter">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.FormatterBase.Format(System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
         <member name="M:NMatrix.Schematron.Formatters.BooleanFormatter.#ctor">
             <summary />
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.BooleanFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator)">
-            <summary />
-        </member>
-        <member name="M:NMatrix.Schematron.Formatters.BooleanFormatter.Format(NMatrix.Schematron.Schema,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.BooleanFormatter.Format(NMatrix.Schematron.Schema,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
         <member name="T:NMatrix.Schematron.Formatters.FormattingUtils">
             <summary />
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.FormattingUtils.GetFullNodePosition(System.Xml.XPath.XPathNavigator,System.String,NMatrix.Schematron.Test,System.Collections.Hashtable@)">
+        <member name="M:NMatrix.Schematron.Formatters.FormattingUtils.GetFullNodePosition(System.Xml.XPath.XPathNavigator,System.String,NMatrix.Schematron.Test)">
+            <summary>
+            Returns the full path to the context node. Clone the navigator to avoid loosing positioning.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.FormattingUtils.GetFullNodePosition(System.Xml.XPath.XPathNavigator,System.String,NMatrix.Schematron.Test,System.Collections.Hashtable)">
             <summary>
             Returns the full path to the context node. Clone the navigator to avoid loosing positioning.
             </summary>
@@ -85,12 +234,17 @@
             Returns line positioning information if supported by the XPathNavigator implementation.
             </summary>
         </member>
+        <member name="M:NMatrix.Schematron.Formatters.FormattingUtils.GetNodeSummary(System.Xml.XPath.XPathNavigator,System.String)">
+            <summary>
+            Returns abreviated node information, including attribute values.
+            </summary>
+        </member>
         <member name="M:NMatrix.Schematron.Formatters.FormattingUtils.GetNodeSummary(System.Xml.XPath.XPathNavigator,System.Collections.Hashtable,System.String)">
             <summary>
             Returns abreviated node information, including attribute values.
             </summary>
             <remarks>
-            The namespaces param is filled in <see cref="M:NMatrix.Schematron.Formatters.FormattingUtils.GetFullNodePosition(System.Xml.XPath.XPathNavigator,System.String,NMatrix.Schematron.Test,System.Collections.Hashtable@)"/>.
+            The namespaces param is optionally filled in <see cref="M:NMatrix.Schematron.Formatters.FormattingUtils.GetFullNodePosition(System.Xml.XPath.XPathNavigator,System.String,NMatrix.Schematron.Test)"/>.
             </remarks>
         </member>
         <member name="M:NMatrix.Schematron.Formatters.FormattingUtils.GetNamespaceSummary(System.Xml.XPath.XPathNavigator,System.Collections.Hashtable,System.String)">
@@ -100,43 +254,135 @@
         </member>
         <member name="F:NMatrix.Schematron.Formatters.FormattingUtils.XmlErrorPosition">
             <summary>
-            Allows to retrieve node position from System.Xml error messages.
+            Allows to match the string stating the node position from System.Xml error messages.
             </summary>
+            <remarks>
+            This regular expression is used to remove the node position from the validation error
+            message, to maintain consistency with schematron messages.
+            </remarks>
         </member>
         <member name="M:NMatrix.Schematron.Formatters.FormattingUtils.NormalizeString(System.String)">
             <summary>
-            Returns a decoded string, if special characters are found.
+            Returns a decoded string, with spaces trimmed.
             </summary>
         </member>
         <member name="T:NMatrix.Schematron.Formatters.LogFormatter">
-            <summary />
+            <summary>
+            Provides a complete log of validation errors in text format.
+            </summary>
         </member>
         <member name="M:NMatrix.Schematron.Formatters.LogFormatter.#ctor">
             <summary />
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(NMatrix.Schematron.Pattern,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(NMatrix.Schematron.Pattern,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(NMatrix.Schematron.Schema,System.String,System.Xml.XPath.XPathNavigator)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(NMatrix.Schematron.Schema,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(System.Xml.XmlValidatingReader,System.String)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(System.Xml.Schema.ValidationEventArgs,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(System.Xml.Schema.ValidationEventArgs)">
-            <summary />
+        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(System.Xml.Schema.XmlSchemaCollection,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.LogFormatter.Format(NMatrix.Schematron.SchemaCollection,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
         <member name="T:NMatrix.Schematron.Formatters.SimpleFormatter">
-            <summary />
+            <summary>
+            Provides a simplified log of errors.
+            </summary>
+            <remarks>
+            Similar output as <see cref="T:NMatrix.Schematron.Formatters.LogFormatter"/>, but doesn't provide 
+            node position in file and namespace summary text.
+            </remarks>
         </member>
         <member name="M:NMatrix.Schematron.Formatters.SimpleFormatter.#ctor">
             <summary />
         </member>
-        <member name="M:NMatrix.Schematron.Formatters.SimpleFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator)">
+        <member name="M:NMatrix.Schematron.Formatters.SimpleFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="T:NMatrix.Schematron.Formatters.XmlFormatter">
+            <summary>
+            Provides an Xml output from validation.
+            </summary>
+        </member>
+        <member name="F:NMatrix.Schematron.Formatters.XmlFormatter.OutputNamespace">
+            <summary>
+            Namespace of generated output.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.#ctor">
             <summary />
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(NMatrix.Schematron.Rule,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(NMatrix.Schematron.Pattern,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(NMatrix.Schematron.Phase,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(NMatrix.Schematron.Schema,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(System.Xml.Schema.ValidationEventArgs,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(System.Xml.Schema.XmlSchemaCollection,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(NMatrix.Schematron.SchemaCollection,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(System.Xml.XmlValidatingReader,System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
+        </member>
+        <member name="M:NMatrix.Schematron.Formatters.XmlFormatter.Format(System.Text.StringBuilder)">
+            <summary>
+            Look at <see cref="M:NMatrix.Schematron.Formatters.IFormatter.Format(NMatrix.Schematron.Test,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)"/> documentation.
+            </summary>
         </member>
         <member name="T:ThisAssembly">
             <summary>
@@ -243,345 +489,6 @@
             <summary>Constructs a new Assert object.</summary>
             <param name="test">XPath expression to test.</param>
             <param name="message">Message to display if the assert fails.</param>
-        </member>
-        <member name="T:NMatrix.Schematron.AsyncAssertEvaluate">
-            <summary>
-            Private delegate used in <see cref="T:NMatrix.Schematron.AsyncEvaluationContext"/> to call
-            evaluation asynchronously against an <see cref="T:NMatrix.Schematron.Assert"/> object.
-            </summary>
-            <example>
-            This in an example of the delegate creation and asynchronous execution.
-            <code>AsyncAssertEvaluate eval = new AsyncAssertEvaluate(EvaluateAssert);
-            eval.BeginInvoke(
-            	assert, 
-            	context, 
-            	new AsyncCallback(OnAssertCompleted), 
-            	state);
-            </code>
-            </example>
-            <author ref="dcazzulino"/>
-            <progress amount="100"/>
-        </member>
-        <member name="T:NMatrix.Schematron.AsyncEvaluationContext">
-            <summary>
-            Evaluates <see cref="T:NMatrix.Schematron.Assert"/> and <see cref="T:NMatrix.Schematron.Report"/> elements asynchronously.
-            </summary>
-            <remarks>
-            See <see cref="T:NMatrix.Schematron.EvaluationContextBase"/> for a description of the purpose and 
-            of evaluation contexts, and where are they used.
-            </remarks>
-            <author ref="dcazzulino">
-            Currently this class is not working properly. We're getting thread contention
-            when the <see cref="M:System.Threading.WaitHandle.WaitAll(System.Threading.WaitHandle[],System.Int32,System.Boolean)"/> method is called. We have tried 
-            almost every options there is to retrieve the handles. The one with the contention
-            problem is the one using <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)"/> method
-            to enqueue the method execution.
-            <para>
-            Another approach tried (and commented in the code) is asynchronous execution of the
-            evaluation method using <see cref="T:NMatrix.Schematron.AsyncAssertEvaluate"/> delegate. This produces
-            and exception because apparently an invalid <see cref="T:System.Threading.WaitHandle"/> is returned.
-            </para>
-            So currently, only the <see cref="T:NMatrix.Schematron.SyncEvaluationContext"/> is in use.
-            </author>
-            <progress amount="70"/>
-        </member>
-        <member name="T:NMatrix.Schematron.EvaluationContextBase">
-            <summary>
-            Base class for Schematron evaluation contexts.
-            </summary>
-            <remarks>
-            The schematron elements don't provide evaluation code. They just
-            represent the elements in the <link ref="schematron"/>.
-            <para>
-            For evaluation purposes, this class provides the iteration and execution
-            process, accumulates results, moves the cursor, etc. Here is where the 
-            actual evaluation takes place. This way we isolate the schema design
-            from the different execution models we can use, for example, 
-            <see cref="T:NMatrix.Schematron.AsyncEvaluationContext"/> and <see cref="T:NMatrix.Schematron.SyncEvaluationContext"/>.
-            </para>
-            <para>
-            The validator classes provided use instances of this strategy object to 
-            validate documents provided by the user.
-            </para>
-            </remarks>
-            <author ref="dcazzulino"/>
-            <progress amount="100"/>
-        </member>
-        <member name="F:NMatrix.Schematron.EvaluationContextBase.Matched">
-            <summary>
-            Keeps a list of nodes already matched.
-            </summary>
-            <remarks>
-            When the <seealso cref="P:NMatrix.Schematron.EvaluationContextBase.Source"/> property is set, the appropriate
-            strategy for matching nodes is initialized, depending on the specific
-            implementation of the <see cref="T:System.Xml.XPath.XPathNavigator"/> in use.
-            </remarks>
-        </member>
-        <member name="M:NMatrix.Schematron.EvaluationContextBase.#ctor">
-            <summary>Creates the evaluation context</summary>
-        </member>
-        <member name="M:NMatrix.Schematron.EvaluationContextBase.Start">
-            <summary>
-            Starts the evaluation process.
-            </summary>
-            <remarks>
-            When the process is finished, the results are placed 
-            in the <seealso cref="P:NMatrix.Schematron.EvaluationContextBase.Messages"/> property.
-            </remarks>
-        </member>
-        <member name="P:NMatrix.Schematron.EvaluationContextBase.Formatter">
-            <summary>Gets or sets the class to use to format messages.</summary>
-            <remarks>
-            This object is initialized to the <see cref="P:NMatrix.Schematron.Config.DefaultFormatter"/> instance.
-            Usually, it will be changed based on parameters passed to the validator class,
-            or exposed directly by it.
-            </remarks>
-        </member>
-        <member name="P:NMatrix.Schematron.EvaluationContextBase.Messages">
-            <summary>Gets or sets the messages generated by the validation process.</summary>
-            <remarks>
-            Specific implementations of this class read/write this property 
-            while they accumulate validation messages.
-            </remarks>
-        </member>
-        <member name="P:NMatrix.Schematron.EvaluationContextBase.Phase">
-            <summary>Gets or sets the specific validation phase to run.</summary>
-            <remarks>
-            Schematron supports the concept of phases, where different sets of 
-            patterns can be executed at different times. This phase is initialized
-            to <see cref="F:System.String.Empty"/>, which will mean all patterns are run.
-            </remarks>
-        </member>
-        <member name="P:NMatrix.Schematron.EvaluationContextBase.Schema">
-            <summary>Gets or sets the schema to use for the validation.</summary>
-        </member>
-        <member name="P:NMatrix.Schematron.EvaluationContextBase.Source">
-            <summary>Gets or sets the document to validate.</summary>
-            <remarks>
-            When this property is set, the appropriate <see cref="T:NMatrix.Schematron.IMatchedNodes"/>
-            strategy is picked, to perform optimum for various navigator implementations.
-            </remarks>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.#ctor">
-            <summary>Creates the evaluation context</summary>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.Start">
-            <summary>
-            Starts the evaluation process.
-            </summary>
-            <remarks>
-            When the process is finished, the results are placed 
-            in the <see cref="P:NMatrix.Schematron.EvaluationContextBase.Messages"/> property.
-            </remarks>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.Evaluate(NMatrix.Schematron.Phase)">
-            <summary>
-            Evaluates the selected <see cref="T:NMatrix.Schematron.Phase"/>.
-            </summary>
-            <remarks>
-            Processing is synchronous, as patterns must 
-            me evaluated in document order.
-            <para>
-            As most of the other evaluation methods, it repositions the 
-            <see cref="P:NMatrix.Schematron.EvaluationContextBase.Source"/> navigator on the root node.
-            </para>
-            </remarks>
-            <param name="phase">The <see cref="T:NMatrix.Schematron.Phase"/> to evaluate.</param>
-            <returns>The messages accumulated by the evaluation of all the child
-            <see cref="T:NMatrix.Schematron.Pattern"/>, or <see cref="F:System.String.Empty"/> if there are no messages.</returns>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.Evaluate(NMatrix.Schematron.Pattern)">
-            <summary>
-            Evaluates the selected <see cref="T:NMatrix.Schematron.Pattern"/>.
-            </summary>
-            <remarks>
-            Processing is synchronous, as rules must me evaluated in document order.
-            <para>
-            As most of the other evaluation methods, it repositions the 
-            <see cref="P:NMatrix.Schematron.EvaluationContextBase.Source"/> navigator on the root node.
-            </para>
-            <para>
-            Clears the <see cref="F:NMatrix.Schematron.EvaluationContextBase.Matched"/> object before
-            proceeding, as the restriction about node mathing (see <link ref="schematron"/>)
-            applies only inside a single pattern.
-            </para>
-            </remarks>
-            <param name="pattern">The <see cref="T:NMatrix.Schematron.Pattern"/> to evaluate.</param>
-            <returns>The messages accumulated by the evaluation of all the child
-            <see cref="T:NMatrix.Schematron.Rule"/>, or <see cref="F:System.String.Empty"/> if there are no messages.</returns>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.Evaluate(NMatrix.Schematron.Rule)">
-            <summary>
-            Evaluates the selected <see cref="T:NMatrix.Schematron.Rule"/>.
-            </summary>
-            <remarks>
-            Here is where asynchronous becomes. <see cref="T:NMatrix.Schematron.Assert"/> and
-            <see cref="T:NMatrix.Schematron.Report"/> are queued using the <see cref="T:System.Threading.ThreadPool"/> class.
-            <para>
-            Nodes matched by this <see cref="T:NMatrix.Schematron.Rule"/> are added to the <see cref="F:NMatrix.Schematron.EvaluationContextBase.Matched"/> list of 
-            nodes to skip in the next rule, using the <see cref="M:NMatrix.Schematron.IMatchedNodes.AddMatched(System.Xml.XPath.XPathNavigator)"/> method.
-            This object is a strategy object which implements different algorithms for matching and 
-            saving node references, as the actual <see cref="T:System.Xml.XPath.XPathNavigator"/> implementation provides
-            different methods for accessing the underlying source. 
-            <para>
-            This makes the implementation both performant and compliant with
-            the restriction about node mathing (see <link ref="schematron"/>) in the spec.
-            </para>
-            <para>
-            	<seealso cref="T:NMatrix.Schematron.DomMatchedNodes"/>
-            	<seealso cref="T:NMatrix.Schematron.XPathMatchedNodes"/>
-            	<seealso cref="T:NMatrix.Schematron.GenericMatchedNodes"/>
-            </para>
-            As most of the other evaluation methods, it repositions the 
-            <see cref="P:NMatrix.Schematron.EvaluationContextBase.Source"/> navigator on the root node.
-            </para>
-            <para>Here is where the multithreading problems arise, which are not
-            due to the schema design itself, but this specific evaluation process.
-            The intent it to evaluate asserts and reports in parallel, to get the 
-            most out of the CPU.
-            </para>
-            </remarks>
-            <param name="rule">The <see cref="T:NMatrix.Schematron.Rule"/> to evaluate.</param>
-            <returns>The messages accumulated by the evaluation of all the child
-            <see cref="T:NMatrix.Schematron.Assert"/> and <see cref="T:NMatrix.Schematron.Report"/>.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            The rule to evaluate is abstract (see <see cref="P:NMatrix.Schematron.Rule.IsAbstract"/>).
-            </exception>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.OnAssertEvaluate(System.Object,System.Boolean)">
-            <summary>
-            Asynchronous evaluation of an <see cref="T:NMatrix.Schematron.Assert"/>
-            </summary>
-            <remarks>
-            This method is used as the <see cref="T:System.Threading.WaitOrTimerCallback"/> delegate for the 
-            <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)"/> version of the asynchonous call.
-            <para>
-            This just retrieves the state, casts it to <see cref="T:NMatrix.Schematron.AsyncEvaluationContext.AsyncAssertState"/> and executes the 
-            <see cref="M:NMatrix.Schematron.AsyncEvaluationContext.EvaluateAssert(NMatrix.Schematron.Assert,System.Xml.XPath.XPathNavigator)"/> method, passing the values received. It locks on the received
-            <see cref="T:System.Text.StringBuilder"/> to append the messages from evaluation.
-            </para>
-            </remarks>
-            <param name="state">State for the execution.</param>
-            <param name="timedOut">If the <see cref="T:System.Threading.WaitHandle"/> timed out.</param>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.OnReportEvaluate(System.Object,System.Boolean)">
-            <summary>
-            Asynchronous evaluation of a <see cref="T:NMatrix.Schematron.Report"/>
-            </summary>
-            <remarks>
-            This method is used as the <see cref="T:System.Threading.WaitOrTimerCallback"/> delegate for the 
-            <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)"/> version of the asynchonous call.
-            <para>
-            This just retrieves the state, casts it to <see cref="T:NMatrix.Schematron.AsyncEvaluationContext.AsyncReportState"/> and executes the 
-            <see cref="M:NMatrix.Schematron.AsyncEvaluationContext.EvaluateReport(NMatrix.Schematron.Report,System.Xml.XPath.XPathNavigator)"/> method, passing the values received. It locks on the received
-            <see cref="T:System.Text.StringBuilder"/> to append the messages from evaluation.
-            </para>
-            </remarks>
-            <param name="state">State for the execution.</param>
-            <param name="timedOut">If the <see cref="T:System.Threading.WaitHandle"/> timed out.</param>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.EvaluateAssert(NMatrix.Schematron.Assert,System.Xml.XPath.XPathNavigator)">
-            <summary>
-            Performs the evaluation of the <see cref="T:NMatrix.Schematron.Assert"/>.
-            </summary>
-            <remarks>
-            This is where the actual assert expression is evaluated. 
-            Is called synchonously from the <see cref="M:NMatrix.Schematron.AsyncEvaluationContext.OnAssertEvaluate(System.Object,System.Boolean)"/> or 
-            using the <see cref="T:NMatrix.Schematron.AsyncAssertEvaluate"/> delegate asynchronously, with 
-            BeginInvoke and EndInvoke. If the <see cref="P:NMatrix.Schematron.EvaluableExpression.Expression"/> 
-            returns false, a formated message is generated 
-            from the <see cref="P:NMatrix.Schematron.Test.Message"/> property.
-            </remarks>
-            <param name="assert">The <see cref="T:NMatrix.Schematron.Assert"/> to evaluate.</param>
-            <param name="context">The context node for the execution.</param>
-            <returns>The formatted message for a failing <see cref="T:NMatrix.Schematron.Assert"/>, or 
-            <see cref="F:System.String.Empty"/>.
-            </returns>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.EvaluateReport(NMatrix.Schematron.Report,System.Xml.XPath.XPathNavigator)">
-            <summary>
-            Performs the evaluation of the <see cref="T:NMatrix.Schematron.Report"/>.
-            </summary>
-            <remarks>
-            This is where the actual report expression is evaluated. 
-            Is called synchonously from the <see cref="M:NMatrix.Schematron.AsyncEvaluationContext.OnReportEvaluate(System.Object,System.Boolean)"/> or 
-            using the <see cref="T:NMatrix.Schematron.AsyncReportEvaluate"/> delegate asynchronously, with 
-            BeginInvoke and EndInvoke. If
-            the <see cref="P:NMatrix.Schematron.EvaluableExpression.Expression"/> returns true, 
-            a formated message is generated from the <see cref="P:NMatrix.Schematron.Test.Message"/> property.
-            </remarks>
-            <param name="report">The <see cref="T:NMatrix.Schematron.Report"/> to evaluate.</param>
-            <param name="context">The context node for the execution.</param>
-            <returns>The formatted message for a succesful <see cref="T:NMatrix.Schematron.Report"/>, or 
-            <see cref="F:System.String.Empty"/>.
-            </returns>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.OnAssertCompleted(System.IAsyncResult)">
-            <summary>
-            Callback for asynchonous delegate execution.
-            </summary>
-            <remarks>
-            This is the  <see cref="T:System.AsyncCallback"/> to use when executing
-            asynchronously the <see cref="M:NMatrix.Schematron.AsyncEvaluationContext.EvaluateAssert(NMatrix.Schematron.Assert,System.Xml.XPath.XPathNavigator)"/> method.
-            It completes the call by calling EndInvoke, retrieving the results
-            and appending the messages to the <see cref="T:System.Text.StringBuilder"/> received
-            in the <see cref="P:System.IAsyncResult.AsyncState"/> property.
-            </remarks>
-            <example>
-            This in an example of the delegate creation and asynchronous execution.
-            <code>AsyncAssertEvaluate eval = new AsyncAssertEvaluate(EvaluateAssert);
-            eval.BeginInvoke(asr, ctx, 
-            	new AsyncCallback(OnAssertCompleted), sb);
-            </code>
-            </example>
-            <param name="result">The object to extract state information from.</param>
-        </member>
-        <member name="M:NMatrix.Schematron.AsyncEvaluationContext.OnReportCompleted(System.IAsyncResult)">
-            <summary>
-            Callback for asynchonous delegate execution.
-            </summary>
-            <remarks>
-            This is the  <see cref="T:System.AsyncCallback"/> to use when executing
-            asynchronously the <see cref="M:NMatrix.Schematron.AsyncEvaluationContext.EvaluateReport(NMatrix.Schematron.Report,System.Xml.XPath.XPathNavigator)"/> method.
-            It completes the call by calling EndInvoke, retrieving the results
-            and appending the messages to the <see cref="T:System.Text.StringBuilder"/> received
-            in the <see cref="P:System.IAsyncResult.AsyncState"/> property.
-            </remarks>
-            <example>
-            This in an example of the delegate creation and asynchronous execution.
-            <code>AsyncReportEvaluate eval = new AsyncReportEvaluate(EvaluateReport);
-            eval.BeginInvoke(rpt, ctx, new AsyncCallback(OnReportCompleted), sb);
-            </code>
-            </example>
-            <param name="result">The object to extract state information from.</param>
-        </member>
-        <member name="T:NMatrix.Schematron.AsyncEvaluationContext.AsyncAssertState">
-            <summary>
-            Structure to pass state around for asynchonous execution.
-            </summary>
-        </member>
-        <member name="T:NMatrix.Schematron.AsyncEvaluationContext.AsyncReportState">
-            <summary>
-            Structure to pass state around for asynchonous execution.
-            </summary>
-        </member>
-        <member name="T:NMatrix.Schematron.AsyncReportEvaluate">
-            <summary>
-            Private delegate used in <see cref="T:NMatrix.Schematron.AsyncEvaluationContext"/> to call
-            evaluation asynchronously against an <see cref="T:NMatrix.Schematron.Report"/> object.
-            </summary>
-            <example>
-            This in an example of the delegate creation and asynchronous execution.
-            <code>AsyncReportEvaluate eval = new AsyncReportEvaluate(EvaluateReport);
-            eval.BeginInvoke(
-            	report, 
-            	context, 
-            	new AsyncCallback(OnReportCompleted), 
-            	state);
-            </code>
-            </example>
-            <author ref="dcazzulino"/>
-            <progress amount="100"/>
         </member>
         <member name="T:NMatrix.Schematron.BadSchemaException">
             <summary>
@@ -756,6 +663,94 @@
         </member>
         <member name="M:NMatrix.Schematron.DomMatchedNodes.Clear">
             <summary>See <see cref="M:NMatrix.Schematron.IMatchedNodes.Clear"/>.</summary>
+        </member>
+        <member name="T:NMatrix.Schematron.EvaluationContextBase">
+            <summary>
+            Base class for Schematron evaluation contexts.
+            </summary>
+            <remarks>
+            The schematron elements don't provide evaluation code. They just
+            represent the elements in the <link ref="schematron"/>.
+            <para>
+            For evaluation purposes, this class provides the iteration and execution
+            process, accumulates results, moves the cursor, etc. Here is where the 
+            actual evaluation takes place. This way we isolate the schema design
+            from the different execution models we can use, for example, 
+            <see cref="T:NMatrix.Schematron.SyncEvaluationContext"/> (we may add asynchonous execution later).
+            </para>
+            <para>
+            The validator classes provided use instances of this strategy object to 
+            validate documents provided by the user.
+            </para>
+            </remarks>
+            <author ref="dcazzulino"/>
+            <progress amount="100"/>
+        </member>
+        <member name="F:NMatrix.Schematron.EvaluationContextBase.Matched">
+            <summary>
+            Keeps a list of nodes already matched.
+            </summary>
+            <remarks>
+            When the <seealso cref="P:NMatrix.Schematron.EvaluationContextBase.Source"/> property is set, the appropriate
+            strategy for matching nodes is initialized, depending on the specific
+            implementation of the <see cref="T:System.Xml.XPath.XPathNavigator"/> in use.
+            </remarks>
+        </member>
+        <member name="M:NMatrix.Schematron.EvaluationContextBase.#ctor">
+            <summary>Creates the evaluation context</summary>
+        </member>
+        <member name="M:NMatrix.Schematron.EvaluationContextBase.Start">
+            <summary>
+            Starts the evaluation process.
+            </summary>
+            <remarks>
+            When the process is finished, the results are placed 
+            in the <seealso cref="P:NMatrix.Schematron.EvaluationContextBase.Messages"/> property.
+            </remarks>
+        </member>
+        <member name="M:NMatrix.Schematron.EvaluationContextBase.Reset">
+            <summary>
+            Resets the state of the current context.
+            </summary>
+            <remarks>
+            By default, it clears the <see cref="P:NMatrix.Schematron.EvaluationContextBase.Messages"/> and sets <see cref="P:NMatrix.Schematron.EvaluationContextBase.HasErrors"/> to false.
+            </remarks>
+        </member>
+        <member name="P:NMatrix.Schematron.EvaluationContextBase.Formatter">
+            <summary>Gets or sets the class to use to format messages.</summary>
+            <remarks>
+            This object is initialized to the <see cref="P:NMatrix.Schematron.Config.DefaultFormatter"/> instance.
+            Usually, it will be changed based on parameters passed to the validator class,
+            or exposed directly by it.
+            </remarks>
+        </member>
+        <member name="P:NMatrix.Schematron.EvaluationContextBase.Messages">
+            <summary>Gets or sets the messages generated by the validation process.</summary>
+            <remarks>
+            Specific implementations of this class read/write this property 
+            while they accumulate validation messages.
+            </remarks>
+        </member>
+        <member name="P:NMatrix.Schematron.EvaluationContextBase.HasErrors">
+            <summary>Indicates if errors were found during the current evaluation.</summary>
+        </member>
+        <member name="P:NMatrix.Schematron.EvaluationContextBase.Phase">
+            <summary>Gets or sets the specific validation phase to run.</summary>
+            <remarks>
+            Schematron supports the concept of phases, where different sets of 
+            patterns can be executed at different times. This phase is initialized
+            to <see cref="F:System.String.Empty"/>, which will mean all patterns are run.
+            </remarks>
+        </member>
+        <member name="P:NMatrix.Schematron.EvaluationContextBase.Schema">
+            <summary>Gets or sets the schema to use for the validation.</summary>
+        </member>
+        <member name="P:NMatrix.Schematron.EvaluationContextBase.Source">
+            <summary>Gets or sets the document to validate.</summary>
+            <remarks>
+            When this property is set, the appropriate <see cref="T:NMatrix.Schematron.IMatchedNodes"/>
+            strategy is picked, to perform optimum for various navigator implementations.
+            </remarks>
         </member>
         <member name="T:NMatrix.Schematron.GenericMatchedNodes">
             <summary>
@@ -942,6 +937,9 @@
         </member>
         <member name="F:NMatrix.Schematron.OutputFormatting.Default">
             <summary>Use the default formatter, which is the <see cref="F:NMatrix.Schematron.OutputFormatting.Log"/>.</summary>
+        </member>
+        <member name="F:NMatrix.Schematron.OutputFormatting.XML">
+            <summary>Use the <see cref="T:NMatrix.Schematron.Formatters.XmlFormatter"/> class.</summary>
         </member>
         <member name="T:NMatrix.Schematron.Pattern">
             <summary>
@@ -1409,7 +1407,7 @@
             in the <see cref="P:NMatrix.Schematron.EvaluationContextBase.Messages"/> property.
             </remarks>
         </member>
-        <member name="M:NMatrix.Schematron.SyncEvaluationContext.Evaluate(NMatrix.Schematron.Phase)">
+        <member name="M:NMatrix.Schematron.SyncEvaluationContext.Evaluate(NMatrix.Schematron.Phase,System.Text.StringBuilder)">
             <summary>
             Evaluates the selected <see cref="T:NMatrix.Schematron.Phase"/>.
             </summary>
@@ -1418,10 +1416,10 @@
             <see cref="P:NMatrix.Schematron.EvaluationContextBase.Source"/> navigator on the root node.
             </remarks>
             <param name="phase">The <see cref="T:NMatrix.Schematron.Phase"/> to evaluate.</param>
-            <returns>The messages accumulated by the evaluation of all the child
-            <see cref="T:NMatrix.Schematron.Pattern"/>, or <see cref="F:System.String.Empty"/> if there are no messages.</returns>
+            <param name="output">Contains the builder to accumulate messages in.</param>
+            <returns>A boolean indicating the presence of errors (true).</returns>
         </member>
-        <member name="M:NMatrix.Schematron.SyncEvaluationContext.Evaluate(NMatrix.Schematron.Pattern)">
+        <member name="M:NMatrix.Schematron.SyncEvaluationContext.Evaluate(NMatrix.Schematron.Pattern,System.Text.StringBuilder)">
             <summary>
             Evaluates the selected <see cref="T:NMatrix.Schematron.Pattern"/>.
             </summary>
@@ -1435,10 +1433,10 @@
             </para>
             </remarks>
             <param name="pattern">The <see cref="T:NMatrix.Schematron.Pattern"/> to evaluate.</param>
-            <returns>The messages accumulated by the evaluation of all the child
-            <see cref="T:NMatrix.Schematron.Rule"/>, or <see cref="F:System.String.Empty"/> if there are no messages.</returns>
+            <param name="output">Contains the builder to accumulate messages in.</param>
+            <returns>A boolean indicating if a new message was added.</returns>
         </member>
-        <member name="M:NMatrix.Schematron.SyncEvaluationContext.Evaluate(NMatrix.Schematron.Rule)">
+        <member name="M:NMatrix.Schematron.SyncEvaluationContext.Evaluate(NMatrix.Schematron.Rule,System.Text.StringBuilder)">
             <summary>
             Evaluates the selected <see cref="T:NMatrix.Schematron.Rule"/>.
             </summary>
@@ -1466,14 +1464,13 @@
             </para>
             </remarks>
             <param name="rule">The <see cref="T:NMatrix.Schematron.Rule"/> to evaluate.</param>
-            <returns>The messages accumulated by the evaluation of all the child
-            <see cref="T:NMatrix.Schematron.Assert"/> and <see cref="T:NMatrix.Schematron.Report"/>, or <see cref="F:System.String.Empty"/> 
-            if there are no messages to show.</returns>
+            <param name="output">Contains the builder to accumulate messages in.</param>
+            <returns>A boolean indicating if a new message was added.</returns>
             <exception cref="T:System.InvalidOperationException">
             The rule to evaluate is abstract (see <see cref="P:NMatrix.Schematron.Rule.IsAbstract"/>).
             </exception>
         </member>
-        <member name="M:NMatrix.Schematron.SyncEvaluationContext.EvaluateAssert(NMatrix.Schematron.Assert,System.Xml.XPath.XPathNavigator)">
+        <member name="M:NMatrix.Schematron.SyncEvaluationContext.EvaluateAssert(NMatrix.Schematron.Assert,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
             <summary>
             Performs the evaluation of the <see cref="T:NMatrix.Schematron.Assert"/>.
             </summary>
@@ -1484,11 +1481,10 @@
             </remarks>
             <param name="assert">The <see cref="T:NMatrix.Schematron.Assert"/> to evaluate.</param>
             <param name="context">The context node for the execution.</param>
-            <returns>The formatted message for a failing <see cref="T:NMatrix.Schematron.Assert"/>, or 
-            <see cref="F:System.String.Empty"/>.
-            </returns>
+            <param name="output">Contains the builder to accumulate messages in.</param>
+            <returns>A boolean indicating if a new message was added.</returns>
         </member>
-        <member name="M:NMatrix.Schematron.SyncEvaluationContext.EvaluateReport(NMatrix.Schematron.Report,System.Xml.XPath.XPathNavigator)">
+        <member name="M:NMatrix.Schematron.SyncEvaluationContext.EvaluateReport(NMatrix.Schematron.Report,System.Xml.XPath.XPathNavigator,System.Text.StringBuilder)">
             <summary>
             Performs the evaluation of the <see cref="T:NMatrix.Schematron.Report"/>.
             </summary>
@@ -1499,9 +1495,8 @@
             </remarks>
             <param name="report">The <see cref="T:NMatrix.Schematron.Report"/> to evaluate.</param>
             <param name="context">The context node for the execution.</param>
-            <returns>The formatted message for a succesful <see cref="T:NMatrix.Schematron.Report"/>, or 
-            <see cref="F:System.String.Empty"/>.
-            </returns>
+            <param name="output">Contains the builder to accumulate messages in.</param>
+            <returns>A boolean indicating if a new message was added.</returns>
         </member>
         <member name="T:NMatrix.Schematron.TagExpressions">
             <summary />

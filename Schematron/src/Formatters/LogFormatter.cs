@@ -8,20 +8,23 @@ using System.Xml.Schema;
 
 namespace NMatrix.Schematron.Formatters
 {
-	/// <summary />
-	public class LogFormatter : BaseFormatter
+	/// <summary>
+	/// Provides a complete log of validation errors in text format.
+	/// </summary>
+	public class LogFormatter : FormatterBase
 	{
 		/// <summary />
 		public LogFormatter()
 		{
 		}
 
-		/// <summary />
-		public override string Format(Test source, XPathNavigator context)
+        /// <summary>
+        /// Look at <see cref="IFormatter.Format"/> documentation.
+        /// </summary>
+        public override void Format(Test source, XPathNavigator context, StringBuilder output)
 		{
 			string msg = source.Message;
-			//TODO: is this Capacity initialization usefull? or it is for number of chars?
-			StringBuilder sb = new StringBuilder(source.NameExpressions.Count);
+			StringBuilder sb = new StringBuilder();
 			XPathExpression expr;
 
 			// As we move on, we have to append starting from the last point,
@@ -80,7 +83,7 @@ namespace NMatrix.Schematron.Formatters
 			//Accumulate namespaces found during traversal of node for its position.
 			Hashtable ns = new Hashtable();
 
-            sb.Append("\r\n\tAt: ").Append(FormattingUtils.GetFullNodePosition(context.Clone(), String.Empty, source, ref ns));
+            sb.Append("\r\n\tAt: ").Append(FormattingUtils.GetFullNodePosition(context.Clone(), String.Empty, source, ns));
 			sb.Append(FormattingUtils.GetNodeSummary(context, ns, "\r\n\t    "));
 
 			res = FormattingUtils.GetPositionInFile(context, "\r\n\t    ");
@@ -88,62 +91,59 @@ namespace NMatrix.Schematron.Formatters
 
 			res = FormattingUtils.GetNamespaceSummary(context, ns, "\r\n\t    ");
 			if (res != string.Empty) sb.Append(res);
-
-			return sb.ToString();
+			sb.Append("\r\n");
+			output.Append(sb.ToString());
 		}
 
-		/// <summary />
-		public override string Format(Pattern source, string messages, XPathNavigator context)
+        /// <summary>
+        /// Look at <see cref="IFormatter.Format"/> documentation.
+        /// </summary>
+        public override void Format(Pattern source, XPathNavigator context, StringBuilder output)
 		{
-			if (messages == String.Empty)
-				return messages;
-         
-			StringBuilder sb = new StringBuilder();
-			sb.Append("    From pattern \"").Append(source.Name).Append("\"\r\n");
-			sb.Append(messages).Append("\r\n");
-
-			return sb.ToString();
+			output.Insert(0, "    From pattern \"" + source.Name + "\"\r\n");
+			output.Append("\r\n");
 		}
 
-		/// <summary />
-		public override string Format(Schema source, string messages, XPathNavigator context)
+        /// <summary>
+        /// Look at <see cref="IFormatter.Format"/> documentation.
+        /// </summary>
+        public override void Format(Schema source, XPathNavigator context, StringBuilder output)
 		{
-			if (messages == String.Empty)
-				return messages;
-			
-			StringBuilder sb = new StringBuilder();
-		
 			if (source.Title != String.Empty)
-				sb.Append(source.Title).Append("\r\n");
+				output.Insert(0, source.Title + "\r\n");
             else
-                sb.Append("Results from Schematron validation\r\n");
+                output.Insert(0, "Results from Schematron validation\r\n");
 
-			sb.Append(messages).Append("\r\n");
-
-			return sb.ToString();
+			output.Append("\r\n");
 		}
 
-		/// <summary />
-		public override string Format(XmlValidatingReader reader, string messages)
+        /// <summary>
+        /// Look at <see cref="IFormatter.Format"/> documentation.
+        /// </summary>
+        public override void Format(ValidationEventArgs source, StringBuilder output)
 		{
-			if (messages == String.Empty)
-				return messages;
-
-			return "Results from XML " + 
-				reader.ValidationType.ToString() +
-				" validation:\r\n" + messages + "\r\n";
+			output.Append("  Error: ");
+			output.Append(FormattingUtils.XmlErrorPosition.Replace(source.Message, String.Empty));
+			output.Append("\r\n  At: (Line: ").Append(source.Exception.LineNumber);
+			output.Append(", Column: ").Append(source.Exception.LinePosition).Append(")\r\n");
 		}
 
-		/// <summary />
-		public override string Format(ValidationEventArgs source)
+		/// <summary>
+		/// Look at <see cref="IFormatter.Format"/> documentation.
+		/// </summary>
+		public override void Format(XmlSchemaCollection schemas, StringBuilder output)
 		{
-			StringBuilder sb = new StringBuilder();
-			sb.Append("  Error: ");
-			sb.Append(FormattingUtils.XmlErrorPosition.Replace(source.Message, String.Empty));
-			sb.Append("\r\n  At: (Line: ").Append(source.Exception.LineNumber);
-			sb.Append(", Column: ").Append(source.Exception.LinePosition).Append(")\r\n");
+			output.Insert(0, "Results from XML Schema validation:\r\n");
+			output.Append("\r\n");
+		}
 
-			return sb.ToString();
+		/// <summary>
+		/// Look at <see cref="IFormatter.Format"/> documentation.
+		/// </summary>
+		public override void Format(SchemaCollection schemas, StringBuilder output)
+		{
+			output.Insert(0, "Results from Schematron validation:\r\n");
+			output.Append("\r\n");
 		}
 	}
 }

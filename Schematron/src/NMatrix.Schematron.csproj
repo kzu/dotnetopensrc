@@ -92,21 +92,6 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "AsyncAssertEvaluate.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "AsyncEvaluationContext.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
-                    RelPath = "AsyncReportEvaluate.cs"
-                    SubType = "Code"
-                    BuildAction = "Compile"
-                />
-                <File
                     RelPath = "BadSchemaException.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
@@ -257,12 +242,12 @@
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Formatters\BaseFormatter.cs"
+                    RelPath = "Formatters\BooleanFormatter.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />
                 <File
-                    RelPath = "Formatters\BooleanFormatter.cs"
+                    RelPath = "Formatters\FormatterBase.cs"
                     SubType = "Code"
                     BuildAction = "Compile"
                 />

@@ -19,7 +19,7 @@ namespace NMatrix.Schematron.Formatters
 			_normalize = new Regex(@"\s+", RegexOptions.Compiled);
 			_removeprefix = new Regex(" .*", RegexOptions.Compiled); 
 
-			//Mangle message for xml validation errors to retrieve the position.
+			//Mangle message for xml validation errors to locate the position in the error message.
 			ResourceManager m = new ResourceManager("System.XML", typeof(System.Xml.Schema.XmlSchema).Assembly);
 			string msg = m.GetString("Sch_ErrorPosition");
 			Regex rp = new Regex(@"{\d+}");
@@ -34,12 +34,20 @@ namespace NMatrix.Schematron.Formatters
 		/// <summary>
 		/// Returns the full path to the context node. Clone the navigator to avoid loosing positioning.
 		/// </summary>
+		public static string GetFullNodePosition(XPathNavigator context, string previous, Test source)
+		{
+			return GetFullNodePosition(context, previous, source, new Hashtable());
+		}
+
+		/// <summary>
+		/// Returns the full path to the context node. Clone the navigator to avoid loosing positioning.
+		/// </summary>
 		/// <remarks>
 		/// Cloning is not performed inside this method because it is called recursively.
 		/// Keeping positioning is only relevant to the calling procedure, not subsequent
 		/// recursive calls. This way we avoid creating unnecessary objects.
 		/// </remarks>
-		public static string GetFullNodePosition(XPathNavigator context, string previous, Test source, ref Hashtable namespaces)
+		public static string GetFullNodePosition(XPathNavigator context, string previous, Test source, Hashtable namespaces)
 		{
 			string curr = context.Name;
 			string pref = String.Empty;
@@ -76,7 +84,7 @@ namespace NMatrix.Schematron.Formatters
 				sb.Append("/");
 				if (pref != String.Empty) sb.Append(pref).Append(":");
 				sb.Append(curr).Append("[").Append(sibs).Append("]").Append(previous);
-				return GetFullNodePosition(context, sb.ToString(), source, ref namespaces);
+				return GetFullNodePosition(context, sb.ToString(), source, namespaces);
 			}
 			else
 			{
@@ -106,8 +114,16 @@ namespace NMatrix.Schematron.Formatters
 		/// <summary>
 		/// Returns abreviated node information, including attribute values.
 		/// </summary>
+		public static string GetNodeSummary(XPathNavigator context, string spacing)
+		{
+			return GetNodeSummary(context, new Hashtable(), spacing);
+		}
+
+		/// <summary>
+		/// Returns abreviated node information, including attribute values.
+		/// </summary>
 		/// <remarks>
-		/// The namespaces param is filled in <see cref="GetFullNodePosition"/>.
+		/// The namespaces param is optionally filled in <see cref="GetFullNodePosition"/>.
 		/// </remarks>
 		public static string GetNodeSummary(XPathNavigator context, Hashtable namespaces, string spacing)
 		{
@@ -116,11 +132,14 @@ namespace NMatrix.Schematron.Formatters
 
 			sb.Append(spacing).Append("<");
 
+			// Get the element name
+			XmlQualifiedName name;
 			if (ctx.NamespaceURI != String.Empty)
-				sb.Append(namespaces[ctx.NamespaceURI]).Append(":");
-	
-			sb.Append(ctx.LocalName);
+				name = new XmlQualifiedName(ctx.LocalName, namespaces[ctx.NamespaceURI].ToString());
+			else
+				name = new XmlQualifiedName(ctx.LocalName);
 
+			sb.Append(name.ToString());
 			if (ctx.MoveToFirstAttribute())
 			{
 				do
@@ -130,8 +149,8 @@ namespace NMatrix.Schematron.Formatters
 					sb.Append("\"");
 				}while (ctx.MoveToNextAttribute());
 			}
-
-            sb.Append(">...</>");
+            sb.Append(">...</");
+			sb.Append(name.ToString()).Append(">");
             return sb.ToString();
 		}
 
@@ -168,12 +187,16 @@ namespace NMatrix.Schematron.Formatters
 		}
 
 		/// <summary>
-		/// Allows to retrieve node position from System.Xml error messages.
+		/// Allows to match the string stating the node position from System.Xml error messages.
 		/// </summary>
+		/// <remarks>
+		/// This regular expression is used to remove the node position from the validation error
+		/// message, to maintain consistency with schematron messages.
+		/// </remarks>
 		public static Regex XmlErrorPosition;
 
 		/// <summary>
-		/// Returns a decoded string, if special characters are found.
+		/// Returns a decoded string, with spaces trimmed.
 		/// </summary>
 		public static string NormalizeString(string input)
 		{
@@ -181,6 +204,5 @@ namespace NMatrix.Schematron.Formatters
 			return System.Web.HttpUtility.HtmlDecode(
 				_normalize.Replace(input, " ").Trim());
 		}
-
 	}
 }

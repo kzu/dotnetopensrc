@@ -88,6 +88,9 @@ namespace NMatrix.Schematron
 				case OutputFormatting.Simple:
 					_evaluationctx.Formatter = new SimpleFormatter();
 					break;
+				case OutputFormatting.XML:
+					_evaluationctx.Formatter = new XmlFormatter();
+					break;
 			}
 
 			if (!Enum.IsDefined(typeof(NavigableType), type)) 
@@ -228,16 +231,13 @@ namespace NMatrix.Schematron
 				_haserrors = false;
 				_errors = new StringBuilder();
 				XmlSchema xs = XmlSchema.Read(new XmlTextReader(r, reader.NameTable), new ValidationEventHandler(OnValidation));
-				if (!xs.IsCompiled)
-					xs.Compile(new ValidationEventHandler(OnValidation));
-
-				if (_haserrors)
-					throw new BadSchemaException(_errors.ToString());
+				if (!xs.IsCompiled) xs.Compile(new ValidationEventHandler(OnValidation));
+				if (_haserrors) throw new BadSchemaException(_errors.ToString());
 
 				_xmlschemas.Add(xs);
 			}
 
-			//Schemas wouldn't be too big, so they are loaded in an XmlDocument, so that
+			//Schemas wouldn't be too big, so they are loaded in an XmlDocument for Schematron validation, so that
 			//inner XML elements in messages, etc. are available. So we commented the following lines.
 			//r = new StringReader(state);
 			//XPathNavigator nav = new XPathDocument(new XmlTextReader(r, reader.NameTable)).CreateNavigator();
@@ -249,12 +249,10 @@ namespace NMatrix.Schematron
 			if (standalone) 
 				PerformValidation(Config.FullSchematron);
 			else 
-				PerformValidation(Config.FullSchematron);
+				PerformValidation(Config.EmbeddedSchematron);
 
-			string res = _evaluationctx.Messages;
-				
-			if (res != String.Empty)
-				throw new BadSchemaException(res);
+			if (_evaluationctx.HasErrors)
+				throw new BadSchemaException(_evaluationctx.Messages.ToString());
 
 			Schema sch = new Schema();
 			sch.Load(nav);
@@ -294,12 +292,17 @@ namespace NMatrix.Schematron
 			foreach (Schema sch in _schematrons)
 			{
 				PerformValidation(sch);
-				string msg = _evaluationctx.Messages;
-				if (msg != String.Empty)
+				if (_evaluationctx.HasErrors)
 				{
-					if (!_haserrors) _haserrors = true;
-					_errors.Append(msg);
+					_haserrors = true;
+					_errors.Append(_evaluationctx.Messages.ToString());
 				}
+			}
+
+			if (_haserrors) 
+			{
+				_evaluationctx.Formatter.Format(_errors);
+				throw new ValidationException(_errors.ToString());
 			}
 
 			if (_haserrors) throw new ValidationException(_errors.ToString());
@@ -355,13 +358,17 @@ namespace NMatrix.Schematron
 			{
 				_errors = new StringBuilder();
 
-				XmlValidatingReader r = new XmlValidatingReader(reader);
+				// Temporary variables to hold error flags and messages.
+				bool hasxml = false;
+				StringBuilder xmlerrors = null;
+				bool hassch = false;
+				StringBuilder scherrors = null;
 
+				XmlValidatingReader r = new XmlValidatingReader(reader);
 				foreach (XmlSchema xsd in _xmlschemas)
 				{
 					r.Schemas.Add(xsd);
 				}
-
 				r.ValidationEventHandler += new ValidationEventHandler(OnValidation);
 				
 				IXPathNavigable navdoc;
@@ -381,29 +388,48 @@ namespace NMatrix.Schematron
 
 				if (_haserrors)
 				{
-					string msgs = _errors.ToString();
-					msgs = _evaluationctx.Formatter.Format(r, msgs);
-					_errors = new StringBuilder().Append(msgs);
+                    _evaluationctx.Formatter.Format(r.Schemas, _errors);
+					_evaluationctx.Formatter.Format(r, _errors);
+					hasxml = true;
+					xmlerrors = _errors;
 				}
 
 				_evaluationctx.Source = nav;
 
+				// Reset shared variables
+				_haserrors = false;
+				_errors = new StringBuilder();
+				
 				foreach (Schema sch in _schematrons)
 				{
 					PerformValidation(sch);
-					string msg = _evaluationctx.Messages;
-					if (msg != String.Empty)
+					if (_evaluationctx.HasErrors)
 					{
-						if (!_haserrors) _haserrors = true;
-						_errors.Append(msg);
+						_haserrors = true;
+						_errors.Append(_evaluationctx.Messages.ToString());
 					}
 				}
 
-				if (_haserrors) throw new ValidationException(_errors.ToString());
+				if (_haserrors) 
+				{
+					_evaluationctx.Formatter.Format(_schematrons, _errors);
+					hassch = true;
+					scherrors = _errors;
+				}
+
+				_errors = new StringBuilder();
+				if (hasxml) _errors.Append(xmlerrors.ToString());
+				if (hassch) _errors.Append(scherrors.ToString());
+
+				if (hasxml || hassch) 
+				{
+					_evaluationctx.Formatter.Format(_errors);
+					throw new ValidationException(_errors.ToString());
+				}
 
 				return navdoc;
 			}
-			catch 
+			catch (Exception ex)
 			{
 				// Rethrow.
 				throw;
@@ -451,7 +477,7 @@ namespace NMatrix.Schematron
 		private void OnValidation(object sender, ValidationEventArgs e)
 		{
 			if (!_haserrors) _haserrors = true;
-			_errors.Append(_evaluationctx.Formatter.Format(e));
+			_evaluationctx.Formatter.Format(e, _errors);
 		}
 	}
 }

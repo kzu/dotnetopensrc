@@ -34,7 +34,7 @@ namespace NMatrix.Schematron
 		/// </remarks>
 		public override void Start()
 		{
-			Messages = String.Empty;
+			this.Reset();
 
 			// Is there something to evaluate at all?
 			if (Schema.Patterns.Count == 0) return;
@@ -53,8 +53,11 @@ namespace NMatrix.Schematron
 				}
 			}
 
-			string res = Evaluate(Schema.Phases[Phase]);
-			Messages = Formatter.Format(Schema, res, Source);
+			if (Evaluate(Schema.Phases[Phase], Messages))
+			{
+				Formatter.Format(Schema, Source, Messages);
+				HasErrors = true;
+			}
 		}
 
 		/// <summary>
@@ -65,20 +68,26 @@ namespace NMatrix.Schematron
 		///	<see cref="EvaluationContextBase.Source"/> navigator on the root node.
 		/// </remarks>
 		/// <param name="phase">The <see cref="Phase"/> to evaluate.</param>
-		/// <returns>The messages accumulated by the evaluation of all the child
-		/// <see cref="Pattern"/>, or <see cref="String.Empty"/> if there are no messages.</returns>
-		private string Evaluate(Phase phase)
+		/// <param name="output">Contains the builder to accumulate messages in.</param>
+		/// <returns>A boolean indicating the presence of errors (true).</returns>
+		private bool Evaluate(Phase phase, StringBuilder output)
 		{
+			bool failed = false;
 			Source.MoveToRoot();
 			StringBuilder sb = new StringBuilder();
 
 			foreach (Pattern pt in phase.Patterns)
 			{
-				sb.Append(Evaluate(pt));
+				if (Evaluate(pt, sb)) failed = true;
 			}
 
-			string res = sb.ToString();
-			return Formatter.Format(phase, res, Source);
+			if (failed)
+			{ 
+				Formatter.Format(phase, Source, sb);
+				output.Append(sb.ToString());
+			}
+
+			return failed;
 		}
 
 		/// <summary>
@@ -94,10 +103,11 @@ namespace NMatrix.Schematron
 		/// </para>
 		/// </remarks>
 		/// <param name="pattern">The <see cref="Pattern"/> to evaluate.</param>
-		/// <returns>The messages accumulated by the evaluation of all the child
-		/// <see cref="Rule"/>, or <see cref="String.Empty"/> if there are no messages.</returns>
-		private string Evaluate(Pattern pattern)
+		/// <param name="output">Contains the builder to accumulate messages in.</param>
+		/// <returns>A boolean indicating if a new message was added.</returns>
+		private bool Evaluate(Pattern pattern, StringBuilder output)
 		{
+			bool failed = false;
 			Source.MoveToRoot();
 			StringBuilder sb = new StringBuilder();
 
@@ -107,11 +117,16 @@ namespace NMatrix.Schematron
 
 			foreach (Rule rule in pattern.Rules)
 			{
-				sb.Append(Evaluate(rule));
+				if (Evaluate(rule, sb)) failed = true;
 			}
 
-			string res = sb.ToString();
-			return Formatter.Format(pattern, res, Source);
+			if (failed)
+			{
+                Formatter.Format(pattern, Source, sb);
+				output.Append(sb.ToString());
+			}
+
+			return failed;
 		}
 
 		/// <summary>
@@ -141,17 +156,17 @@ namespace NMatrix.Schematron
 		/// </para>
 		/// </remarks>
 		/// <param name="rule">The <see cref="Rule"/> to evaluate.</param>
-		/// <returns>The messages accumulated by the evaluation of all the child
-		/// <see cref="Assert"/> and <see cref="Report"/>, or <see cref="String.Empty"/> 
-		/// if there are no messages to show.</returns>
+		/// <param name="output">Contains the builder to accumulate messages in.</param>
+		/// <returns>A boolean indicating if a new message was added.</returns>
 		/// <exception cref="InvalidOperationException">
 		/// The rule to evaluate is abstract (see <see cref="Rule.IsAbstract"/>).
 		/// </exception>
-		private string Evaluate(Rule rule)
+		private bool Evaluate(Rule rule, StringBuilder output)
 		{
 			if (rule.IsAbstract)
 				throw new InvalidOperationException("The Rule is abstract, so it can't be evaluated.");
 
+			bool failed = false;
 			StringBuilder sb = new StringBuilder();
 			Source.MoveToRoot();
 			XPathNodeIterator nodes = Source.Select(rule.CompiledExpression);
@@ -174,11 +189,7 @@ namespace NMatrix.Schematron
 			{
 				foreach (XPathNavigator node in evaluables)
 				{
-					string str = EvaluateAssert(asr, node.Clone());
-					if (str != String.Empty)
-					{
-						sb.Append(str).Append(System.Environment.NewLine);
-					}
+					if (EvaluateAssert(asr, node.Clone(), sb)) failed = true;
 				}
 			}
 
@@ -186,16 +197,17 @@ namespace NMatrix.Schematron
 			{
 				foreach (XPathNavigator node in evaluables)
 				{
-					string str = EvaluateReport(rpt, node.Clone());
-					if (str != String.Empty) 
-					{
-						sb.Append(str).Append(System.Environment.NewLine);
-					}
+					if (EvaluateReport(rpt, node.Clone(), sb)) failed = true;
 				}
 			}
 
-			string res = sb.ToString();
-			return Formatter.Format(rule, res, Source);
+			if (failed) 
+			{
+				Formatter.Format(rule, Source, sb);
+				output.Append(sb.ToString());
+			}
+
+			return failed;
 		}
 
 		/// <summary>
@@ -208,10 +220,9 @@ namespace NMatrix.Schematron
 		/// </remarks>
 		/// <param name="assert">The <see cref="Assert"/> to evaluate.</param>
 		/// <param name="context">The context node for the execution.</param>
-		/// <returns>The formatted message for a failing <see cref="Assert"/>, or 
-		/// <see cref="String.Empty"/>.
-		/// </returns>
-		private string EvaluateAssert(Assert assert, XPathNavigator context)
+		/// <param name="output">Contains the builder to accumulate messages in.</param>
+		/// <returns>A boolean indicating if a new message was added.</returns>
+		private bool EvaluateAssert(Assert assert, XPathNavigator context, StringBuilder output)
 		{
 			object eval = context.Evaluate(assert.CompiledExpression);
 			bool result = true;
@@ -226,9 +237,8 @@ namespace NMatrix.Schematron
 				result = false;
 			}
 			
-			if (!result) return Formatter.Format(assert, context);
-
-			return String.Empty;
+			if (!result) Formatter.Format(assert, context, output);
+			return !result;
 		}
 
 		/// <summary>
@@ -241,10 +251,9 @@ namespace NMatrix.Schematron
 		/// </remarks>
 		/// <param name="report">The <see cref="Report"/> to evaluate.</param>
 		/// <param name="context">The context node for the execution.</param>
-		/// <returns>The formatted message for a succesful <see cref="Report"/>, or 
-		/// <see cref="String.Empty"/>.
-		/// </returns>
-		private string EvaluateReport(Report report, XPathNavigator context)
+		/// <param name="output">Contains the builder to accumulate messages in.</param>
+		/// <returns>A boolean indicating if a new message was added.</returns>
+		private bool EvaluateReport(Report report, XPathNavigator context, StringBuilder output)
 		{
 			object eval = context.Evaluate(report.CompiledExpression);
 			bool result = false;
@@ -259,9 +268,8 @@ namespace NMatrix.Schematron
 				result = true;
 			}
 
-			if (result) return Formatter.Format(report, context);
-
-			return String.Empty;
+			if (result) Formatter.Format(report, context, output);
+			return result;
 		}
 	}
 }

@@ -8,7 +8,13 @@ using System.Xml.Schema;
 
 namespace NMatrix.Schematron.Formatters
 {
-	/// <summary />
+	/// <summary>
+	/// Provides a simplified log of errors.
+	/// </summary>
+	/// <remarks>
+	/// Similar output as <see cref="LogFormatter"/>, but doesn't provide 
+	/// node position in file and namespace summary text.
+	/// </remarks>
 	public class SimpleFormatter : LogFormatter
 	{
 		/// <summary />
@@ -16,12 +22,13 @@ namespace NMatrix.Schematron.Formatters
 		{
 		}
 
-		/// <summary />
-		public override string Format(Test source, XPathNavigator context)
+        /// <summary>
+        /// Look at <see cref="IFormatter.Format"/> documentation.
+        /// </summary>
+        public override void Format(Test source, XPathNavigator context, StringBuilder output)
 		{
 			string msg = source.Message;
-			//TODO: is this Capacity initialization usefull? or it is for number of chars?
-			StringBuilder sb = new StringBuilder(source.NameExpressions.Count);
+			StringBuilder sb = new StringBuilder();
 			XPathExpression expr;
 
 			// As we move on, we have to append starting from the last point,
@@ -70,9 +77,10 @@ namespace NMatrix.Schematron.Formatters
 				sb.Insert(0, "\tReport: ");
 
 			Hashtable ns = new Hashtable();
-            sb.Append("\r\n\tAt: " + FormattingUtils.GetFullNodePosition(context.Clone(), String.Empty, source, ref ns));
+            sb.Append("\r\n\tAt: " + FormattingUtils.GetFullNodePosition(context.Clone(), String.Empty, source, ns));
+			sb.Append("\r\n");
 
-			return sb.ToString();
+            output.Append(sb.ToString());
 		}
 	}
 }
