@@ -1,0 +1,432 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NMatrix.WmiDataProvider</name>
+    </assembly>
+    <members>
+        <member name="T:NMatrix.WmiDataProvider.WmiCommand">
+            <summary>
+            Represents a WMI query that can executed against a WMI server.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.#ctor">
+            <summary>
+            Initializes a new instance of the command.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the command.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.#ctor(System.String,NMatrix.WmiDataProvider.WmiConnection)">
+            <summary>
+            Initializes a new instance of the command.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.Cancel">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.CreateParameter">
+            <summary>
+            Not supported.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.ExecuteNonQuery">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.ExecuteReader">
+            <summary>
+            Executes the WMI query and returns an IDataReader.
+            </summary>
+            <returns>The reader with the results.</returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.ExecuteReader(System.Data.CommandBehavior)">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.ExecuteScalar">
+            <summary>
+            Returns the first column of the first row from the results set.  
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.Prepare">
+            <summary>
+            Not supported.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiCommand.Dispose">
+            <summary>
+            Releases resources used by the command.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiCommand.CommandText">
+            <summary>
+            The WMI query.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiCommand.CommandTimeout">
+            <summary>
+            Not supported. Always return zero.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiCommand.CommandType">
+            <summary>
+            The type of command. CommandType.Text is the only one supported.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiCommand.Connection">
+            <summary>
+            The connection object associated with
+            this command.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiCommand.Parameters">
+            <summary>
+            Not supported. Always returns null.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiCommand.Transaction">
+            <summary>
+            Not supported. Always returns null.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiCommand.UpdatedRowSource">
+            <summary>
+            UpdateRowSource.None is the only one supported.
+            </summary>
+        </member>
+        <member name="T:NMatrix.WmiDataProvider.WmiConnection">
+            <summary>
+            Provides a connection to WMI.
+            </summary>
+        </member>
+        <member name="F:NMatrix.WmiDataProvider.WmiConnection._regconnection">
+            <summary>
+            Matching string for the connection string message.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.#ctor">
+            <summary>
+            Initializes a new instance of the connection.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the connection with the received connection string.
+            </summary>
+            <param name="connectionString">The string to use to connect to the server.</param>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of a connection to the specified server and WMI namespace.
+            </summary>
+            <param name="server">The target machine to connect to.</param>
+            <param name="ns">The WMI namespace to connect to.</param>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of a connection to the specified server and WMI namespace, 
+            using alternate credentials.
+            </summary>
+            <param name="server">The target machine to connect to.</param>
+            <param name="ns">The WMI namespace to connect to.</param>
+            <param name="user">Alternate user name to use for the connection.</param>
+            <param name="pwd">Alternate user password to use for the connection.</param>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.BeginTransaction">
+            <summary>
+            Not supported.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            Not supported.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.ChangeDatabase(System.String)">
+            <summary>
+            Not supported.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.CreateCommand">
+            <summary>
+            Creates and returns a WmiCommand object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.Open">
+            <summary>
+            Opens the connection to the Wmi Server.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.Close">
+            <summary>
+            Closes the connection to the server
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConnection.Dispose">
+            <summary>
+            Releases resources used by the connection.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiConnection.Scope">
+            <summary>
+            The scope to be used by other classes to connect and query the server. 
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiConnection.ConnectionString">
+            <summary>
+            The connection string used to connect to the server. Format: Server=[server];Namespace=[namespace];User=[user];Password=[password]
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiConnection.ConnectionTimeout">
+            <summary>
+            Not implemented. Always returns zero.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiConnection.Database">
+            <summary>
+            Returns the server+namespace currently active.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiConnection.State">
+            <summary>
+            The state of the connection 
+            </summary>
+        </member>
+        <member name="T:NMatrix.WmiDataProvider.WmiConvert">
+            <summary />
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiConvert.WmiToClr(System.Management.CimType)">
+            <summary>
+            Provides conversion. 
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NMatrix.WmiDataProvider.WmiDataAdapter">
+            <summary>
+            Represents a set of data commands and a WMI connection that are used to fill 
+            the DataSet and update a WMI Server.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataAdapter.#ctor">
+            <summary>
+            Initializes a new instance of the adapter.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataAdapter.#ctor(NMatrix.WmiDataProvider.WmiCommand)">
+            <summary>
+            Creates an instance of the adapter with the values specified.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataAdapter.#ctor(NMatrix.WmiDataProvider.WmiCommand,NMatrix.WmiDataProvider.WmiConnection)">
+            <summary>
+            Creates an instance of the adapter with the values specified.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataAdapter.#ctor(System.String,System.String)">
+            <summary>
+            Creates an instance of the adapter with the values specified.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataAdapter.Fill(System.Data.DataSet)">
+            <summary>
+            Adds rows in the DataSet to match those in the data source.
+            </summary>
+            <param name="dataSet">A DataSet to fill with records and, if necessary, schema.</param>
+            <returns>The number of rows successfully added to the DataSet.</returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataAdapter.GetFillParameters">
+            <summary>
+            Not supported.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataAdapter.Update(System.Data.DataSet)">
+            <summary>
+            Not implemented. Always returns zero.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataAdapter.UpdateCommand">
+            <summary>
+            Not implemented. Always returns null.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataAdapter.DeleteCommand">
+            <summary>
+            Not implemented. Always returns null.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataAdapter.InsertCommand">
+            <summary>
+            Not implemented. Always returns null.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataAdapter.SelectCommand">
+            <summary>
+            Gets or sets a command used to select records in the data source.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataAdapter.TableMappings">
+            <summary>
+            Not implemented. Always returns null.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataAdapter.MissingSchemaAction">
+            <summary>
+            Not implemented. Always returns MissingSchemaAction.Ignore.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataAdapter.MissingMappingAction">
+            <summary>
+            Not implemented. Always returns MissingMappingAction.Passthrough.
+            </summary>
+        </member>
+        <member name="T:NMatrix.WmiDataProvider.WmiDataReader">
+            <summary>
+            Provides a reader to access the results of a WMI query.
+            </summary>
+        </member>
+        <member name="F:NMatrix.WmiDataProvider.WmiDataReader._connection">
+            <summary>
+            The connection associated with the reader.
+            </summary>
+        </member>
+        <member name="F:NMatrix.WmiDataProvider.WmiDataReader._map">
+            <summary>
+            Maps column names to indexes.
+            </summary>
+        </member>
+        <member name="F:NMatrix.WmiDataProvider.WmiDataReader._enumerator">
+            <summary>
+            The enumerator being used.
+            </summary>
+        </member>
+        <member name="F:NMatrix.WmiDataProvider.WmiDataReader._isfirst">
+            <summary>
+            Indicates that an enumerator was asked for from outside the reader, for the first time.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.#ctor">
+            <summary>
+            Initializes a new instance of a WmiDataReader.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.#ctor(NMatrix.WmiDataProvider.WmiConnection)">
+            <summary>
+            Initializes a new instance of a WmiDataReader with the specified connection.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.BuildMap">
+            <summary>
+            Builds a map of properies->indexes.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.CheckState">
+            <summary>
+            Checks that the enumerator is in a valid state. 
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The method is 
+            called and the enumerator is null or passed the end of the enumeration.</exception>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.NextResult">
+            <summary>
+            Not implemented. Always returns false.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.Close">
+            <summary>
+            Closes the reader. 
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.GetSchemaTable">
+            <summary>
+            Returns a DataTable that describes the column metadata of the IDataReader.
+            </summary>
+            <returns>The table with full details of the structure.</returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.Dispose">
+            <summary>
+            Releases resources used by the reader.
+            </summary>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.GetValue(System.Int32)">
+            <summary>
+            Provides access to the object value.
+            </summary>
+            <param name="i">The column index.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Not supported.
+            </summary>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.GetValues(System.Object[])">
+            <summary>
+            Retrieves all values in a single array of objects.
+            </summary>
+            <param name="values">An array of Object to copy the fields into.</param>
+            <returns>The number of instances of Object in the array.</returns>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.GetData(System.Int32)">
+            <summary>
+            Not supported.
+            </summary>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="M:NMatrix.WmiDataProvider.WmiDataReader.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Not supported.
+            </summary>
+            <exception cref="T:System.NotSupportedException"/>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataReader.Data">
+            <summary>
+            The internal results from a query execution.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataReader.RecordsAffected">
+            <summary>
+            Returns the number of records affected by the last WMI query.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataReader.IsClosed">
+            <summary>
+            Indicates whether the reader is closed. Always returns false.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataReader.Depth">
+            <summary>
+            Not implemented. Always returns zero.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataReader.Item(System.String)">
+            <summary>
+            Gets the column value.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataReader.Item(System.Int32)">
+            <summary>
+            Gets the column value.
+            </summary>
+        </member>
+        <member name="P:NMatrix.WmiDataProvider.WmiDataReader.FieldCount">
+            <summary>
+            The number of fields in the current object.
+            </summary>
+        </member>
+    </members>
+</doc>

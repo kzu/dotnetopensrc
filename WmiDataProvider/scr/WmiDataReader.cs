@@ -64,7 +64,7 @@ namespace NMatrix.WmiDataProvider
 			}
 		} ManagementObjectCollection _data = null;
 
-		internal ManagementObject CurrentObject
+		public ManagementObject CurrentObject
 		{
 			get 
 			{
@@ -369,7 +369,7 @@ namespace NMatrix.WmiDataProvider
 		/// </summary>
 		public object this[string name]
 		{
-			get { return CurrentObject.Properties[name]; }
+			get { return CurrentObject.Properties[name].Value; }
 		}
 
 		/// <summary>
@@ -387,6 +387,7 @@ namespace NMatrix.WmiDataProvider
 		{
 			get { return _map.Count; }
 		}
+
 		#endregion
 	}
 }

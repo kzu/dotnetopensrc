@@ -33,6 +33,33 @@ namespace NMatrix.WmiDataProvider
 			_connection = connectionString;
 		}
 
+		/// <summary>
+		/// Initializes a new instance of a connection to the specified server and WMI namespace.
+		/// </summary>
+		/// <param name="server">The target machine to connect to.</param>
+		/// <param name="ns">The WMI namespace to connect to.</param>
+		public WmiConnection(string server, string ns) : this(server, ns, null, null)
+		{
+		}
+
+		/// <summary>
+		/// Initializes a new instance of a connection to the specified server and WMI namespace, 
+		/// using alternate credentials.
+		/// </summary>
+		/// <param name="server">The target machine to connect to.</param>
+		/// <param name="ns">The WMI namespace to connect to.</param>
+		/// <param name="user">Alternate user name to use for the connection.</param>
+		/// <param name="pwd">Alternate user password to use for the connection.</param>
+		public WmiConnection(string server, string ns, string user, string pwd)
+		{
+			//(Server=(?<server>[^;]*))?[;]?(Namespace=(?<namespace>[^;]*))?[;]?(User=(?<user>[^;]*))?[;]?(Password=(?<pwd>[^;]*))?[;]?"
+			if (user != null && user.Length > 0)
+				_connection = String.Concat("Server=", server, ";Namespace=", ns, ";User=", user, ";Password=", pwd);
+			else
+				_connection = String.Concat("Server=", server, ";Namespace=", ns);
+		}
+
+
 		#endregion
 
 		#region Public properties
@@ -146,13 +173,22 @@ namespace NMatrix.WmiDataProvider
 				path.Server = m.Groups["server"].Value;
 				path.NamespacePath = m.Groups["namespace"].Value;
 				_scope = new ManagementScope(path);
-				if (String.Compare(path.Server, "localhost", true) != 0)
+				if (String.Compare(path.Server, "localhost", true) != 0 && path.Server != "." && 
+					 m.Groups["user"] != null)
 				{
 					_scope.Options.Username = m.Groups["user"].Value;
-					_scope.Options.Password = m.Groups["pwd"].Value;
+					_scope.Options.Password = (m.Groups["pwd"] != null) ? 
+						m.Groups["pwd"].Value : String.Empty;
 					_scope.Options.Impersonation = ImpersonationLevel.Impersonate;
 				}
+				try
+				{
 				_scope.Connect();
+				}
+				catch (UnauthorizedAccessException ex)
+				{
+                    throw new ArgumentException("Can't connect to server with the received credentials and/or server name.", ex);
+				}
 				_state = ConnectionState.Open;
 			}
 			else

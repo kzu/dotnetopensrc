@@ -29,6 +29,9 @@ namespace NMatrix.WmiDataProvider
 				foreach (PropertyData prop in one.Properties)
 					table.Columns.Add(prop.Name, WmiConvert.WmiToClr(prop.Type));
 			}
+			//Add dummy column if no data is found. For consistency with other ADO.NET providers which always load the schema. 
+			if (table.Columns.Count == 0)
+				table.Columns.Add("Object", typeof(string));
 			ds.Tables.Add(table);
 		}
 
