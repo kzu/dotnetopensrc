@@ -58,7 +58,7 @@ namespace NMatrix.Core.Collections
 		/// </remarks>
 		int IComparable.CompareTo(object obj)
 		{
-      SortedDuplicateKey key = obj as SortedDuplicateKey;
+			SortedDuplicateKey key = obj as SortedDuplicateKey;
       
 			// If the passed call order is MaxValue or is equal to us, put it above us.
 			if (key.Order == int.MaxValue || key.Order == _order || key.Order > _order)

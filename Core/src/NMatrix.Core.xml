@@ -702,6 +702,35 @@
             <param name="typeToCheck">The type to check.</param>
             <param name="typeToEnsure">The base type to check.</param>
         </member>
+        <member name="M:NMatrix.Core.Utility.Reflection.LoadType(System.String)">
+            <summary>
+            Loads the specified type from either the GAC or a local folder.
+            </summary>
+            <param name="className">The partial or fully qualified name of the type to load.</param>
+            <returns>The loaded type.</returns>
+            <exception cref="T:System.TypeLoadException">The received <paramref name="className"/> couldn't be loaded.</exception>
+        </member>
+        <member name="M:NMatrix.Core.Utility.Reflection.LoadAssembly(System.String)">
+            <summary>
+            Loads the specified assembly from either the GAC or a local folder.
+            </summary>
+            <param name="assemblyName">The partial or full name of the assembly to load.</param>
+            <returns>The loaded asssembly.</returns>
+            <exception cref="T:System.TypeLoadException">The received <paramref name="assemblyName"/> couldn't be loaded.</exception>
+        </member>
+        <member name="M:NMatrix.Core.Utility.Reflection.SetProperty(System.Object,System.String,System.Object)">
+            <summary>
+            Sets the desired property value on the received object.
+            </summary>
+            <param name="target">The object to which the property value applies.</param>
+            <param name="property">The name of the property to set.</param>
+            <param name="value">The property value to set.</param>
+            <exception cref="T:System.Reflection.AmbiguousMatchException">More than one property is found with the specified name.</exception>
+            <exception cref="T:System.ArgumentNullException">Parameter <paramref name="property"/> is a null reference.</exception>
+            <exception cref="T:System.ArgumentException">The received <paramref name="property"/> wasn't found for the current <paramref name="target"/> object.</exception>
+            <exception cref="T:System.InvalidCastException">The received <paramref name="value"/> does not implement <see cref="T:System.IConvertible"/> or a conversion to 
+            the target property type couldn't be performed.</exception>
+        </member>
         <member name="T:NMatrix.Core.Xml.Validator">
             <summary>
             A class for accumulating validation errors for Xml reading.
